@@ -4,7 +4,7 @@ Elegant SSH tasks for PHP.
 
 ## Installation
 
-Envoy is a simple SSH task runner for PHP, and requires PHP 5.4 or greater. To compile the `envoy.phar` file yourself, clone this repository and run the `box build` command. To run `box` commands, you must install [https://github.com/kherge/box](kherge/Box).
+Envoy is a simple SSH task runner for PHP, and requires PHP 5.4 or greater. To compile the `envoy.phar` file yourself, clone this repository and run the `box build` command. To run `box` commands, you must install [kherge/Box](https://github.com/kherge/Box).
 
 ## Running Tasks
 
