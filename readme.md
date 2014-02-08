@@ -38,7 +38,7 @@ You may define multiple tasks in a given file. To run a task, use the `run` comm
 ### Passing Variables
 
 ```
-	envoy run foo --branch=master
+envoy run foo --branch=master
 ```
 
 ```
