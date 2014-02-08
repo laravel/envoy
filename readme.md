@@ -65,8 +65,6 @@ envoy run foo --branch=master
 <a name="hipchat-notifications">
 ## HipChat Notifications
 
-After tasks run, you can send a message to a HipChat chat room using `@after`:
-
 ```
 @servers(['web' => '192.168.1.1'])
 
