@@ -1,0 +1,16 @@
+{
+	"autoload": {
+		"classmap": ["src/lib"]
+	},
+	"require": {
+		"illuminate/support": "4.1.*",
+		"nategood/httpful": "~0.2",
+		"symfony/console": "2.4.*",
+		"symfony/process": "2.4.*"
+	},
+	"config": {
+		"bin-dir": "bin",
+		"vendor-dir": "src/vendor"
+	},
+	"minimum-stability": "dev"
+}

@@ -1,0 +1,21 @@
+{
+    "chmod": "0755",
+    "directories": ["src"],
+    "finder": [
+        {
+            "name": "*.php",
+            "exclude": [
+                "phpunit",
+                "phpunit-test-case",
+                "Tester",
+                "Tests",
+                "tests",
+                "yaml"
+            ],
+            "in": "src/vendor"
+        }
+    ],
+    "main": "bin/envoy",
+    "output": "envoy.phar",
+    "stub": true
+}

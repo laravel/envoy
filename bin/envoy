@@ -1,0 +1,8 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/../src/vendor/autoload.php';
+$app = new Symfony\Component\Console\Application('Laravel Envoy', '1.0.0');
+$app->add(new Laravel\Envoy\Console\RunCommand);
+$app->add(new Laravel\Envoy\Console\SshCommand);
+$app->run();
