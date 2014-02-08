@@ -35,3 +35,19 @@ You may also pass variables into the task:
 	php artisan migrate
 @endtask
 ```
+
+## Notifying Hipchat
+
+After tasks run, you can send a message to a HipChat chat room using `@after`:
+
+```
+@servers(['web' => '192.168.1.1'])
+
+@task('foo', ['on' => 'web'])
+	ls -la
+@endtask
+
+@after
+	@hipchat('token', 'room', 'from')
+@endafter
+```
