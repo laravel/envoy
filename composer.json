@@ -1,4 +1,14 @@
 {
+    "name": "laravel/envoy",
+    "description": "Elegant SSH tasks for PHP.",
+    "keywords": ["ssh", "laravel"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Taylor Otwell",
+            "email": "taylorotwell@gmail.com"
+        }
+    ],
 	"autoload": {
 		"classmap": ["src/lib"]
 	},
@@ -12,5 +22,5 @@
 		"bin-dir": "bin",
 		"vendor-dir": "src/vendor"
 	},
-	"minimum-stability": "dev"
+	"minimum-stability": "stable"
 }
