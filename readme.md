@@ -1,6 +1,6 @@
 # Laravel Envoy
 
-**Elegant SSH tasks for PHP.**
+Elegant SSH tasks for PHP.
 
 ## Getting Started
 
