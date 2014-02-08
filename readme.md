@@ -60,6 +60,8 @@ envoy run foo --branch=master
 @endtask
 ```
 
+> **Note:** Tasks on multiple servers will be run serially.
+
 <a name="hipchat-notifications">
 ## HipChat Notifications
 
