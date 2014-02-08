@@ -37,9 +37,9 @@ You may define multiple tasks in a given file. To run a task, use the `run` comm
 <a name="passing-variables">
 ### Passing Variables
 
-You may also pass variables into the Envoy file:
-
+```
 	envoy run foo --branch=master
+```
 
 ```
 @task('foo')
