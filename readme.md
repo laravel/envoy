@@ -32,7 +32,7 @@ You may define multiple tasks in a given file. To run a task, use the `run` comm
 
 	envoy run foo
 
->> **Note:** For best results, your machine should have SSH key access to the target.
+> **Note:** For best results, your machine should have SSH key access to the target.
 
 <a name="passing-variables">
 ### Passing Variables
