@@ -26,6 +26,8 @@ You may define multiple tasks in a given file. To run a task, use the `run` comm
 
 >> **Note:** For best results, your machine should have SSH key access to the target.
 
+### Passing Variables
+
 You may also pass variables into the Envoy file:
 
 	envoy run foo --branch=master
@@ -35,6 +37,16 @@ You may also pass variables into the Envoy file:
 	cd site
 	git pull origin {{ $branch }}
 	php artisan migrate
+@endtask
+```
+
+### Multiple Servers
+
+```
+@servers(['web' => 'root@192.168.1.1', 'db' => 'root@192.168.1.2'])
+
+@task('foo', ['on' => ['web', 'db']])
+	ls -la
 @endtask
 ```
 
