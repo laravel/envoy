@@ -5,6 +5,7 @@ Elegant SSH tasks for PHP.
 - [Installation](#installation)
 - [Running Tasks](#running-tasks)
 - [Passing Variables](#passing-variables)
+- [Macros](#macros)
 - [Multiple Servers](#multiple-servers)
 - [HipChat Notifications](#hipchat-notifications)
 
@@ -47,6 +48,30 @@ envoy run foo --branch=master
 	git pull origin {{ $branch }}
 	php artisan migrate
 @endtask
+```
+
+<a name="macros"></a>
+### Macros
+
+Macros allow you to define a set of tasks to run in sequence using a single command. For instance:
+
+```
+@macro('deploy')
+	foo
+	bar
+@endmacro
+
+@task('foo')
+	echo "HELLO"
+@endtask
+
+@task('bar')
+	echo "WORLD"
+@endtask
+```
+
+```
+envoy run deploy
 ```
 
 <a name="multiple-servers">
