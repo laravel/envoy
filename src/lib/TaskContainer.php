@@ -12,6 +12,13 @@ class TaskContainer {
 	protected $servers = [];
 
 	/**
+	 * All of the registered macros.
+	 *
+	 * @var array
+	 */
+	protected $macros = [];
+
+	/**
 	 * All of the evaluated tasks.
 	 *
 	 * @var array
