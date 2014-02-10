@@ -7,6 +7,7 @@ Elegant SSH tasks for PHP.
 - [Passing Variables](#passing-variables)
 - [Macros](#macros)
 - [Multiple Servers](#multiple-servers)
+- [Parallel Execution](#parallel-execution)
 - [HipChat Notifications](#hipchat-notifications)
 
 <a name="installation">
@@ -75,7 +76,7 @@ envoy run deploy
 ```
 
 <a name="multiple-servers">
-### Multiple Servers
+## Multiple Servers
 
 ```
 @servers(['web' => 'root@192.168.1.1', 'db' => 'root@192.168.1.2'])
@@ -85,7 +86,18 @@ envoy run deploy
 @endtask
 ```
 
-> **Note:** Tasks on multiple servers will be run serially.
+> **Note:** Tasks on multiple servers will be run serially by default.
+
+<a name="parallel-execution">
+## Parallel Execution
+
+To run a task across multiple servers in parallel, use the `parallel` option on the task:
+
+@servers(['web' => 'root@192.168.1.1', 'db' => 'root@192.168.1.2'])
+
+@task('foo', ['on' => ['web', 'db'], 'parallel' => true])
+	ls -la
+@endtask
 
 <a name="hipchat-notifications">
 ## HipChat Notifications
@@ -101,3 +113,5 @@ envoy run deploy
 	@hipchat('token', 'room', 'from')
 @endafter
 ```
+
+> **Note:** HipChat notifications will only be sent if all tasks complete successfully.
