@@ -35,7 +35,40 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 	{
 		$container = $this->loadTaskContainer();
 
-		if ($this->runTask($container->getTask($task = $this->argument('task'))) > 0)
+		foreach ($this->getTasks($container) as $task)
+		{
+			$this->runTask($container, $task);
+		}
+	}
+
+	/**
+	 * Get the tasks from the container based on user input.
+	 *
+	 * @param  \Laravel\Forge\TaskContainer  $container
+	 * @reutrn void
+	 */
+	protected function getTasks($container)
+	{
+		$tasks = [$task = $this->argument('task')];
+
+		if ($macro = $container->getMacro($task))
+		{
+			$tasks = $macro;
+		}
+
+		return $tasks;
+	}
+
+	/**
+	 * Run the given task out of the container.
+	 *
+	 * @param  \Laravel\Forge\TaskContainer  $container
+	 * @param  string  $task
+	 * @return void
+	 */
+	protected function runTask($container, $task)
+	{
+		if ($this->runTaskOverSSH($container->getTask($task)) > 0)
 		{
 			return;
 		}
@@ -52,7 +85,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 	 * @param  \Laravel\Envoy\Task  $task
 	 * @return int
 	 */
-	protected function runTask(Task $task)
+	protected function runTaskOverSSH(Task $task)
 	{
 		return (new SSH)->run($task, function($host, $line)
 		{

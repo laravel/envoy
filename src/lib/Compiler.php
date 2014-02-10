@@ -27,6 +27,8 @@ class Compiler {
 		'SetupStop',
 		'Include',
 		'Servers',
+		'MacroStart',
+		'MacroStop',
 		'TaskStart',
 		'TaskStop',
 		'After',
@@ -242,6 +244,32 @@ class Compiler {
 		$pattern = $this->createMatcher('servers');
 
 		return preg_replace($pattern, '$1<?php $__container->servers$2; ?>', $value);
+	}
+
+	/**
+	 * Compile Envoy macro start statements into valid PHP.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	protected function compileMacroStart($value)
+	{
+		$pattern = $this->createMatcher('macro');
+
+		return preg_replace($pattern, '$1<?php $__container->startMacro$2; ?>', $value);
+	}
+
+	/**
+	 * Compile Envoy macro stop statements into valid PHP.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	protected function compileMacroStop($value)
+	{
+		$pattern = $this->createPlainMatcher('endmacro');
+
+		return preg_replace($pattern, '$1<?php $__container->endMacro(); ?>$2', $value);
 	}
 
 	/**

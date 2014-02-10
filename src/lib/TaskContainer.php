@@ -162,7 +162,18 @@ class TaskContainer {
 	}
 
 	/**
-	 * Get a Task instance by name.
+	 * Get the givne macro from the container.
+	 *
+	 * @param  string  $macro
+	 * @return array|null
+	 */
+	public function getMacro($macro)
+	{
+		return array_get($this->macros, $macro);
+	}
+
+	/**
+	 * Get a Task instance by the given name.
 	 *
 	 * @param  string  $task
 	 * @return string
@@ -196,6 +207,29 @@ class TaskContainer {
 	protected function getServers(array $options)
 	{
 		return array_map(function($name) { return $this->servers[$name]; }, (array) $options['on']);
+	}
+
+	/**
+	 * Begin defining a macro.
+	 *
+	 * @param  string  $macro
+	 * @return void
+	 */
+	public function startMacro($macro)
+	{
+		ob_start() && $this->macroStack[] = $macro;
+	}
+
+	/**
+	 * Stop defining a macro.
+	 *
+	 * @return void
+	 */
+	public function endMacro()
+	{
+		$macro = explode(PHP_EOL, $this->trimSpaces(trim(ob_get_clean())));
+
+		$this->macros[array_pop($this->macroStack)] = $macro;
 	}
 
 	/**
