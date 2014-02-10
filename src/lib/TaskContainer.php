@@ -177,17 +177,6 @@ class TaskContainer {
 	}
 
 	/**
-	 * Get the IP addresses of the servers specified on the options.
-	 *
-	 * @param  array  $options
-	 * @return array
-	 */
-	protected function getServers(array $options)
-	{
-		return array_map(function($name) { return $this->servers[$name]; }, (array) $options['on']);
-	}
-
-	/**
 	 * Get the task options for the given task.
 	 *
 	 * @param  string  $task
@@ -196,6 +185,17 @@ class TaskContainer {
 	public function getTaskOptions($task)
 	{
 		return array_get($this->taskOptions, $task, []);
+	}
+
+	/**
+	 * Get the IP addresses of the servers specified on the options.
+	 *
+	 * @param  array  $options
+	 * @return array
+	 */
+	protected function getServers(array $options)
+	{
+		return array_map(function($name) { return $this->servers[$name]; }, (array) $options['on']);
 	}
 
 	/**

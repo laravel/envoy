@@ -33,12 +33,14 @@ class SSH {
 	{
 		$target = $this->getConfiguredServer($host) ?: $host;
 
+		$script = 'set -e'.PHP_EOL.$task->script;
+
 		// Here will run the SSH task on the server inline. We do not need to write the
 		// script out to a file or anything. We will start the SSH process then pass
 		// these lines of output back to the parent callback for display purposes.
 		$process = new Process(
 			'ssh '.$target.' \'bash -s\' << EOF
-'.$task->script.'
+'.$script.'
 EOF'
 		);
 
