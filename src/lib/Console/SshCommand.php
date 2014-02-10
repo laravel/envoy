@@ -20,7 +20,7 @@ class SshCommand extends \Symfony\Component\Console\Command\Command {
 	protected function configure()
 	{
 		$this->setName('ssh')
-                  ->setDescription('Connect to an Envoy server')
+                  ->setDescription('Connect to an Envoy server.')
                   ->addArgument('name', InputArgument::OPTIONAL, 'The name of the server.')
                   ->addOption('user', null, InputOption::VALUE_OPTIONAL, 'The name of the user.');
 	}

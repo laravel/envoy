@@ -1,3 +1,5 @@
 /src/vendor
 /forge.phar
+/bin/jsonlint
+/bin/validate-json
 .DS_Store

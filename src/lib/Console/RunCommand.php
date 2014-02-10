@@ -24,7 +24,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 		$this->ignoreValidationErrors();
 
 		$this->setName('run')
-				->setDescription('Run an Envoy task')
+				->setDescription('Run an Envoy task.')
 				->addArgument('task', InputArgument::REQUIRED);
 	}
 

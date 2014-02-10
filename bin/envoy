@@ -5,4 +5,10 @@ require __DIR__.'/../src/vendor/autoload.php';
 $app = new Symfony\Component\Console\Application('Laravel Envoy', '1.0.0');
 $app->add(new Laravel\Envoy\Console\RunCommand);
 $app->add(new Laravel\Envoy\Console\SshCommand);
+
+$updateCommand = new KevinGH\Amend\Command('self-update');
+$updateCommand->setManifestUri('http://laravel.com/envoy-manifest.json');
+$app->getHelperSet()->set(new KevinGH\Amend\Helper);
+$app->add($updateCommand);
+
 $app->run();
