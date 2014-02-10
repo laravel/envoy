@@ -191,7 +191,9 @@ class TaskContainer {
 
 		$options = $this->getTaskOptions($task);
 
-		return new Task($this->getServers($options), $options['as'], $script, $options['parallel']);
+		$parallel = array_get($options, 'parallel', false);
+
+		return new Task($this->getServers($options), $options['as'], $script, $parallel);
 	}
 
 	/**

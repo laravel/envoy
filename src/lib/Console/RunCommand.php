@@ -3,7 +3,9 @@
 use Laravel\Envoy\SSH;
 use Laravel\Envoy\Task;
 use Laravel\Envoy\Compiler;
+use Laravel\Envoy\ParallelSSH;
 use Laravel\Envoy\TaskContainer;
+use Symfony\Component\Process\Process;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -44,7 +46,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 	/**
 	 * Get the tasks from the container based on user input.
 	 *
-	 * @param  \Laravel\Forge\TaskContainer  $container
+	 * @param  \Laravel\Envoy\TaskContainer  $container
 	 * @reutrn void
 	 */
 	protected function getTasks($container)
@@ -62,7 +64,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 	/**
 	 * Run the given task out of the container.
 	 *
-	 * @param  \Laravel\Forge\TaskContainer  $container
+	 * @param  \Laravel\Envoy\TaskContainer  $container
 	 * @param  string  $task
 	 * @return void
 	 */
@@ -87,12 +89,33 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 	 */
 	protected function runTaskOverSSH(Task $task)
 	{
-		return (new SSH)->run($task, function($host, $line)
+		return $this->getRemoteProcessor($task)->run($task, function($type, $host, $line)
 		{
 			if (starts_with($line, 'Warning: Permanently added ')) return;
 
-			$this->output->write('<comment>['.$host.']</comment>: '.trim($line).PHP_EOL);
+			$this->displayOutput($type, $host, $line);
 		});
+	}
+
+	/**
+	 * Display the given output line.
+	 *
+	 * @param  int  $type
+	 * @param  string  $host
+	 * @param  string  $line
+	 * @return void
+	 */
+	protected function displayOutput($type, $host, $line)
+	{
+		if ($type == Process::OUT)
+		{
+			$this->output->write('<comment>['.$host.']</comment>: '.trim($line).PHP_EOL);
+		}
+		else
+		{
+			$this->output->write('<comment>['.$host.']</comment>: <error>'.trim($line).'</error>'.PHP_EOL);
+		}
+
 	}
 
 	/**
@@ -129,6 +152,17 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 		}
 
 		return $options;
+	}
+
+	/**
+	 * Get the SSH processor for the task.
+	 *
+	 * @param  \Laravel\Envoy\Task  $task
+	 * @return \Laravel\Envoy\RemoteProcessor
+	 */
+	protected function getRemoteProcessor(Task $task)
+	{
+		return $task->parallel ? new ParallelSSH : new SSH;
 	}
 
 }
