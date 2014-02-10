@@ -16,5 +16,11 @@
 		"sha1": "4d41d4ecdb4a80a4decf89a72da123da5767a94b",
 		"url": "http://laravel.com/envoy.phar",
 		"version": "1.0.2"
+	},
+	{
+		"name": "envoy.phar",
+		"sha1": "46a40d3a538df4f57306eed99f6e7d7786cec017",
+		"url": "http://laravel.com/envoy.phar",
+		"version": "1.0.3"
 	}
 ]
