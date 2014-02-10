@@ -10,14 +10,14 @@ Elegant SSH tasks for PHP.
 - [Parallel Execution](#parallel-execution)
 - [HipChat Notifications](#hipchat-notifications)
 
-<a name="installation">
+<a name="installation"></a>
 ## Installation
 
 Envoy is a simple SSH task runner for PHP 5.4 or greater. To compile the `envoy.phar` file yourself, clone this repository and run the `box build` command. To run `box` commands, you must install [kherge/Box](https://github.com/kherge/Box).
 
 Once the Phar has been compiled, move it to `/usr/local/bin` as `envoy` for easy access.
 
-<a name="running-tasks">
+<a name="running-tasks"></a>
 ## Running Tasks
 
 Create an `Envoy.blade.php` file in any directory. Here is a sample file to get you started:
@@ -36,7 +36,7 @@ You may define multiple tasks in a given file. To run a task, use the `run` comm
 
 > **Note:** For best results, your machine should have SSH key access to the target.
 
-<a name="passing-variables">
+<a name="passing-variables"></a>
 ### Passing Variables
 
 ```
@@ -75,7 +75,7 @@ Macros allow you to define a set of tasks to run in sequence using a single comm
 envoy run deploy
 ```
 
-<a name="multiple-servers">
+<a name="multiple-servers"></a>
 ## Multiple Servers
 
 ```
@@ -88,7 +88,7 @@ envoy run deploy
 
 > **Note:** Tasks on multiple servers will be run serially by default.
 
-<a name="parallel-execution">
+<a name="parallel-execution"></a>
 ## Parallel Execution
 
 To run a task across multiple servers in parallel, use the `parallel` option on the task:
@@ -101,7 +101,7 @@ To run a task across multiple servers in parallel, use the `parallel` option on 
 @endtask
 ```
 
-<a name="hipchat-notifications">
+<a name="hipchat-notifications"></a>
 ## HipChat Notifications
 
 ```
