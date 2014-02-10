@@ -1,0 +1,20 @@
+[
+	{
+		"name": "envoy.phar",
+		"sha1": "25f1e8aeb4fbd962a42ed967f379293c59afc084",
+		"url": "http://laravel.com/envoy.phar",
+		"version": "1.0.0"
+	},
+	{
+		"name": "envoy.phar",
+		"sha1": "a802986b72f712a0e1a1c5d8bc7d2841ad23cad7",
+		"url": "http://laravel.com/envoy.phar",
+		"version": "1.0.1"
+	},
+	{
+		"name": "envoy.phar",
+		"sha1": "4d41d4ecdb4a80a4decf89a72da123da5767a94b",
+		"url": "http://laravel.com/envoy.phar",
+		"version": "1.0.2"
+	}
+]
