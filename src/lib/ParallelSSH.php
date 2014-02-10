@@ -44,7 +44,7 @@ class ParallelSSH extends RemoteProcessor {
 		// see if we need to run the after even for the task or if we skip it out.
 		$this->gatherOutput($processes, $callback);
 
-		return dd($this->gatherExitCodes($processes));
+		return $this->gatherExitCodes($processes);
 	}
 
 	/**
