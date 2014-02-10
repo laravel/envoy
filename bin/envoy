@@ -7,7 +7,7 @@ $app->add(new Laravel\Envoy\Console\RunCommand);
 $app->add(new Laravel\Envoy\Console\SshCommand);
 
 $updateCommand = new KevinGH\Amend\Command('self-update');
-$updateCommand->setManifestUri('http://laravel.com/envoy-manifest.json');
+$updateCommand->setManifestUri('https://github.com/laravel/envoy/raw/master/envoy-manifest.json');
 $app->getHelperSet()->set(new KevinGH\Amend\Helper);
 $app->add($updateCommand);
 
