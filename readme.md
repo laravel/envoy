@@ -93,11 +93,13 @@ envoy run deploy
 
 To run a task across multiple servers in parallel, use the `parallel` option on the task:
 
+```
 @servers(['web' => 'root@192.168.1.1', 'db' => 'root@192.168.1.2'])
 
 @task('foo', ['on' => ['web', 'db'], 'parallel' => true])
 	ls -la
 @endtask
+```
 
 <a name="hipchat-notifications">
 ## HipChat Notifications
