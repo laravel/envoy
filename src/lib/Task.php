@@ -24,6 +24,13 @@ class Task {
 	public $script;
 
 	/**
+	 * Indicates if the task should be run in parallel across servers.
+	 *
+	 * @var array
+	 */
+	public $parallel;
+
+	/**
 	 * Create a new Task instance.
 	 *
 	 * @param  array  $hosts
@@ -31,11 +38,12 @@ class Task {
 	 * @param  string  $script
 	 * @return void
 	 */
-	public function __construct(array $hosts, $user, $script)
+	public function __construct(array $hosts, $user, $script, $parallel = false)
 	{
 		$this->user = $user;
 		$this->hosts = $hosts;
 		$this->script = $script;
+		$this->parallel = $parallel;
 	}
 
 }

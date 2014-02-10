@@ -15,10 +15,82 @@ class SSH {
 	 */
 	public function run(Task $task, Closure $callback = null)
 	{
+		$processes = [];
+
+		$callback = $callback ?: function() {};
+
 		foreach ($task->hosts as $host)
 		{
-			$this->runOnHost($host, $task, $callback ?: function() {});
+			$process = $this->getProcess($host, $task, $callback);
+
+			$processes[$process[0]] = $process[1];
 		}
+
+		$this->startProcesses($processes);
+
+		while($this->areRunning($processes))
+		{
+			$this->gatherOutput($processes, $callback);
+		}
+
+		$this->gatherOutput($processes);
+
+		return $this->gatherExitCodes($processes);
+	}
+
+	/**
+	 * Start all of the processes.
+	 *
+	 * @param  array  $processes
+	 * @return void
+	 */
+	protected function startProcesses(array $processes)
+	{
+		foreach (processes as $process)
+		{
+			$process->start();
+		}
+	}
+
+	/**
+	 * Determine if any of the processes are running.
+	 *
+	 * @param  array  $processes
+	 * @return bool
+	 */
+	protected function areRunning(array $processes)
+	{
+		foreach ($processes as $process)
+		{
+			if ($process->isRunning()) return true;
+		}
+
+		return false;
+	}
+
+	protected function gatherOutput(array $processes, Closure $callback)
+	{
+		foreach ($processes as $target => $process)
+		{
+			$output = $process->getIncrementalOutput();
+
+			if ($output !== false)
+			{
+				$callback($target, $output);
+			}
+		}
+	}
+
+	protected function gatherExitCodes(array $processes)
+	{
+		$code = 0;
+
+		foreach ($processes as $process)
+		{
+			$code = $code + $process->getExitCode();
+		}
+
+		return $code;
 	}
 
 	/**
@@ -26,10 +98,9 @@ class SSH {
 	 *
 	 * @param  string  $host
 	 * @param  \Laravel\Envoy\Task  $task
-	 * @param  \Closure  $callback
 	 * @return int
 	 */
-	protected function runOnHost($host, Task $task, Closure $callback)
+	protected function getProcess($host, Task $task)
 	{
 		$target = $this->getConfiguredServer($host) ?: $host;
 
@@ -44,12 +115,7 @@ class SSH {
 EOF'
 		);
 
-		$process->setTimeout(null)->run(function($type, $line) use ($callback, $target)
-		{
-			$callback($target, $line);
-		});
-
-		return $process->getExitCode();
+		return [$target, $process->setTimeout(null)];
 	}
 
 }

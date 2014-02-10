@@ -1,9 +1,9 @@
-@servers(['web' => '192.168.1.1'])
+@servers(['prod' => 'engine', 'dev' => 'engine-dev'])
 
-@task('foo', ['on' => 'web'])
+@task('foo', ['on' => ['engine', 'engine-dev']])
 	ls -la
 @endtask
 
 @after
-	@hipchat('token', 'room', 'Envoy')
+	//
 @endafter
