@@ -31,7 +31,7 @@ The simplest method of installation is to simply [download the envoy.phar file](
 
 To compile the `envoy.phar` file yourself, clone this repository and run the `box build` command. To run `box` commands, you must install [kherge/Box](https://github.com/kherge/Box).
 
-Once the Phar has been compiled, move it to `/usr/local/bin` as `envoy` for easy access.
+Once the Phar has been compiled, move it to `/usr/local/bin` as `envoy` for easy access. You may need to grant the file execution privileges (`chmod +x`) before running tasks.
 
 ### Updating Envoy
 
