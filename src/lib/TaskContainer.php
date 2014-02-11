@@ -26,6 +26,13 @@ class TaskContainer {
 	protected $tasks = [];
 
 	/**
+	 * All of the "error" callbacks.
+	 *
+	 * @var array
+	 */
+	protected $error = [];
+
+	/**
 	 * All of the "after" callbacks.
 	 *
 	 * @var array
@@ -274,6 +281,27 @@ class TaskContainer {
 	public function endTask()
 	{
 		$this->tasks[array_pop($this->taskStack)] = trim(ob_get_clean());
+	}
+
+	/**
+	 * Register an error-task callback.
+	 *
+	 * @param  \Closure  $callback
+	 * @return void
+	 */
+	public function error(Closure $callback)
+	{
+		$this->error[] = $callback;
+	}
+
+	/**
+	 * Get all of the error-task callbacks.
+	 *
+	 * @return array
+	 */
+	public function getErrorCallbacks()
+	{
+		return $this->error;
 	}
 
 	/**

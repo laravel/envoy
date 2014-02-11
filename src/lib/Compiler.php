@@ -31,6 +31,8 @@ class Compiler {
 		'MacroStop',
 		'TaskStart',
 		'TaskStop',
+		'Error',
+		'ErrorStop',
 		'After',
 		'AfterStop',
 		'Hipchat',
@@ -296,6 +298,30 @@ class Compiler {
 		$pattern = $this->createPlainMatcher('endtask');
 
 		return preg_replace($pattern, '$1<?php $__container->endTask(); ?>$2', $value);
+	}
+
+	/**
+	 * Compile Envoy error statements into valid PHP.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	protected function compileError($value)
+	{
+		$pattern = $this->createPlainMatcher('error');
+
+		return preg_replace($pattern, '$1<?php $__container->error(function($task) {$2', $value);
+	}
+
+	/**
+	 * Compile Envoy error stop statements into valid PHP.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	protected function compileErrorStop($value)
+	{
+		return preg_replace($this->createPlainMatcher('enderror'), '$1}); ?>$2', $value);
 	}
 
 	/**
