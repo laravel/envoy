@@ -33,6 +33,10 @@ To compile the `envoy.phar` file yourself, clone this repository and run the `bo
 
 Once the Phar has been compiled, move it to `/usr/local/bin` as `envoy` for easy access.
 
+### Updating Envoy
+
+To update Envoy, you may use the `envoy self-update` command.
+
 <a name="running-tasks"></a>
 ## Running Tasks
 
