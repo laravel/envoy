@@ -34,6 +34,7 @@ class Compiler {
 		'After',
 		'AfterStop',
 		'Hipchat',
+		'Slack',
 	);
 
 	/**
@@ -333,6 +334,19 @@ class Compiler {
 		$pattern = $this->createMatcher('hipchat');
 
 		return preg_replace($pattern, '$1 Laravel\Envoy\Hipchat::make$2->task($task)->send();', $value);
+	}
+
+	/**
+	 * Compile Envoy Slack statements into valid PHP.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	protected function compileSlack($value)
+	{
+		$pattern = $this->createMatcher('slack');
+
+		return preg_replace($pattern, '$1 Laravel\Envoy\Slack::make$2->task($task)->send();', $value);
 	}
 
 	/**
