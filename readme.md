@@ -27,7 +27,7 @@ Envoy is perfect for automating common tasks you perform on your remote servers 
 <a name="installation"></a>
 ## Installation
 
-The simplest method of installation is to simply download the `envoy.phar` file from this repository.
+The simplest method of installation is to simply [download the envoy.phar file](https://github.com/laravel/envoy/raw/master/envoy.phar) from this repository.
 
 To compile the `envoy.phar` file yourself, clone this repository and run the `box build` command. To run `box` commands, you must install [kherge/Box](https://github.com/kherge/Box).
 
