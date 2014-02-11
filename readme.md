@@ -10,10 +10,24 @@ Elegant SSH tasks for PHP.
 - [Parallel Execution](#parallel-execution)
 - [HipChat Notifications](#hipchat-notifications)
 
+<a name="what-is-it"></a>
+## What Is It?
+
+Envoy is a simple SSH task runner for PHP 5.4 or greater. It is loosely inspired by Python Fabric. It supports:
+
+- Clean, minimal syntax for defining tasks.
+- Utilizes ~/.ssh/config settings.
+- Parallel execution across multiple servers.
+- Stops execution if any command fails.
+- Macros quickly group tasks into a single command.
+- HipChat notifications.
+
 <a name="installation"></a>
 ## Installation
 
-Envoy is a simple SSH task runner for PHP 5.4 or greater. To compile the `envoy.phar` file yourself, clone this repository and run the `box build` command. To run `box` commands, you must install [kherge/Box](https://github.com/kherge/Box).
+The simplest method of installation is to simply download the `envoy.phar` file from this repository.
+
+To compile the `envoy.phar` file yourself, clone this repository and run the `box build` command. To run `box` commands, you must install [kherge/Box](https://github.com/kherge/Box).
 
 Once the Phar has been compiled, move it to `/usr/local/bin` as `envoy` for easy access.
 
