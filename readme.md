@@ -22,6 +22,8 @@ Envoy is a simple SSH task runner for PHP 5.4 or greater. It is loosely inspired
 - Macros quickly group tasks into a single command.
 - HipChat notifications.
 
+Envoy is perfect for automating common tasks you perform on your remote servers such as deployment, restarting queues, etc.
+
 <a name="installation"></a>
 ## Installation
 
