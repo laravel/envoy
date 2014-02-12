@@ -17,6 +17,7 @@ class Compiler {
 	 * @var array
 	 */
 	protected $compilers = array(
+		'Comments',
 		'Echos',
 		'Openings',
 		'Closings',
