@@ -24,4 +24,8 @@
             </exclude>
         </whitelist>
     </filter>
+
+    <php>
+        <env name="HALL_TOKEN" value=""/>
+    </php>
 </phpunit>
