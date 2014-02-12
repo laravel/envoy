@@ -3,3 +3,4 @@
 /bin/jsonlint
 /bin/validate-json
 .DS_Store
+phpunit.xml
