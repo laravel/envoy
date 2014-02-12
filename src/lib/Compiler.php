@@ -38,6 +38,7 @@ class Compiler {
 		'ErrorStop',
 		'Hipchat',
 		'Slack',
+		'Hall',
 	);
 
 	/**
