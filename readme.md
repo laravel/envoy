@@ -9,6 +9,7 @@ Elegant SSH tasks for PHP.
 - [Multiple Servers](#multiple-servers)
 - [Parallel Execution](#parallel-execution)
 - [HipChat Notifications](#hipchat-notifications)
+- [Slack Notifications](#slack-notifications)
 
 <a name="what-is-it"></a>
 ## What Is It?
@@ -137,3 +138,31 @@ To run a task across multiple servers in parallel, use the `parallel` option on 
 ```
 
 > **Note:** HipChat notifications will only be sent if all tasks complete successfully.
+
+<a name="slack-notifications"></a>
+## Slack Notifications
+
+A token can be obtained by creating an Incoming WebHooks integration on Slack's website.
+
+The team parameter is your Slack subdomain (fooapp.slack.com = `fooapp`).
+
+For the channel parameter, you can provide:
+
+- For a regular channel: `#channel`
+- To notify a specific user: `@user`
+- For a private group: `group`
+- If not provided, it will use the default channel configured on the Slack website.
+
+```
+@servers(['web' => '192.168.1.1'])
+
+@task('foo', ['on' => 'web'])
+	ls -la
+@endtask
+
+@after
+	@slack('team', 'token', 'channel')
+@endafter
+```
+
+> **Note:** Slack notifications will only be sent if all tasks complete successfully.
