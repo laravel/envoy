@@ -39,7 +39,7 @@ class ParallelSSH extends RemoteProcessor {
 			$this->gatherOutput($processes, $callback);
 		}
 
-		// Finally, we'll gather the ouput one last time to make sure no more output is
+		// Finally, we'll gather the output one last time to make sure no more output is
 		// sitting on the buffer. Then we'll gather the cumulative exit code just to
 		// see if we need to run the after even for the task or if we skip it out.
 		$this->gatherOutput($processes, $callback);

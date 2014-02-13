@@ -47,7 +47,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 	 * Get the tasks from the container based on user input.
 	 *
 	 * @param  \Laravel\Envoy\TaskContainer  $container
-	 * @reutrn void
+	 * @return void
 	 */
 	protected function getTasks($container)
 	{
@@ -143,7 +143,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 
 		// Here we will gather all of the command line options that have been specified with
 		// the double hyphens in front of their name. We will make these available to the
-		// Blade task file so they can be used in echo statemnets and other structures.
+		// Blade task file so they can be used in echo statements and other structures.
 		foreach ($_SERVER['argv'] as $argument)
 		{
 			preg_match('/^\-\-(.*?)=(.*)$/', $argument, $match);
