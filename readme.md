@@ -142,17 +142,6 @@ To run a task across multiple servers in parallel, use the `parallel` option on 
 <a name="slack-notifications"></a>
 ## Slack Notifications
 
-A token can be obtained by creating an Incoming WebHooks integration on Slack's website.
-
-The team parameter is your Slack subdomain (fooapp.slack.com = `fooapp`).
-
-For the channel parameter, you can provide:
-
-- For a regular channel: `#channel`
-- To notify a specific user: `@user`
-- For a private group: `group`
-- If not provided, it will use the default channel configured on the Slack website.
-
 ```
 @servers(['web' => '192.168.1.1'])
 
@@ -164,5 +153,16 @@ For the channel parameter, you can provide:
 	@slack('team', 'token', 'channel')
 @endafter
 ```
+
+You may retrieve your token by creating an **Incoming WebHooks** integration on Slack's website.
+
+The team argument is your Slack subdomain (fooapp.slack.com = `fooapp`).
+
+You may provide one of the following for the channel argument:
+
+- For a regular channel: `#channel`
+- For a specific user: `@user`
+- For a private group: `group`
+- If no argument is provided Envoy will use the default channel configured on the Slack website.
 
 > **Note:** Slack notifications will only be sent if all tasks complete successfully.
