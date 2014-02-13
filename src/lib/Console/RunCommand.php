@@ -93,7 +93,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 		{
 			if (starts_with($line, 'Warning: Permanently added ')) return;
 
-            if (str_contains($line, 'The programs included with the Debian')) return;
+            if (str_contains($line, 'Last login:')) return;
 
 			$this->displayOutput($type, $host, $line);
 		});
