@@ -149,7 +149,7 @@ class TaskContainer {
 	}
 
 	/**
-	 * Deteremine if the container only has one registered server.
+	 * Determine if the container only has one registered server.
 	 *
 	 * @return bool
 	 */
@@ -169,7 +169,7 @@ class TaskContainer {
 	}
 
 	/**
-	 * Get the givne macro from the container.
+	 * Get the given macro from the container.
 	 *
 	 * @param  string  $macro
 	 * @return array|null
