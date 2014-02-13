@@ -37,7 +37,7 @@ class Slack {
 	 * @param  string  $message
 	 * @return \Laravel\Envoy\Slack
 	 */
-	public static function make($team, $token, $channel='', $message = null)
+	public static function make($team, $token, $channel = '', $message = null)
 	{
 		return new static($team, $token, $channel, $message);
 	}
