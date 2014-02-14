@@ -89,6 +89,13 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 	 */
 	protected function runTaskOverSSH(Task $task)
 	{
+		if ($this->pretending())
+		{
+			echo $task->script.PHP_EOL;
+
+			return 1;
+		}
+
 		return $this->getRemoteProcessor($task)->run($task, function($type, $host, $line)
 		{
 			if (starts_with($line, 'Warning: Permanently added ')) return;
@@ -152,6 +159,16 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 		}
 
 		return $options;
+	}
+
+	/**
+	 * Deteremine if the SSH command should be dumped.
+	 *
+	 * @return bool
+	 */
+	protected function pretending()
+	{
+		return in_array('--pretend', array_map('trim', $_SERVER['argv']));
 	}
 
 	/**
