@@ -16,14 +16,15 @@ class Slack {
 	 *
 	 * @param  string  $team
 	 * @param  string  $token
-	 * @param  mixed   $channel
+	 * @param  mixed  $channel
 	 * @param  string  $message
+	 * @return void
 	 */
-	public function __construct($team, $token, $channel='', $message = null)
+	public function __construct($team, $token, $channel = '', $message = null)
 	{
 		$this->team = $team;
-		$this->channel = $channel;
 		$this->token = $token;
+		$this->channel = $channel;
 		$this->message = $message;
 	}
 
@@ -50,10 +51,7 @@ class Slack {
 	{
 		$message = $this->message ?: ucwords($this->getSystemUser()).' ran the ['.$this->task.'] task.';
 
-		$payload = [
-			'text' => $message,
-			'channel' => $this->channel,
-		];
+		$payload = ['text' => $message, 'channel' => $this->channel];
 
         Request::post("https://{$this->team}.slack.com/services/hooks/incoming-webhook?token={$this->token}")->sendsJson()->body($payload)->send();
 	}

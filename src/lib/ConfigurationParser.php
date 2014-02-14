@@ -61,11 +61,7 @@ trait ConfigurationParser {
 	 */
 	protected function getSystemUser()
 	{
-	        $system = strtolower(php_uname());
-
-	        if (str_contains($system, 'win')) {
-			return getenv('USERNAME');
-	        }
+		if (str_contains(strtolower(phpuname()), 'win')) return getenv('USERNAME');
 
 		return posix_getpwuid(posix_geteuid())['name'];
 	}
