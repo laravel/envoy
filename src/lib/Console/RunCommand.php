@@ -6,6 +6,7 @@ use Laravel\Envoy\Compiler;
 use Laravel\Envoy\ParallelSSH;
 use Laravel\Envoy\TaskContainer;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -25,7 +26,8 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 
 		$this->setName('run')
 				->setDescription('Run an Envoy task.')
-				->addArgument('task', InputArgument::REQUIRED);
+				->addArgument('task', InputArgument::REQUIRED)
+				->addOption('pretend', null, InputOption::VALUE_NONE, 'Dump Bash script for inspection.');
 	}
 
 	/**
@@ -89,13 +91,29 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 	 */
 	protected function runTaskOverSSH(Task $task)
 	{
+		// If the pretending option has been set, we'll simply dump the script out to the command
+		// line so the developer can inspect it which is useful for just inspecting the script
+		// before it is actually run against these servers. Allows checking for errors, etc.
 		if ($this->pretending())
 		{
 			echo $task->script.PHP_EOL;
 
 			return 1;
 		}
+		else
+		{
+			return $this->passToRemoteProcessor($task);
+		}
+	}
 
+	/**
+	 * Run the given task and return the exit code.
+	 *
+	 * @param  \Laravel\Envoy\Task  $task
+	 * @return int
+	 */
+	protected function passToRemoteProcessor(Task $task)
+	{
 		return $this->getRemoteProcessor($task)->run($task, function($type, $host, $line)
 		{
 			if (starts_with($line, 'Warning: Permanently added ')) return;
@@ -168,7 +186,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 	 */
 	protected function pretending()
 	{
-		return in_array('--pretend', array_map('trim', $_SERVER['argv']));
+		return $this->input->getOption('pretend');
 	}
 
 	/**

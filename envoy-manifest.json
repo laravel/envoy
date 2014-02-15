@@ -58,5 +58,11 @@
 		"sha1": "76985c2c51800ca29c411dc46c9de9347ba91ec7",
 		"url": "https://github.com/laravel/envoy/raw/master/envoy.phar",
 		"version": "1.0.9"
+	},
+	{
+		"name": "envoy.phar",
+		"sha1": "a8f4b3944fe48ff5eb0b4fe0e3751bcb7b41acd3",
+		"url": "https://github.com/laravel/envoy/raw/master/envoy.phar",
+		"version": "1.0.10"
 	}
 ]
