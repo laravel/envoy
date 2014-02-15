@@ -44,7 +44,7 @@ trait ConfigurationParser {
 		{
 			return "/Users/{$user}";
 		}
-		elseif (str_contains($system, 'win'))
+		elseif (str_contains($system, 'windows'))
 		{
 			return "C:\Users\{$user}";
 		}
@@ -61,7 +61,7 @@ trait ConfigurationParser {
 	 */
 	protected function getSystemUser()
 	{
-		if (str_contains(strtolower(php_uname()), 'win')) return getenv('USERNAME');
+		if (str_contains(strtolower(php_uname()), 'windows')) return getenv('USERNAME');
 
 		return posix_getpwuid(posix_geteuid())['name'];
 	}
