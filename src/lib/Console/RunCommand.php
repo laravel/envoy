@@ -150,8 +150,15 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 	 */
 	protected function loadTaskContainer()
 	{
+		$envoy_file = getcwd().'/Envoy.blade.php';
+		if ( ! file_exists($envoy_file))
+		{
+			echo "Envoy.blade.php not found.\n";
+			exit(1);
+		}
+
 		with($container = new TaskContainer)->load(
-			getcwd().'/Envoy.blade.php', new Compiler, $this->getOptions()
+			$envoy_file, new Compiler, $this->getOptions()
 		);
 
 		return $container;
