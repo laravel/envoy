@@ -175,24 +175,24 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v4.1.21",
+            "version": "v4.1.22",
             "target-dir": "Illuminate/Support",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "f6df9a5d9fac6b5fda1c94d2cd2847346967bdbc"
+                "reference": "229ad546efb43cd1a6c14ca40e4ff44a468b16eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/f6df9a5d9fac6b5fda1c94d2cd2847346967bdbc",
-                "reference": "f6df9a5d9fac6b5fda1c94d2cd2847346967bdbc",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/229ad546efb43cd1a6c14ca40e4ff44a468b16eb",
+                "reference": "229ad546efb43cd1a6c14ca40e4ff44a468b16eb",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "mockery/mockery": "0.7.2",
+                "mockery/mockery": "0.9.*",
                 "patchwork/utf8": "1.1.*",
                 "phpunit/phpunit": "3.7.*"
             },
@@ -222,7 +222,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2014-01-30 19:59:45"
+            "time": "2014-02-15 09:27:21"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -297,12 +297,12 @@
             "version": "3.0.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/kherge-old/Amend.git",
+                "url": "https://github.com/kherge-archive/Amend.git",
                 "reference": "d191de606b3b76a28f09d97ddc04014426116965"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kherge-old/Amend/zipball/d191de606b3b76a28f09d97ddc04014426116965",
+                "url": "https://api.github.com/repos/kherge-archive/Amend/zipball/d191de606b3b76a28f09d97ddc04014426116965",
                 "reference": "d191de606b3b76a28f09d97ddc04014426116965",
                 "shasum": ""
             },
