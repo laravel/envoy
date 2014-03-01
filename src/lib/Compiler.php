@@ -32,10 +32,10 @@ class Compiler {
 		'MacroStop',
 		'TaskStart',
 		'TaskStop',
-		'Error',
-		'ErrorStop',
 		'After',
 		'AfterStop',
+		'Error',
+		'ErrorStop',
 		'Hipchat',
 		'Slack',
 	);
@@ -303,30 +303,6 @@ class Compiler {
 	}
 
 	/**
-	 * Compile Envoy error statements into valid PHP.
-	 *
-	 * @param  string  $value
-	 * @return string
-	 */
-	protected function compileError($value)
-	{
-		$pattern = $this->createPlainMatcher('error');
-
-		return preg_replace($pattern, '$1<?php $__container->error(function($task) {$2', $value);
-	}
-
-	/**
-	 * Compile Envoy error stop statements into valid PHP.
-	 *
-	 * @param  string  $value
-	 * @return string
-	 */
-	protected function compileErrorStop($value)
-	{
-		return preg_replace($this->createPlainMatcher('enderror'), '$1}); ?>$2', $value);
-	}
-
-	/**
 	 * Compile Envoy after statements into valid PHP.
 	 *
 	 * @param  string  $value
@@ -348,6 +324,30 @@ class Compiler {
 	protected function compileAfterStop($value)
 	{
 		return preg_replace($this->createPlainMatcher('endafter'), '$1}); ?>$2', $value);
+	}
+
+	/**
+	 * Compile Envoy error statements into valid PHP.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	protected function compileError($value)
+	{
+		$pattern = $this->createPlainMatcher('error');
+
+		return preg_replace($pattern, '$1<?php $__container->error(function($task) {$2', $value);
+	}
+
+	/**
+	 * Compile Envoy error stop statements into valid PHP.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	protected function compileErrorStop($value)
+	{
+		return preg_replace($this->createPlainMatcher('enderror'), '$1}); ?>$2', $value);
 	}
 
 	/**

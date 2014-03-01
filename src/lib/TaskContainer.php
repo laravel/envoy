@@ -284,27 +284,6 @@ class TaskContainer {
 	}
 
 	/**
-	 * Register an error-task callback.
-	 *
-	 * @param  \Closure  $callback
-	 * @return void
-	 */
-	public function error(Closure $callback)
-	{
-		$this->error[] = $callback;
-	}
-
-	/**
-	 * Get all of the error-task callbacks.
-	 *
-	 * @return array
-	 */
-	public function getErrorCallbacks()
-	{
-		return $this->error;
-	}
-
-	/**
 	 * Register an after-task callback.
 	 *
 	 * @param  \Closure  $callback
@@ -323,6 +302,27 @@ class TaskContainer {
 	public function getAfterCallbacks()
 	{
 		return $this->after;
+	}
+
+	/**
+	 * Register an error-task callback.
+	 *
+	 * @param  \Closure  $callback
+	 * @return void
+	 */
+	public function error(Closure $callback)
+	{
+		$this->error[] = $callback;
+	}
+
+	/**
+	 * Get all of the error-task callbacks.
+	 *
+	 * @return array
+	 */
+	public function getErrorCallbacks()
+	{
+		return $this->error;
 	}
 
 	/**
