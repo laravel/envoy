@@ -74,6 +74,11 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 	{
 		if ($this->runTaskOverSSH($container->getTask($task)) > 0)
 		{
+			foreach ($container->getErrorCallbacks() as $callback)
+			{
+				call_user_func($callback, $task);
+			}
+
 			return;
 		}
 
