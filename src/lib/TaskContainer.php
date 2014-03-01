@@ -190,13 +190,15 @@ class TaskContainer {
 	 * Get a Task instance by the given name.
 	 *
 	 * @param  string  $task
-	 * @return string
+	 * @return \Laravel\Envoy\Task
 	 */
 	public function getTask($task)
 	{
 		$script = array_get($this->tasks, $task, '');
 
 		$options = $this->getTaskOptions($task);
+
+		if (empty($options)) return null;
 
 		$parallel = array_get($options, 'parallel', false);
 

@@ -41,7 +41,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 
 		foreach ($this->getTasks($container) as $task)
 		{
-			$this->runTask($container, $task);
+			if ($task) $this->runTask($container, $task);
 		}
 	}
 
