@@ -51,6 +51,10 @@ Create an `Envoy.blade.php` file in any directory. Here is a sample file to get 
 @endtask
 ```
 
+You may also use the `init` command to create a stub Envoy file. For example:
+
+	envoy init user@192.168.1.1
+
 You may define multiple tasks in a given file. To run a task, use the `run` command:
 
 	envoy run foo
