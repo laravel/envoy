@@ -13,15 +13,14 @@
 		"classmap": ["src/lib"]
 	},
 	"require": {
-		"illuminate/support": "4.1.*",
+		"illuminate/support": "~4.1",
 		"kherge/amend": "~3.0",
 		"nategood/httpful": "~0.2",
-		"symfony/console": "2.4.*",
-		"symfony/process": "2.4.*"
+		"symfony/console": "~2.3",
+		"symfony/process": "~2.3"
 	},
 	"config": {
 		"bin-dir": "bin",
 		"vendor-dir": "src/vendor"
-	},
-	"minimum-stability": "stable"
+	}
 }
