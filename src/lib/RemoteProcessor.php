@@ -30,7 +30,7 @@ abstract class RemoteProcessor {
 		// script out to a file or anything. We will start the SSH process then pass
 		// these lines of output back to the parent callback for display purposes.
 		$process = new Process(
-			'ssh '.$target.' \'bash -s\' << EOF
+			'ssh -T '.$target.' << "EOF"
 '.$script.'
 EOF'
 		);
