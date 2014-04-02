@@ -38,6 +38,7 @@ class Compiler {
 		'ErrorStop',
 		'Hipchat',
 		'Slack',
+		'Rollbar',
 	);
 
 	/**
@@ -374,6 +375,19 @@ class Compiler {
 		$pattern = $this->createMatcher('slack');
 
 		return preg_replace($pattern, '$1 Laravel\Envoy\Slack::make$2->task($task)->send();', $value);
+	}
+
+	/**
+	 * Compile Envoy Rollbar statements into valid PHP.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	protected function compileRollbar($value)
+	{
+		$pattern = $this->createMatcher('rollbar');
+
+		return preg_replace($pattern, '$1 Laravel\Envoy\Rollbar::make$2->task($task)->send();', $value);
 	}
 
 	/**
