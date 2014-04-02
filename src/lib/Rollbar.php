@@ -53,7 +53,16 @@ class Rollbar {
 	 */
 	public function send()
 	{
-		Request::post('https://api.rollbar.com/api/1/deploy')->send();
+		// Get all the data.
+		$body = array(
+			'access_token' => $this->token,
+			'environment' => $this->environment,
+			'revision' => $this->revision,
+			'local_username' => $this->username,
+			'comment' => $this->comment,
+		);
+
+		Request::post('https://api.rollbar.com/api/1/deploy/', http_build_query($body))->send();
 	}
 
 	/**
