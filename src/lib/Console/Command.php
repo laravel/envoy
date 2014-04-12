@@ -17,8 +17,7 @@ trait Command {
 	{
 		$this->input = $input;
 		$this->output = $output;
-
-		return $this->fire();
+		return (int) $this->fire();
 	}
 
 	/**
