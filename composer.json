@@ -10,7 +10,7 @@
         }
     ],
 	"autoload": {
-		"classmap": ["src/lib"]
+		"classmap": ["src"]
 	},
 	"require": {
 		"illuminate/support": "~4.1",
