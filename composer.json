@@ -18,10 +18,6 @@
 		"symfony/console": "~2.3",
 		"symfony/process": "~2.3"
 	},
-	"config": {
-		"bin-dir": "bin",
-		"vendor-dir": "src/vendor"
-	},
 	"bin": [
 		"bin/envoy"
 	],
