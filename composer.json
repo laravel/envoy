@@ -19,7 +19,7 @@
 		"symfony/process": "~2.3"
 	},
 	"bin": [
-		"bin/envoy"
+		"envoy"
 	],
 	"minimum-stability": "stable"
 }
