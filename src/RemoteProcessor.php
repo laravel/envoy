@@ -24,16 +24,25 @@ abstract class RemoteProcessor {
 	{
 		$target = $this->getConfiguredServer($host) ?: $host;
 
-		$script = 'set -e'.PHP_EOL.$task->script;
+		// Here we'll run the task on the localhost without any sort of SSH. This
+		// lets us run Envoy tasks locally just like any other remote connection.
+		if( in_array($target, ['local', 'localhost', '127.0.0.1']) )
+		{
+			$process = new Process($task->script);
+		}
 
-		// Here will run the SSH task on the server inline. We do not need to write the
+		// Here we'll run the SSH task on the server inline. We do not need to write the
 		// script out to a file or anything. We will start the SSH process then pass
 		// these lines of output back to the parent callback for display purposes.
-		$process = new Process(
-			'ssh '.$target.' \'bash -s\' << EOF
+		else
+		{
+			$script = 'set -e'.PHP_EOL.$task->script;
+			$process = new Process(
+				'ssh '.$target.' \'bash -s\' << EOF
 '.$script.'
 EOF'
-		);
+			);
+		}
 
 		return [$target, $process->setTimeout(null)];
 	}
