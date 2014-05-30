@@ -154,7 +154,7 @@ To run a task across multiple servers in parallel, use the `parallel` option on 
 @endtask
 
 @after
-	@slack('team', 'token', 'channel')
+	@slack('team', 'token', 'channel', 'message', array('options'))
 @endafter
 ```
 
@@ -168,5 +168,13 @@ You may provide one of the following for the channel argument:
 - For a specific user: `@user`
 - For a private group: `group`
 - If no argument is provided Envoy will use the default channel configured on the Slack website.
+
+Message will override the default messages and allow you to define your own. Set it to null to post the tasks that were run.
+
+The options array is to allow you to define the extra values slack has.
+
+	- icon_emojo: "One of the defined emoji"
+	- icon_url: "The url to a custom icon"
+	- attachments: https://api.slack.com/docs/attachments
 
 > **Note:** Slack notifications will only be sent if all tasks complete successfully.

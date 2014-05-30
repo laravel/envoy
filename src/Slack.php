@@ -43,7 +43,7 @@ class Slack {
 	 */
 	public static function make($team, $token, $channel = '', $message = null, $options = array())
 	{
-		return new static($team, $token, $channel, $message);
+		return new static($team, $token, $channel, $message, $options);
 	}
 
 	/**
