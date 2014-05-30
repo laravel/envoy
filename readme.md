@@ -154,7 +154,7 @@ To run a task across multiple servers in parallel, use the `parallel` option on 
 @endtask
 
 @after
-	@slack('team', 'token', 'channel', 'message', array('options'))
+	@slack('team', 'token', 'channel', 'message', ['options']))
 @endafter
 ```
 
