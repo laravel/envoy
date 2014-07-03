@@ -28,15 +28,15 @@ Envoy is perfect for automating common tasks you perform on your remote servers 
 <a name="installation"></a>
 ## Installation
 
-The simplest method of installation is to simply [download the envoy.phar file](https://github.com/laravel/envoy/raw/master/envoy.phar) from this repository.
+The simplest method of installation is to install it as a global Composer package:
 
-To compile the `envoy.phar` file yourself, clone this repository and run the `box build` command. To run `box` commands, you must install [kherge/Box](https://github.com/kherge/Box).
+	composer global require "laravel/envoy=~1.0"
 
-Once the Phar has been compiled, move it to `/usr/local/bin` as `envoy` for easy access. You may need to grant the file execution privileges (`chmod +x`) before running tasks.
+Once the package has been installed, you should add the global Composer bin directory to your PATH. On Mac / Linux systems, this directory is `~/.composer/vendor/bin`.
 
 ### Updating Envoy
 
-To update Envoy, you may use the `envoy self-update` command.
+To update Envoy, you may use the `composer global update` command.
 
 <a name="running-tasks"></a>
 ## Running Tasks
