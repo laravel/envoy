@@ -183,7 +183,7 @@ You may provide one of the following for the channel argument:
 @endtask
 
 @after
-	@hipchat('token', 'room')
+	@chatwork('token', 'room')
 @endafter
 ```
 
