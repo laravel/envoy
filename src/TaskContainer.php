@@ -80,7 +80,7 @@ class TaskContainer {
 	{
 		// First we will compiled the "Blade" Envoy file into plain PHP that we'll include
 		// into the current scope so it can register tasks in this task container that
-		// is alos in the current scope. We will extract this other data into scope.
+		// is also in the current scope. We will extract this other data into scope.
 		$this->writeCompiledEnvoyFile(
 			$__compiler, $__path, $__serversOnly
 		);
