@@ -192,7 +192,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 	}
 
 	/**
-	 * Deteremine if the SSH command should be dumped.
+	 * Determine if the SSH command should be dumped.
 	 *
 	 * @return bool
 	 */
