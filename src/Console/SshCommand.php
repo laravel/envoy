@@ -34,7 +34,7 @@ class SshCommand extends \Symfony\Component\Console\Command\Command {
 	{
 		$host = $this->getServer($container = $this->loadTaskContainer());
 
-		passthru('ssh '.$this->getConfiguredServer($host) ?: $host);
+		passthru('ssh '.($this->getConfiguredServer($host) ?: $host));
 	}
 
 	/**
