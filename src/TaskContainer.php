@@ -152,6 +152,10 @@ class TaskContainer {
 	 */
 	public function getServer($server)
 	{
+		if (! array_key_exists($server, $this->servers)) {
+			throw new \Exception(sprintf('Server "%s" is not defined.'));
+		}
+	    
 		return array_get($this->servers, $server);
 	}
 
@@ -183,6 +187,10 @@ class TaskContainer {
 	 */
 	public function getMacro($macro)
 	{
+		if (! array_key_exists($macro, $this->macros)) {
+			throw new \Exception(sprintf('Macro "%s" is not defined.', $macro));
+		}
+		
 		return array_get($this->macros, $macro);
 	}
 
@@ -196,6 +204,10 @@ class TaskContainer {
 	{
 		$script = array_get($this->tasks, $task, '');
 
+		if ($script == '') {
+			throw new \Exception(sprintf('Task "%s" is not defined.', $task));
+		}
+		
 		$options = $this->getTaskOptions($task);
 
 		$parallel = array_get($options, 'parallel', false);
@@ -222,7 +234,11 @@ class TaskContainer {
 	 */
 	protected function getServers(array $options)
 	{
-		return array_map(function($name) { return $this->servers[$name]; }, (array) $options['on']);
+		if (! array_key_exists('on', $options)) {
+			$options['on'] = [];
+		}
+	    
+		return array_map(function($name) { return $this->getServer($name); }, (array) $options['on']);
 	}
 
 	/**
