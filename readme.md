@@ -189,12 +189,12 @@ You may provide one of the following for the channel argument:
 @endtask
 
 @after
-	@flowdock('token', 'external_user_name', 'tags', 'message')
+	@flowdock('token', 'externalUserName', 'tags', 'message')
 @endafter
 ```
 
 To obtain the token, go to Settings -> Team Inbox inside a flow or open the [Tokens page](https://www.flowdock.com/account/tokens) for all your tokens.
 
-The external\_user\_name argument should not contain white space.
+The externalUserName argument should not contain white space.
 
 The tags argument is the tags of the message, separated by commas. White spaced ones would be ignored. Example value: cool,stuff,#Envoy,@all,@user

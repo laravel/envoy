@@ -7,7 +7,7 @@ class Flowdock {
     use ConfigurationParser;
 
     public $token;
-    public $external_user_name;
+    public $externalUserName;
     public $tags;
     public $message;
 
@@ -15,31 +15,31 @@ class Flowdock {
      * Create a new Flowdock instance.
      *
      * @param  string  $token
-     * @param  string  $external_user_name
+     * @param  string  $externalUserName
      * @param  string  $tags
      * @param  string  $message
      * @return void
      */
-    public function __construct($token, $external_user_name, $tags = null, $message = null)
+    public function __construct($token, $externalUserName, $tags = null, $message = null)
     {
-        $this->token              = $token;
-        $this->external_user_name = $external_user_name;
-        $this->tags               = $tags;
-        $this->message            = $message;
+        $this->token            = $token;
+        $this->externalUserName = $externalUserName;
+        $this->tags             = $tags;
+        $this->message          = $message;
     }
 
     /**
      * Create a new Flowdock message instance.
      *
      * @param  string  $token
-     * @param  string  $external_user_name
+     * @param  string  $externalUserName
      * @param  string  $tags
      * @param  string  $message
      * @return \Laravel\Envoy\Flowdock
      */
-    public static function make($token, $external_user_name, $tags = null, $message = null)
+    public static function make($token, $externalUserName, $tags = null, $message = null)
     {
-        return new static($token, $external_user_name, $tags, $message);
+        return new static($token, $externalUserName, $tags, $message);
     }
 
     /**
@@ -53,7 +53,7 @@ class Flowdock {
 
         $payload = [
             'content' => $message,
-            'external_user_name' => $this->external_user_name,
+            'external_user_name' => $this->externalUserName,
             'tags' => $this->tags
         ];
 
