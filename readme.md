@@ -8,8 +8,7 @@ Elegant SSH tasks for PHP.
 - [Macros](#macros)
 - [Multiple Servers](#multiple-servers)
 - [Parallel Execution](#parallel-execution)
-- [HipChat Notifications](#hipchat-notifications)
-- [Slack Notifications](#slack-notifications)
+- [Notifications (Hipchat, Slack, Flowdock)](#notifications)
 
 <a name="what-is-it"></a>
 ## What Is It?
@@ -21,7 +20,7 @@ Envoy is a simple SSH task runner for PHP 5.4 or greater. It is loosely inspired
 - Parallel execution across multiple servers.
 - Stops execution if any command fails.
 - Macros quickly group tasks into a single command.
-- HipChat notifications.
+- HipChat, Slack and Flowdock notifications.
 
 Envoy is perfect for automating common tasks you perform on your remote servers such as deployment, restarting queues, etc.
 
@@ -30,7 +29,7 @@ Envoy is perfect for automating common tasks you perform on your remote servers 
 
 The simplest method of installation is to install it as a global Composer package:
 
-	composer global require "laravel/envoy=~1.0"
+    composer global require "laravel/envoy=~1.0"
 
 Once the package has been installed, you should add the global Composer bin directory to your PATH. On Mac / Linux systems, this directory is `~/.composer/vendor/bin`.
 
@@ -126,8 +125,18 @@ To run a task across multiple servers in parallel, use the `parallel` option on 
 @endtask
 ```
 
+<a name="notifications"></a>
+## Notifications
+- [HipChat Notifications](#hipchat-notifications)
+- [Slack Notifications](#slack-notifications)
+- [Flowdock Notifications](#flowdock-notifications)
+
+> **Note:** Notifications will only be sent if all tasks complete successfully.
+>
+> Message default to: &lt;SYSTEM USER&gt; ran the &lt;TASK NAME&gt; task.
+
 <a name="hipchat-notifications"></a>
-## HipChat Notifications
+### HipChat Notifications
 
 ```
 @servers(['web' => '192.168.1.1'])
@@ -137,14 +146,14 @@ To run a task across multiple servers in parallel, use the `parallel` option on 
 @endtask
 
 @after
-	@hipchat('token', 'room', 'from')
+	@hipchat('token', 'room', 'from', 'message', 'color')
 @endafter
 ```
 
-> **Note:** HipChat notifications will only be sent if all tasks complete successfully.
+color default to purple
 
 <a name="slack-notifications"></a>
-## Slack Notifications
+### Slack Notifications
 
 ```
 @servers(['web' => '192.168.1.1'])
@@ -154,7 +163,7 @@ To run a task across multiple servers in parallel, use the `parallel` option on 
 @endtask
 
 @after
-	@slack('team', 'token', 'channel')
+	@slack('team', 'token', 'channel', 'message')
 @endafter
 ```
 
@@ -169,4 +178,23 @@ You may provide one of the following for the channel argument:
 - For a private group: `group`
 - If no argument is provided Envoy will use the default channel configured on the Slack website.
 
-> **Note:** Slack notifications will only be sent if all tasks complete successfully.
+<a name="flowdock-notifications"></a>
+### Flowdock Notifications
+
+```
+@servers(['web' => '192.168.1.1'])
+
+@task('foo', ['on' => 'web'])
+	ls -la
+@endtask
+
+@after
+	@flowdock('token', 'external_user_name', 'tags', 'message')
+@endafter
+```
+
+To obtain the token, go to Settings -> Team Inbox inside a flow or open the [Tokens page](https://www.flowdock.com/account/tokens) for all your tokens.
+
+The external\_user\_name argument should not contain white space.
+
+The tags argument is the tags of the message, separated by commas. White spaced ones would be ignored. Example value: cool,stuff,#Envoy,@all,@user
