@@ -154,19 +154,20 @@ To run a task across multiple servers in parallel, use the `parallel` option on 
 @endtask
 
 @after
-	@slack('team', 'token', 'channel')
+	@slack('hook', 'channel')
 @endafter
 ```
 
 You may retrieve your token by creating an **Incoming WebHooks** integration on Slack's website.
 
-The team argument is your Slack subdomain (fooapp.slack.com = `fooapp`).
+The hook argument is the entire webhook URL provided by the Incoming Webhooks Slack Integration:
+
+- `https://hooks.slack.com/services/ZZZZZZZZZ/YYYYYYYYY/XXXXXXXXXXXXXXX`
 
 You may provide one of the following for the channel argument:
 
 - For a regular channel: `#channel`
 - For a specific user: `@user`
-- For a private group: `group`
 - If no argument is provided Envoy will use the default channel configured on the Slack website.
 
 > **Note:** Slack notifications will only be sent if all tasks complete successfully.
