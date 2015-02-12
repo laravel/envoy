@@ -11,6 +11,7 @@ class Hipchat {
 	public $from;
 	public $message;
 	public $color;
+	public $notify;
 
 	/**
 	 * Create a new Hipchat instance.
@@ -22,13 +23,14 @@ class Hipchat {
 	 * @param  string  $color
 	 * @return void
 	 */
-	public function __construct($token, $room, $from, $message = null, $color = 'purple')
+	public function __construct($token, $room, $from, $message = null, $color = 'purple', $notify = 1)
 	{
 		$this->room = $room;
 		$this->from = $from;
 		$this->token = $token;
 		$this->message = $message;
 		$this->color = $color;
+		$this->notify = $notify;
 	}
 
 	/**
@@ -41,9 +43,9 @@ class Hipchat {
 	 * @param  string  $color
 	 * @return \Laravel\Envoy\Hipchat
 	 */
-	public static function make($token, $room, $from, $message = null, $color = 'purple')
+	public static function make($token, $room, $from, $message = null, $color = 'purple', $notify = 1)
 	{
-		return new static($token, $room, $from, $message, $color);
+		return new static($token, $room, $from, $message, $color, $notify);
 	}
 
 	/**
@@ -58,7 +60,7 @@ class Hipchat {
 		$payload = [
 			'auth_token' => $this->token, 'room_id' => $this->room,
 			'from' => $this->from, 'message' => $message,
-			'message_format' => 'text', 'notify' => 1, 'color' => $this->color,
+			'message_format' => 'text', 'notify' => $this->notify, 'color' => $this->color,
 		];
 
 		Request::get('https://api.hipchat.com/v1/rooms/message?'.http_build_query($payload))->send();
