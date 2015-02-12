@@ -10,7 +10,7 @@ else
 	require __DIR__.'/../../autoload.php';
 }
 
-$app = new Symfony\Component\Console\Application('Laravel Envoy', '1.0.18');
+$app = new Symfony\Component\Console\Application('Laravel Envoy', '1.0.19');
 $app->add(new Laravel\Envoy\Console\RunCommand);
 $app->add(new Laravel\Envoy\Console\SshCommand);
 $app->add(new Laravel\Envoy\Console\InitCommand);
