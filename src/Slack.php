@@ -6,24 +6,21 @@ class Slack {
 
 	use ConfigurationParser;
 
-	public $team;
-	public $token;
+	public $hook;
 	public $channel;
 	public $message;
 
 	/**
 	 * Create a new Slack instance.
 	 *
-	 * @param  string  $team
-	 * @param  string  $token
+	 * @param  string  $hook
 	 * @param  mixed  $channel
 	 * @param  string  $message
 	 * @return void
 	 */
-	public function __construct($team, $token, $channel = '', $message = null)
+	public function __construct($hook, $channel = '', $message = null)
 	{
-		$this->team = $team;
-		$this->token = $token;
+		$this->hook = $hook;
 		$this->channel = $channel;
 		$this->message = $message;
 	}
@@ -31,15 +28,14 @@ class Slack {
 	/**
 	 * Create a new Slack message instance.
 	 *
-	 * @param  string  $team
-	 * @param  string  $token
+	 * @param  string  $hook
 	 * @param  mixed   $channel
 	 * @param  string  $message
 	 * @return \Laravel\Envoy\Slack
 	 */
-	public static function make($team, $token, $channel = '', $message = null)
+	public static function make($hook, $channel = '', $message = null)
 	{
-		return new static($team, $token, $channel, $message);
+		return new static($hook, $channel, $message);
 	}
 
 	/**
@@ -53,7 +49,7 @@ class Slack {
 
 		$payload = ['text' => $message, 'channel' => $this->channel];
 
-        Request::post("https://{$this->team}.slack.com/services/hooks/incoming-webhook?token={$this->token}")->sendsJson()->body($payload)->send();
+        Request::post("{$this->hook}")->sendsJson()->body($payload)->send();
 	}
 
 	/**
