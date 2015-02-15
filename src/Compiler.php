@@ -38,7 +38,7 @@ class Compiler {
 		'ErrorStop',
 		'Hipchat',
 		'Slack',
-		'flowdock',
+		'Flowdock',
 	);
 
 	/**
@@ -378,7 +378,7 @@ class Compiler {
 	}
 
 	/**
-	 * Compile Envoy flowdock statements into valid PHP.
+	 * Compile Envoy Flowdock statements into valid PHP.
 	 *
 	 * @param  string  $value
 	 * @return string
