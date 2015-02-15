@@ -38,6 +38,7 @@ class Compiler {
 		'ErrorStop',
 		'Hipchat',
 		'Slack',
+		'Flowdock',
 	);
 
 	/**
@@ -374,6 +375,19 @@ class Compiler {
 		$pattern = $this->createMatcher('slack');
 
 		return preg_replace($pattern, '$1 Laravel\Envoy\Slack::make$2->task($task)->send();', $value);
+	}
+
+	/**
+	 * Compile Envoy Flowdock statements into valid PHP.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	protected function compileFlowdock($value)
+	{
+		$pattern = $this->createMatcher('flowdock');
+
+		return preg_replace($pattern, '$1 Laravel\Envoy\Flowdock::make$2->task($task)->send();', $value);
 	}
 
 	/**
