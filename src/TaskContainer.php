@@ -187,10 +187,6 @@ class TaskContainer
      */
     public function getMacro($macro)
     {
-        if (! array_key_exists($macro, $this->macros)) {
-            throw new \Exception(sprintf('Macro "%s" is not defined.', $macro));
-        }
-
         return array_get($this->macros, $macro);
     }
 
