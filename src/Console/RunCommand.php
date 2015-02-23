@@ -38,11 +38,15 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 	protected function fire()
 	{
 		$container = $this->loadTaskContainer();
-
+		$exitCode = 0;
 		foreach ($this->getTasks($container) as $task)
 		{
-			$this->runTask($container, $task);
+			$thisCode = $this->runTask($container, $task);
+			if (0 !== $thisCode) {
+				$exitCode = $thisCode;
+			}
 		}
+		return $exitCode;
 	}
 
 	/**
@@ -72,14 +76,13 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 	 */
 	protected function runTask($container, $task)
 	{
-		if ($this->runTaskOverSSH($container->getTask($task)) > 0)
+		if (($exitCode = $this->runTaskOverSSH($container->getTask($task))) > 0)
 		{
 			foreach ($container->getErrorCallbacks() as $callback)
 			{
 				call_user_func($callback, $task);
 			}
-
-			return;
+			return $exitCode;
 		}
 
 		foreach ($container->getAfterCallbacks() as $callback)
