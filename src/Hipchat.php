@@ -55,10 +55,13 @@ class Hipchat {
 	{
 		$message = $this->message ?: ucwords($this->getSystemUser()).' ran the ['.$this->task.'] task.';
 
+		// If we detect HTML in the message we should set the format accordingly.
+		$format = $message != strip_tags($message) ? 'html' : 'text';
+
 		$payload = [
 			'auth_token' => $this->token, 'room_id' => $this->room,
 			'from' => $this->from, 'message' => $message,
-			'message_format' => 'text', 'notify' => 1, 'color' => $this->color,
+			'message_format' => $format, 'notify' => 1, 'color' => $this->color,
 		];
 
 		Request::get('https://api.hipchat.com/v1/rooms/message?'.http_build_query($payload))->send();
