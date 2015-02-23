@@ -38,14 +38,18 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 	protected function fire()
 	{
 		$container = $this->loadTaskContainer();
+
 		$exitCode = 0;
+
 		foreach ($this->getTasks($container) as $task)
 		{
 			$thisCode = $this->runTask($container, $task);
+
 			if (0 !== $thisCode) {
 				$exitCode = $thisCode;
 			}
 		}
+
 		return $exitCode;
 	}
 
@@ -82,6 +86,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command {
 			{
 				call_user_func($callback, $task);
 			}
+
 			return $exitCode;
 		}
 
