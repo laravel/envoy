@@ -10,6 +10,7 @@ Elegant SSH tasks for PHP.
 - [Parallel Execution](#parallel-execution)
 - [HipChat Notifications](#hipchat-notifications)
 - [Slack Notifications](#slack-notifications)
+- [ChatWork Notifications](#chatwork-notifications)
 
 <a name="what-is-it"></a>
 ## What Is It?
@@ -171,3 +172,20 @@ You may provide one of the following for the channel argument:
 - If no argument is provided Envoy will use the default channel configured on the Slack website.
 
 > **Note:** Slack notifications will only be sent if all tasks complete successfully.
+
+<a name="chatwork-notifications"></a>
+## Chatwork Notifications
+
+```
+@servers(['web' => '192.168.1.1'])
+
+@task('foo', ['on' => 'web'])
+	ls -la
+@endtask
+
+@after
+	@chatwork('token', 'room')
+@endafter
+```
+
+> **Note:** ChatWork notifications will only be sent if all tasks complete successfully.

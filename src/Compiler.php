@@ -38,6 +38,7 @@ class Compiler {
 		'ErrorStop',
 		'Hipchat',
 		'Slack',
+		'Chatwork',
 	);
 
 	/**
@@ -374,6 +375,19 @@ class Compiler {
 		$pattern = $this->createMatcher('slack');
 
 		return preg_replace($pattern, '$1 Laravel\Envoy\Slack::make$2->task($task)->send();', $value);
+	}
+
+	/**
+	 * Compile Envoy ChatWork statements into valid PHP.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	protected function compileChatwork($value)
+	{
+		$pattern = $this->createMatcher('chatwork');
+
+		return preg_replace($pattern, '$1 Laravel\Envoy\Chatwork::make$2->task($task)->send();', $value);
 	}
 
 	/**
