@@ -55,7 +55,6 @@ class Hipchat {
 	{
 		$message = $this->message ?: ucwords($this->getSystemUser()).' ran the ['.$this->task.'] task.';
 
-		// If we detect HTML in the message we should set the format accordingly.
 		$format = $message != strip_tags($message) ? 'html' : 'text';
 
 		$payload = [
