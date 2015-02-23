@@ -24,9 +24,7 @@ abstract class RemoteProcessor {
 	{
 		$target = $this->getConfiguredServer($host) ?: $host;
 
-		// Here we'll run the task on the localhost without any sort of SSH. This
-		// lets us run Envoy tasks locally just like any other remote connection.
-		if( in_array($target, ['local', 'localhost', '127.0.0.1']) )
+		if (in_array($target, ['local', 'localhost', '127.0.0.1']))
 		{
 			$process = new Process($task->script);
 		}
