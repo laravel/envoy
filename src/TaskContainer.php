@@ -152,8 +152,8 @@ class TaskContainer
      */
     public function getServer($server)
     {
-        if (! array_key_exists($server, $this->servers)) {
-            throw new \Exception(sprintf('Server "%s" is not defined.'));
+        if (!array_key_exists($server, $this->servers)) {
+            throw new \Exception(sprintf('Server "%s" is not defined.', $server));
         }
 
         return array_get($this->servers, $server);
