@@ -5,37 +5,37 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class InitCommand extends \Symfony\Component\Console\Command\Command {
+class InitCommand extends \Symfony\Component\Console\Command\Command
+{
 
-	use Command;
+    use Command;
 
-	/**
-	 * Configure the command options.
-	 *
-	 * @return void
-	 */
-	protected function configure()
-	{
-		$this->setName('init')
+    /**
+     * Configure the command options.
+     *
+     * @return void
+     */
+    protected function configure()
+    {
+        $this->setName('init')
                   ->setDescription('Create a new Envoy file in the current directory.')
                   ->addArgument('host', InputArgument::REQUIRED, 'The host server to initialize with.');
-	}
+    }
 
-	/**
-	 * Execute the command.
-	 *
-	 * @return void
-	 */
-	protected function fire()
-	{
-		if (file_exists(getcwd().'/Envoy.blade.php'))
-		{
-			$this->output->writeln('<error>Envoy file already exists!</error>');
+    /**
+     * Execute the command.
+     *
+     * @return void
+     */
+    protected function fire()
+    {
+        if (file_exists(getcwd().'/Envoy.blade.php')) {
+            $this->output->writeln('<error>Envoy file already exists!</error>');
 
-			return;
-		}
+            return;
+        }
 
-		file_put_contents(getcwd().'/Envoy.blade.php', "@servers(['web' => '".$this->input->getArgument('host')."'])
+        file_put_contents(getcwd().'/Envoy.blade.php', "@servers(['web' => '".$this->input->getArgument('host')."'])
 
 @task('deploy')
 	cd /path/to/site
@@ -43,7 +43,6 @@ class InitCommand extends \Symfony\Component\Console\Command\Command {
 @endtask
 ");
 
-		$this->output->writeln('<info>Envoy file created!</info>');
-	}
-
+        $this->output->writeln('<info>Envoy file created!</info>');
+    }
 }
