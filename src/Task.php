@@ -31,6 +31,13 @@ class Task
      */
     public $parallel;
 
+    /*
+    * Asks a user for a confirmation.
+    *
+    * @var string
+    */
+    public $confirm;
+
     /**
      * Create a new Task instance.
      *
@@ -39,11 +46,12 @@ class Task
      * @param  string  $script
      * @return void
      */
-    public function __construct(array $hosts, $user, $script, $parallel = false)
+    public function __construct(array $hosts, $user, $script, $parallel = false, $confirm = null)
     {
         $this->user = $user;
         $this->hosts = $hosts;
         $this->script = $script;
         $this->parallel = $parallel;
+        $this->confirm = $confirm;
     }
 }

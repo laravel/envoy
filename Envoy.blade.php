@@ -4,6 +4,10 @@
 	ls -la
 @endtask
 
+@task('foo_confirm', ['on' => 'web', 'confirm' => 'Are you sure?'])
+    ls -la
+@endtask
+
 @after
 	@hipchat('token', 'room', 'Envoy')
 @endafter
