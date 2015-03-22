@@ -5,7 +5,6 @@ use Symfony\Component\Process\Process;
 
 class SSH extends RemoteProcessor
 {
-
     use ConfigurationParser;
 
     /**

@@ -2,7 +2,6 @@
 
 trait ConfigurationParser
 {
-
     /**
      * Get the configured server from the SSH config.
      *

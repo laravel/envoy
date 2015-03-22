@@ -1,24 +1,24 @@
 {
-	"name": "laravel/envoy",
-	"description": "Elegant SSH tasks for PHP.",
-	"keywords": ["ssh", "laravel"],
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Taylor Otwell",
-			"email": "taylorotwell@gmail.com"
-		}
-	],
-	"autoload": {
-		"classmap": ["src"]
-	},
-	"require": {
-		"illuminate/support": "~4.1|~5.0",
-		"nategood/httpful": "~0.2",
-		"symfony/console": "~2.3",
-		"symfony/process": "~2.3"
-	},
-	"bin": [
-		"envoy"
-	]
+    "name": "laravel/envoy",
+    "description": "Elegant SSH tasks for PHP.",
+    "keywords": ["ssh", "laravel"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Taylor Otwell",
+            "email": "taylorotwell@gmail.com"
+        }
+    ],
+    "autoload": {
+        "classmap": ["src"]
+    },
+    "require": {
+        "illuminate/support": "~4.1|~5.0",
+        "nategood/httpful": "~0.2",
+        "symfony/console": "~2.3",
+        "symfony/process": "~2.3"
+    },
+    "bin": [
+        "envoy"
+    ]
 }

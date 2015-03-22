@@ -5,7 +5,6 @@ use Symfony\Component\Process\Process;
 
 class ParallelSSH extends RemoteProcessor
 {
-
     use ConfigurationParser;
 
     /**
@@ -88,7 +87,7 @@ class ParallelSSH extends RemoteProcessor
         foreach ($processes as $host => $process) {
             $methods = [
                 Process::OUT => 'getIncrementalOutput',
-                Process::ERR => 'getIncrementalErrorOutput'
+                Process::ERR => 'getIncrementalErrorOutput',
             ];
 
             foreach ($methods as $type => $method) {

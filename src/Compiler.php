@@ -2,22 +2,21 @@
 
 class Compiler
 {
-
     /**
      * All of the available compiler functions.
      *
      * @var array
      */
-    protected $serverCompilers = array(
+    protected $serverCompilers = [
         'Servers',
-    );
+    ];
 
     /**
      * All of the available compiler functions.
      *
      * @var array
      */
-    protected $compilers = array(
+    protected $compilers = [
         'Comments',
         'Echos',
         'Openings',
@@ -39,14 +38,14 @@ class Compiler
         'ErrorStop',
         'Hipchat',
         'Slack',
-    );
+    ];
 
     /**
      * Array of opening and closing tags for echos.
      *
      * @var array
      */
-    protected $contentTags = array('{{', '}}');
+    protected $contentTags = ['{{', '}}'];
 
     /**
      * Compile the given Envoy template contents.
@@ -197,11 +196,11 @@ class Compiler
     }
 
     /**
-    * Compile setup section begin statement into PHP start tag.
-    *
-    * @param  string   $value
-    * @return string
-    */
+     * Compile setup section begin statement into PHP start tag.
+     *
+     * @param  string   $value
+     * @return string
+     */
     public function compileSetupStart($value)
     {
         $value = preg_replace('/(\s*)@setup(\s*)/', '$1<?php$2', $value);
