@@ -39,8 +39,10 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
 
         $exitCode = 0;
 
-        foreach ($this->getTasks($container) as $task) {
-            $thisCode = $this->runTask($container, $task);
+        list( $tasks, $macro ) = $this->getTasks($container);
+
+        foreach ($tasks as $task) {
+            $thisCode = $this->runTask($container, $task, $macro);
 
             if (0 !== $thisCode) {
                 $exitCode = $thisCode;
@@ -58,10 +60,10 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
      */
     protected function getTasks($container)
     {
-        $tasks = [$task = $this->argument('task')];
+        $tasks = [ [$task = $this->argument('task')], false ];
 
         if ($macro = $container->getMacro($task)) {
-            $tasks = $macro;
+            $tasks = [ $macro, $task ];
         }
 
         return $tasks;
@@ -71,12 +73,13 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
      * Run the given task out of the container.
      *
      * @param  \Laravel\Envoy\TaskContainer  $container
-     * @param  string  $task
+     * @param  string       $task
+     * @param  bool|string  $macro
      * @return void
      */
-    protected function runTask($container, $task)
+    protected function runTask($container, $task, $macro)
     {
-        if (($exitCode = $this->runTaskOverSSH($container->getTask($task))) > 0) {
+        if (($exitCode = $this->runTaskOverSSH($container->getTask($task, $macro))) > 0) {
             foreach ($container->getErrorCallbacks() as $callback) {
                 call_user_func($callback, $task);
             }
