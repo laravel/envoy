@@ -198,7 +198,7 @@ class Compiler
     /**
      * Compile setup section begin statement into PHP start tag.
      *
-     * @param  string   $value
+     * @param  string  $value
      * @return string
      */
     public function compileSetupStart($value)
@@ -211,7 +211,7 @@ class Compiler
     /**
      * Compile setup section stop statement into PHP end tag.
      *
-     * @param  string $value
+     * @param  string  $value
      * @return string
      */
     public function compileSetupStop($value)
@@ -224,7 +224,7 @@ class Compiler
     /**
      * Compile an @include into a PHP include statement.
      *
-     * @param  string $value
+     * @param  string  $value
      * @return string
      */
     public function compileInclude($value)
