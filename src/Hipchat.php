@@ -4,7 +4,6 @@ use Httpful\Request;
 
 class Hipchat
 {
-
     use ConfigurationParser;
 
     public $token;

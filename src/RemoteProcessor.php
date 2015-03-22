@@ -5,7 +5,6 @@ use Symfony\Component\Process\Process;
 
 abstract class RemoteProcessor
 {
-
     /**
      * Run the given task over SSH.
      *

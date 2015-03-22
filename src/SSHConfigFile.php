@@ -2,7 +2,6 @@
 
 class SSHConfigFile
 {
-
     /**
      * The SSH configuration groups.
      *
@@ -111,6 +110,6 @@ class SSHConfigFile
      */
     protected function parseHost($host)
     {
-        return str_contains($host, '@') ? explode('@', $host) : array(null, $host);
+        return str_contains($host, '@') ? explode('@', $host) : [null, $host];
     }
 }

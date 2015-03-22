@@ -4,7 +4,6 @@ use Httpful\Request;
 
 class Slack
 {
-
     use ConfigurationParser;
 
     public $hook;

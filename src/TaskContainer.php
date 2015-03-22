@@ -4,7 +4,6 @@ use Closure;
 
 class TaskContainer
 {
-
     /**
      * All of the registered servers.
      *
@@ -77,7 +76,7 @@ class TaskContainer
      * @param  bool  $__serversOnly
      * @return void
      */
-    public function load($__path, Compiler $__compiler, array $__data = array(), $__serversOnly = false)
+    public function load($__path, Compiler $__compiler, array $__data = [], $__serversOnly = false)
     {
         // First we will compiled the "Blade" Envoy file into plain PHP that we'll include
         // into the current scope so it can register tasks in this task container that
@@ -93,7 +92,7 @@ class TaskContainer
         // Here we will include the compiled Envoy file so it can register tasks into this
         // container instance. Then we will delete the PHP version of the file because
         // it is no longer needed once we have used it to register in the container.
-        include(getcwd().'/Envoy.php');
+        include getcwd().'/Envoy.php';
 
         @unlink(getcwd().'/Envoy.php');
 
@@ -267,7 +266,7 @@ class TaskContainer
      * @param  array  $options
      * @return void
      */
-    public function startTask($task, array $options = array())
+    public function startTask($task, array $options = [])
     {
         ob_start() && $this->taskStack[] = $task;
 

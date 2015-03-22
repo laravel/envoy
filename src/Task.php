@@ -2,7 +2,6 @@
 
 class Task
 {
-
     /**
      * All of the hosts to run the task on.
      *

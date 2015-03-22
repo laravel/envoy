@@ -1,13 +1,10 @@
 <?php namespace Laravel\Envoy\Console;
 
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
-class InitCommand extends \Symfony\Component\Console\Command\Command
+class InitCommand extends SymfonyCommand
 {
-
     use Command;
 
     /**
@@ -18,8 +15,8 @@ class InitCommand extends \Symfony\Component\Console\Command\Command
     protected function configure()
     {
         $this->setName('init')
-                  ->setDescription('Create a new Envoy file in the current directory.')
-                  ->addArgument('host', InputArgument::REQUIRED, 'The host server to initialize with.');
+             ->setDescription('Create a new Envoy file in the current directory.')
+             ->addArgument('host', InputArgument::REQUIRED, 'The host server to initialize with.');
     }
 
     /**
@@ -38,8 +35,8 @@ class InitCommand extends \Symfony\Component\Console\Command\Command
         file_put_contents(getcwd().'/Envoy.blade.php', "@servers(['web' => '".$this->input->getArgument('host')."'])
 
 @task('deploy')
-	cd /path/to/site
-	git pull origin master
+    cd /path/to/site
+    git pull origin master
 @endtask
 ");
 
