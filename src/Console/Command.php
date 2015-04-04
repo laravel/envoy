@@ -56,17 +56,19 @@ trait Command
     }
 
     /**
-    * Asks the user for a confirmation.
-    * If y is pressed return true, if n is pressed return false
+    * Confirm the operation with the user.
     *
+    * @param  string  $task
     * @param string $question
     * @return bool
     */
-    public function askConfirmation($question)
+    public function confirmTaskWithUser($task, $question)
     {
-        $question = '<comment>'.$question.' [y/n]:</comment> ';
+        $question = $question === true ? 'Are you sure you want to run the ['.$task.'] task?' : (string) $question;
 
-        return  $this->getHelperSet()->get('dialog')->askConfirmation( $this->output, $question, false);
+        $question = '<comment>'.$question.' [y/N]:</comment> ';
+
+        return  $this->getHelperSet()->get('dialog')->askConfirmation($this->output, $question, false);
     }
 
     /**

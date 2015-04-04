@@ -1,10 +1,10 @@
-@servers(['web' => '192.168.1.1'])
+@servers(['web' => 'laravel'])
 
 @task('foo', ['on' => 'web'])
     ls -la
 @endtask
 
-@task('foo_confirm', ['on' => 'web', 'confirm' => 'Are you sure?'])
+@task('confirmed', ['on' => 'web', 'confirm' => true])
     ls -la
 @endtask
 
