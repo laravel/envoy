@@ -56,6 +56,20 @@ trait Command
     }
 
     /**
+    * Asks the user for a confirmation.
+    * If y is pressed return true, if n is pressed return false
+    *
+    * @param string $question
+    * @return bool
+    */
+    public function askConfirmation($question)
+    {
+        $question = '<comment>'.$question.' [y/n]:</comment> ';
+
+        return  $this->getHelperSet()->get('dialog')->askConfirmation( $this->output, $question, false);
+    }
+
+    /**
      * Ask the user the given secret question.
      *
      * @param  string  $question

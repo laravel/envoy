@@ -207,7 +207,9 @@ class TaskContainer
 
         $parallel = array_get($options, 'parallel', false);
 
-        return new Task($this->getServers($options), $options['as'], $script, $parallel);
+        $confirm = array_get($options, 'confirm', null);
+
+        return new Task($this->getServers($options), $options['as'], $script, $parallel, $confirm);
     }
 
     /**
