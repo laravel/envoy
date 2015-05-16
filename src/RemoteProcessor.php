@@ -32,11 +32,8 @@ abstract class RemoteProcessor
         // script out to a file or anything. We will start the SSH process then pass
         // these lines of output back to the parent callback for display purposes.
         else {
-            $script = 'set -e'.PHP_EOL.$task->script;
             $process = new Process(
-                'ssh '.$target.' \'bash -s\' << EOF
-'.$script.'
-EOF'
+                'echo \'' . $task->script . '\' | ssh '.$target.' \'bash -se\''
             );
         }
 
