@@ -93,7 +93,7 @@ class ParallelSSH extends RemoteProcessor
             foreach ($methods as $type => $method) {
                 $output = $process->{$method}();
 
-                if ($output !== false) {
+                if (!empty($output)) {
                     $callback($type, $host, $output);
                 }
             }
