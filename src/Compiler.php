@@ -97,26 +97,17 @@ class Compiler
      */
     protected function compileRegularEchos($value)
     {
+        $pattern = sprintf('/(@)?%s\s*(.+?)\s*%s(\r?\n)?/s', '{{', '}}');
+
         $callback = function ($matches) {
-            return $matches[1] ? substr($matches[0], 1) : '<?php echo '.$this->compileEchoDefaults($matches[2]).'; ?>';
+            $whitespace = empty($matches[3]) ? '' : $matches[3].$matches[3];
+
+            $wrapped = sprintf('%s', $this->compileEchoDefaults($matches[2]));
+
+            return $matches[1] ? substr($matches[0], 1) : '<?php echo '.$wrapped.'; ?>'.$whitespace;
         };
 
-        return preg_replace_callback('/(@)?{{\s*(.+?)\s*}}/s', $callback, $this->compileEndOfLineEchos($value));
-    }
-
-    /**
-     * Compile the echo statements that are on end of lines.
-     *
-     * @param  string  $value
-     * @return string
-     */
-    protected function compileEndOfLineEchos($value)
-    {
-        $callback = function ($matches) {
-            return $matches[1] ? substr($matches[0], 1) : '<?php echo '.$this->compileEchoDefaults($matches[2]).'; ?>'.PHP_EOL;
-        };
-
-        return preg_replace_callback('/(@)?{{\s*(.+?)\s*}}\s*$/ms', $callback, $value);
+        return preg_replace_callback($pattern, $callback, $value);
     }
 
     /**
