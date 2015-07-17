@@ -116,7 +116,7 @@ class Compiler
             return $matches[1] ? substr($matches[0], 1) : '<?php echo '.$this->compileEchoDefaults($matches[2]).'; ?>'.PHP_EOL;
         };
 
-        return preg_replace_callback('/(@)?{{\s*(.+?)\s*}}\s*$/s', $callback, $value);
+        return preg_replace_callback('/(@)?{{\s*(.+?)\s*}}\s*$/ms', $callback, $value);
     }
 
     /**
