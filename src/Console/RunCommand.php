@@ -142,14 +142,17 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
      */
     protected function displayOutput($type, $host, $line)
     {
-        if (strlen(trim($line)) === 0) {
-            return;
-        }
-
-        if ($type == Process::OUT) {
-            $this->output->write('<comment>['.$host.']</comment>: '.trim($line).PHP_EOL);
-        } else {
-            $this->output->write('<comment>['.$host.']</comment>: <error>'.trim($line).'</error>'.PHP_EOL);
+        $lines = explode(PHP_EOL, $line);
+        foreach($lines as $line) {
+            if (strlen(trim($line)) === 0) {
+                return;
+            }
+    
+            if ($type == Process::OUT) {
+                $this->output->write('<comment>['.$host.']</comment>: '.trim($line).PHP_EOL);
+            } else {
+                $this->output->write('<comment>['.$host.']</comment>: <error>'.trim($line).'</error>'.PHP_EOL);
+            }
         }
     }
 
