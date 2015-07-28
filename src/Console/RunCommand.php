@@ -142,7 +142,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
      */
     protected function displayOutput($type, $host, $line)
     {
-        $lines = explode(PHP_EOL, $line);
+        $lines = explode('\n', $line);
         foreach($lines as $line) {
             if (strlen(trim($line)) === 0) {
                 return;
