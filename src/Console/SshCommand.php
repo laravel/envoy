@@ -1,4 +1,6 @@
-<?php namespace Laravel\Envoy\Console;
+<?php
+
+namespace Laravel\Envoy\Console;
 
 use Laravel\Envoy\Compiler;
 use Laravel\Envoy\TaskContainer;
@@ -17,10 +19,11 @@ class SshCommand extends \Symfony\Component\Console\Command\Command
      */
     protected function configure()
     {
-        $this->setName('ssh')
-                  ->setDescription('Connect to an Envoy server.')
-                  ->addArgument('name', InputArgument::OPTIONAL, 'The name of the server.')
-                  ->addOption('user', null, InputOption::VALUE_OPTIONAL, 'The name of the user.');
+        $this
+            ->setName('ssh')
+            ->setDescription('Connect to an Envoy server.')
+            ->addArgument('name', InputArgument::OPTIONAL, 'The name of the server.')
+            ->addOption('user', null, InputOption::VALUE_OPTIONAL, 'The name of the user.');
     }
 
     /**
@@ -48,7 +51,7 @@ class SshCommand extends \Symfony\Component\Console\Command\Command
         } elseif ($container->hasOneServer()) {
             return $container->getFirstServer();
         } else {
-            throw new \InvalidArgumentException("Please provide a server name.");
+            throw new \InvalidArgumentException('Please provide a server name.');
         }
     }
 

@@ -1,4 +1,6 @@
-<?php namespace Laravel\Envoy;
+<?php
+
+namespace Laravel\Envoy;
 
 use Closure;
 use Symfony\Component\Process\Process;
@@ -93,7 +95,7 @@ class ParallelSSH extends RemoteProcessor
             foreach ($methods as $type => $method) {
                 $output = $process->{$method}();
 
-                if (!empty($output)) {
+                if (! empty($output)) {
                     $callback($type, $host, $output);
                 }
             }
