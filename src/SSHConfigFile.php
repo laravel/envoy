@@ -1,4 +1,6 @@
-<?php namespace Laravel\Envoy;
+<?php
+
+namespace Laravel\Envoy;
 
 class SSHConfigFile
 {
@@ -77,7 +79,7 @@ class SSHConfigFile
             }
         }
 
-        return new SSHConfigFile(array_values($groups));
+        return new self(array_values($groups));
     }
 
     /**

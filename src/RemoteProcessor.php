@@ -1,4 +1,6 @@
-<?php namespace Laravel\Envoy;
+<?php
+
+namespace Laravel\Envoy;
 
 use Closure;
 use Symfony\Component\Process\Process;
@@ -33,7 +35,7 @@ abstract class RemoteProcessor
         // these lines of output back to the parent callback for display purposes.
         else {
             $process = new Process(
-                'echo \'' . 'set -e'.PHP_EOL.$task->script . '\' | ssh '.$target.' \'bash -se\''
+                'echo \''.'set -e'.PHP_EOL.$task->script.'\' | ssh '.$target.' \'bash -se\''
             );
         }
 

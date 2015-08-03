@@ -1,4 +1,6 @@
-<?php namespace Laravel\Envoy\Console;
+<?php
+
+namespace Laravel\Envoy\Console;
 
 use Laravel\Envoy\SSH;
 use Laravel\Envoy\Task;
@@ -144,7 +146,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
     {
         $lines = explode("\n", $line);
 
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             if (strlen(trim($line)) === 0) {
                 return;
             }

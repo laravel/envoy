@@ -1,4 +1,6 @@
-<?php namespace Laravel\Envoy\Console;
+<?php
+
+namespace Laravel\Envoy\Console;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -56,12 +58,12 @@ trait Command
     }
 
     /**
-    * Confirm the operation with the user.
-    *
-    * @param  string  $task
-    * @param string $question
-    * @return bool
-    */
+     * Confirm the operation with the user.
+     *
+     * @param  string  $task
+     * @param  string  $question
+     * @return bool
+     */
     public function confirmTaskWithUser($task, $question)
     {
         $question = $question === true ? 'Are you sure you want to run the ['.$task.'] task?' : (string) $question;

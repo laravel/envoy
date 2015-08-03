@@ -1,4 +1,6 @@
-<?php namespace Laravel\Envoy;
+<?php
+
+namespace Laravel\Envoy;
 
 trait ConfigurationParser
 {
