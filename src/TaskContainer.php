@@ -56,6 +56,13 @@ class TaskContainer
     protected $taskStack = [];
 
     /**
+     * The stack of macro being rendered.
+     *
+     * @var array
+     */
+    protected $macroStack = [];
+
+    /**
      * Silently load the Envoy file into the container.
      *
      * No data is needed.
