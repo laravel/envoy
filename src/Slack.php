@@ -57,11 +57,11 @@ class Slack
 
         $payload = ['text' => $message, 'channel' => $this->channel];
         
-        if(!is_null($this->icon_emoji)) {
+        if(! is_null($this->icon_emoji)) {
             $payload['icon_emoji'] = $this->icon_emoji;
         }
         
-        if(!is_null($this->username)) {
+        if(! is_null($this->username)) {
             $payload['username'] = $this->username;
         }
 
