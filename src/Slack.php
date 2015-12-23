@@ -9,35 +9,48 @@ class Slack
     use ConfigurationParser;
 
     public $hook;
-    public $channel;
-    public $message;
+    public $payload;
 
     /**
      * Create a new Slack instance.
      *
-     * @param  string  $hook
-     * @param  mixed  $channel
-     * @param  string  $message
-     * @return void
+     * @param  string $hook
+     * @param  mixed  $payload
+     * @param  string $message
+     *
+     * @internal param string $hook
      */
-    public function __construct($hook, $channel = '', $message = null)
+    public function __construct($hook, $payload = '', $message = null)
     {
         $this->hook = $hook;
-        $this->channel = $channel;
-        $this->message = $message;
+
+        $payload_defaults = [
+            'username' => 'Laravel Envoy',
+            'channel' => '',
+            'text' => null,
+        ];
+
+        if (! is_array($payload)) {
+            $payload = [
+                'channel' => $payload,
+                'text' => $message,
+            ];
+        }
+
+        $this->payload = array_merge($payload_defaults, $payload);
     }
 
     /**
      * Create a new Slack message instance.
      *
      * @param  string  $hook
-     * @param  mixed   $channel
+     * @param  mixed   $payload
      * @param  string  $message
      * @return \Laravel\Envoy\Slack
      */
-    public static function make($hook, $channel = '', $message = null)
+    public static function make($hook, $payload = '', $message = null)
     {
-        return new static($hook, $channel, $message);
+        return new static($hook, $payload, $message);
     }
 
     /**
@@ -47,11 +60,10 @@ class Slack
      */
     public function send()
     {
-        $message = $this->message ?: ucwords($this->getSystemUser()).' ran the ['.$this->task.'] task.';
-
-        $payload = ['text' => $message, 'channel' => $this->channel];
-
-        Request::post("{$this->hook}")->sendsJson()->body($payload)->send();
+        if (is_null($this->payload['text'])) {
+            $this->payload['text'] = ucwords($this->getSystemUser()).' ran the ['.$this->task.'] task.';
+        }
+        Request::post("{$this->hook}")->sendsJson()->body($this->payload)->send();
     }
 
     /**
