@@ -27,13 +27,13 @@ class Slack
         $payload_defaults = [
             'username' => 'Laravel Envoy',
             'channel' => '',
-            'text' => null
+            'text' => null,
         ];
 
-        if(! is_array($payload)) {
+        if (! is_array($payload)) {
             $payload = [
                 'channel' => $payload,
-                'text' => $message
+                'text' => $message,
             ];
         }
 
@@ -60,7 +60,7 @@ class Slack
      */
     public function send()
     {
-        if(is_null($this->payload['text'])) {
+        if (is_null($this->payload['text'])) {
             $this->payload['text'] = ucwords($this->getSystemUser()).' ran the ['.$this->task.'] task.';
         }
         Request::post("{$this->hook}")->sendsJson()->body($this->payload)->send();
