@@ -22,7 +22,7 @@ class Slack
      * @param  array  $additional_payload
      * @return void
      */
-    public function __construct($hook, $channel = '', $message = null, $additional_payload = array())
+    public function __construct($hook, $channel = '', $message = null, $additional_payload = [])
     {
         $this->hook = $hook;
         $this->channel = $channel;
@@ -39,7 +39,7 @@ class Slack
      * @param  array  $additional_payload
      * @return \Laravel\Envoy\Slack
      */
-    public static function make($hook, $channel = '', $message = null, $additional_payload = array())
+    public static function make($hook, $channel = '', $message = null, $additional_payload = [])
     {
         return new static($hook, $channel, $message, $additional_payload);
     }
