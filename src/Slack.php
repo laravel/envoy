@@ -11,6 +11,7 @@ class Slack
     public $hook;
     public $channel;
     public $message;
+    public $additional_payload;
 
     /**
      * Create a new Slack instance.
@@ -18,13 +19,15 @@ class Slack
      * @param  string  $hook
      * @param  mixed  $channel
      * @param  string  $message
+     * @param  array  $additional_payload
      * @return void
      */
-    public function __construct($hook, $channel = '', $message = null)
+    public function __construct($hook, $channel = '', $message = null, $additional_payload = array())
     {
         $this->hook = $hook;
         $this->channel = $channel;
         $this->message = $message;
+        $this->additional_payload = $additional_payload;
     }
 
     /**
@@ -33,11 +36,12 @@ class Slack
      * @param  string  $hook
      * @param  mixed   $channel
      * @param  string  $message
+     * @param  array  $additional_payload
      * @return \Laravel\Envoy\Slack
      */
-    public static function make($hook, $channel = '', $message = null)
+    public static function make($hook, $channel = '', $message = null, $additional_payload = array())
     {
-        return new static($hook, $channel, $message);
+        return new static($hook, $channel, $message, $additional_payload);
     }
 
     /**
@@ -49,7 +53,7 @@ class Slack
     {
         $message = $this->message ?: ucwords($this->getSystemUser()).' ran the ['.$this->task.'] task.';
 
-        $payload = ['text' => $message, 'channel' => $this->channel];
+        $payload = array_merge(['text' => $message, 'channel' => $this->channel], $this->additional_payload);
 
         Request::post("{$this->hook}")->sendsJson()->body($payload)->send();
     }
