@@ -91,7 +91,7 @@ class SSHConfigFile
             }
 
             // Collect only Host declarations
-            if (!$matchSection) {
+            if (! $matchSection) {
                 $groups[$index][$key] = $value;
             }
         }
@@ -134,7 +134,7 @@ class SSHConfigFile
 
     /**
      * Unqoutes (removes) an optionally double quoted string
-     * and preserves embed double quotes and whitespace
+     * and preserves embeded double quotes and whitespace.
      *
      * @param string $string
      * @return string

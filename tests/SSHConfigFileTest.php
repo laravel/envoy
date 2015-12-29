@@ -88,7 +88,7 @@ EOT;
 
         $this->assertEquals([[
             'host' => 'bar',
-            'hostname' => 'baz.com'
+            'hostname' => 'baz.com',
         ]], $groups);
     }
 
@@ -107,7 +107,7 @@ EOT;
         $this->assertEquals([[
             'host' => 'bar',
             'hostname' => 'baz.com',
-            'port' => 1234
+            'port' => 1234,
         ]], $groups);
     }
 
@@ -124,7 +124,7 @@ EOT;
         $this->assertEquals([[
             'host' => 'bar',
             'hostname' => 'baz.com',
-        ],[
+        ], [
             'host' => 'qux',
             'hostname' => 'qux.com',
         ]], $groups);
@@ -144,7 +144,7 @@ EOT;
         $this->assertEquals([[
             'host' => 'bar',
             'hostname' => 'baz.com',
-        ],[
+        ], [
             'host' => 'qux',
             'hostname' => 'qux.com',
         ]], $groups);
@@ -169,7 +169,7 @@ EOT;
         $this->assertEquals([[
             'host' => 'bar',
             'hostname' => 'baz.com',
-        ],[
+        ], [
             'host' => 'qux',
             'hostname' => 'qux.com',
         ]], $groups);
