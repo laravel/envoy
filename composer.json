@@ -18,12 +18,12 @@
         "symfony/console": "~2.3",
         "symfony/process": "~2.3"
     },
-    "bin": [
-        "envoy"
-    ],
     "require-dev": {
         "phpunit/phpunit": "~4.8"
     },
+    "bin": [
+        "envoy"
+    ],
     "autoload-dev": {
         "classmap": ["tests"]
     }

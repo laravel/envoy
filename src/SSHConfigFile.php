@@ -50,47 +50,41 @@ class SSHConfigFile
         foreach (explode(PHP_EOL, $string) as $line) {
             $line = trim($line);
 
-            // If the line is empty or begins with a comment, we will just skip that line then
-            // continue to process the rest of the file. All comments in SSH config file start
-            // with the hash so we can easily identify them here and continue iterating.
             if ('' == $line || starts_with($line, '#')) {
                 continue;
             }
 
-            // If the key is separated by an equals sign, we'll parse it into the two sections
-            // and add it the current group. Items will be specified using either an equals
-            // otherwise they will separated by any number of spaces which we will check.
+            // Keys and values may get separated via an equals, so we'll parse them both
+            // out here and hang onto their values. We will also lower case this keys
+            // and unquotes the values so they are properly formatted for next use.
             if (preg_match('/^\s*(\S+)\s*=(.*)$/', $line, $match)) {
                 $key = strtolower($match[1]);
-                $value = $match[2];
+
+                $value = self::unquote($match[2]);
             }
 
-            // Finally, the options must get separated by spaces if no other checks have found
-            // the option. We will split by the first group of spaces then set the items on
-            // the current group in the array. Then we'll return the SSH config instance.
+            // Keys and values may also get separated via a space, so we will parse them
+            // out here and hang onto their values. We will also lower case this keys
+            // and unquotes the values so they are properly formatted for next use.
             else {
                 $segments = preg_split('/\s+/', $line, 2);
+
                 $key = strtolower($segments[0]);
-                $value = $segments[1];
+
+                $value = self::unquote($segments[1]);
             }
 
-            // Note that keywords are case-insensitive and arguments are case-sensitive.
-            $key = strtolower($key);
-            // Arguments may optionally be enclosed in double quotes (") in order to
-            // represent arguments containing spaces.
-            $value = self::unqoute($value);
-
-            // The configuration file contains sections separated by Host and (or) Match
-            // specifications. Therefore if we come across a Host keyword we start a new
-            // group. If it's a Match we ignore declarations until next 'Host' section.
+            // The configuration file contains sections separated by Host and / or Match
+            // specifications. Therefore, if we come across a Host keyword we start a
+            // new group. If it's a Match we ignore declarations until next 'Host'.
             if ('host' === $key) {
                 $index++;
+
                 $matchSection = false;
             } elseif ('match' === $key) {
                 $matchSection = true;
             }
 
-            // Collect only Host declarations
             if (! $matchSection) {
                 $groups[$index][$key] = $value;
             }
@@ -133,13 +127,12 @@ class SSHConfigFile
     }
 
     /**
-     * Unqoutes (removes) an optionally double quoted string
-     * and preserves embeded double quotes and whitespace.
+     * Unquote an optionally double quoted string.
      *
-     * @param string $string
+     * @param  string $string
      * @return string
      */
-    private static function unqoute($string)
+    private static function unquote($string)
     {
         if ('"' === substr($string, 0, 1) && '"' === substr($string, -1, 1)) {
             return substr($string, 1, -1);
