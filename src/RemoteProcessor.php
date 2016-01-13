@@ -35,7 +35,7 @@ abstract class RemoteProcessor
         // these lines of output back to the parent callback for display purposes.
         else {
             $cmd = '\\' === DIRECTORY_SEPARATOR
-                 ? '"'.getenv('GIT_SSH').'" ' . $target . ' "' . $task->script . '"'
+                 ? '"'.getenv('GIT_SSH').'" '.$target.' "'.$task->script.'"'
                  : 'echo \''.'set -e'.PHP_EOL.$task->script.'\' | ssh '.$target.' \'bash -se\'';
             $process = new Process(
               $cmd
