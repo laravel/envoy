@@ -35,7 +35,10 @@ abstract class RemoteProcessor
         // these lines of output back to the parent callback for display purposes.
         else {
             $process = new Process(
-                'echo \''.'set -e'.PHP_EOL.$task->script.'\' | ssh '.$target.' \'bash -se\''
+                "ssh $target 'bash -se' << $delimeter".PHP_EOL
+                    .'set -e'.PHP_EOL
+                    .$task->script.PHP_EOL
+                    .$delimeter
             );
         }
 
