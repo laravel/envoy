@@ -11,5 +11,6 @@ $app = new Symfony\Component\Console\Application('Laravel Envoy', '1.0.27');
 $app->add(new Laravel\Envoy\Console\RunCommand);
 $app->add(new Laravel\Envoy\Console\SshCommand);
 $app->add(new Laravel\Envoy\Console\InitCommand);
+$app->add(new Laravel\Envoy\Console\TasksCommand);
 
 $app->run();

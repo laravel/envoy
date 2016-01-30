@@ -188,6 +188,16 @@ class TaskContainer
     }
 
     /**
+     * Getter for macros.
+     *
+     * @return array
+     */
+    public function getMacros()
+    {
+        return $this->macros;
+    }
+
+    /**
      * Get the given macro from the container.
      *
      * @param  string  $macro
@@ -196,6 +206,16 @@ class TaskContainer
     public function getMacro($macro)
     {
         return array_get($this->macros, $macro);
+    }
+
+    /**
+     * Getter for tasks.
+     *
+     * @return array
+     */
+    public function getTasks()
+    {
+        return $this->tasks;
     }
 
     /**
