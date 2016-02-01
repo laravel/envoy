@@ -20,7 +20,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
      *
      * @var array
      */
-    protected $staticOptions = [
+    protected $ignoreOptions = [
         '--pretend',
         '--help',
         '--quiet',
@@ -208,7 +208,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
         // the double hyphens in front of their name. We will make these available to the
         // Blade task file so they can be used in echo statements and other structures.
         foreach ($_SERVER['argv'] as $argument) {
-            if (! starts_with($argument, '--') || in_array($argument, $this->staticOptions)) {
+            if (! starts_with($argument, '--') || in_array($argument, $this->ignoreOptions)) {
                 continue;
             }
 
