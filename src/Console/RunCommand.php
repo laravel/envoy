@@ -94,13 +94,15 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
      */
     protected function runTask($container, $task)
     {
-        $confirm = $container->getTask($task)->confirm;
+        $macroOptions = $container->getMacroOptions($this->argument('task'));
+
+        $confirm = $container->getTask($task, $macroOptions)->confirm;
 
         if ($confirm && ! $this->confirmTaskWithUser($task, $confirm)) {
             return;
         }
 
-        if (($exitCode = $this->runTaskOverSSH($container->getTask($task))) > 0) {
+        if (($exitCode = $this->runTaskOverSSH($container->getTask($task, $macroOptions))) > 0) {
             foreach ($container->getErrorCallbacks() as $callback) {
                 call_user_func($callback, $task);
             }

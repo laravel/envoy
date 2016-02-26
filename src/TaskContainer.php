@@ -56,6 +56,13 @@ class TaskContainer
     protected $taskStack = [];
 
     /**
+     * All of the options for each macro.
+     *
+     * @var array
+     */
+    protected $macroOptions = [];
+
+    /**
      * The stack of macro being rendered.
      *
      * @var array
@@ -209,6 +216,17 @@ class TaskContainer
     }
 
     /**
+     * Get the macro options for the given macro.
+     *
+     * @param  string  $macro
+     * @return array
+     */
+    public function getMacroOptions($macro)
+    {
+        return array_get($this->macroOptions, $macro, []);
+    }
+
+    /**
      * Getter for tasks.
      *
      * @return array
@@ -222,9 +240,10 @@ class TaskContainer
      * Get a Task instance by the given name.
      *
      * @param  string  $task
+     * @param  array  $macroOptions
      * @return string
      */
-    public function getTask($task)
+    public function getTask($task, $macroOptions = [])
     {
         $script = array_get($this->tasks, $task, '');
 
@@ -232,7 +251,7 @@ class TaskContainer
             throw new \Exception(sprintf('Task "%s" is not defined.', $task));
         }
 
-        $options = $this->getTaskOptions($task);
+        $options = array_merge($this->getTaskOptions($task), $macroOptions);
 
         $parallel = array_get($options, 'parallel', false);
 
@@ -273,11 +292,14 @@ class TaskContainer
      * Begin defining a macro.
      *
      * @param  string  $macro
+     * @param  array  $options
      * @return void
      */
-    public function startMacro($macro)
+    public function startMacro($macro, array $options = [])
     {
         ob_start() && $this->macroStack[] = $macro;
+
+        $this->macroOptions[$macro] = $options;
     }
 
     /**
