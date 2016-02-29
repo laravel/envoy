@@ -56,18 +56,18 @@ class TaskContainer
     protected $taskStack = [];
 
     /**
-     * All of the options for each macro.
-     *
-     * @var array
-     */
-    protected $macroOptions = [];
-
-    /**
      * The stack of macro being rendered.
      *
      * @var array
      */
     protected $macroStack = [];
+
+    /**
+     * All of the options for each macro.
+     *
+     * @var array
+     */
+    protected $macroOptions = [];
 
     /**
      * Silently load the Envoy file into the container.
@@ -243,7 +243,7 @@ class TaskContainer
      * @param  array  $macroOptions
      * @return string
      */
-    public function getTask($task, $macroOptions = [])
+    public function getTask($task, array $macroOptions = [])
     {
         $script = array_get($this->tasks, $task, '');
 
