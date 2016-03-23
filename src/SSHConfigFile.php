@@ -107,9 +107,9 @@ class SSHConfigFile
             if ((isset($group['host']) && $group['host'] == $host) ||
                 (isset($group['hostname']) && $group['hostname'] == $host)) {
 
-                if (!empty($user)) {
+                if (! empty($user)) {
                     // user not specified in ssh config
-                    if (!isset($group['user'])) {
+                    if (! isset($group['user'])) {
                         continue;
                     }
 
