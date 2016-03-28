@@ -104,10 +104,18 @@ class SSHConfigFile
         list($user, $host) = $this->parseHost($host);
 
         foreach ($this->groups as $group) {
-            if ((isset($group['host']) == $host && $group['host'] == $host) ||
+            if ((isset($group['host']) && $group['host'] == $host) ||
                 (isset($group['hostname']) && $group['hostname'] == $host)) {
-                if (! empty($user) && isset($group['user']) && $group['user'] != $user) {
-                    continue;
+                if (! empty($user)) {
+                    // user not specified in ssh config
+                    if (! isset($group['user'])) {
+                        continue;
+                    }
+
+                    // user specified in ssh config, but not the same
+                    if (isset($group['user']) && $group['user'] != $user) {
+                        continue;
+                    }
                 }
 
                 return $group['host'];
