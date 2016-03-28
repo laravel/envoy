@@ -107,12 +107,12 @@ class SSHConfigFile
             if ((isset($group['host']) && $group['host'] == $host) ||
                 (isset($group['hostname']) && $group['hostname'] == $host)) {
                 if (! empty($user)) {
-                    // user not specified in ssh config
+                    // User is not specified in the SSH configuration...
                     if (! isset($group['user'])) {
                         continue;
                     }
 
-                    // user specified in ssh config, but not the same
+                    // User is specified in the SSH configuration but is not the given user....
                     if (isset($group['user']) && $group['user'] != $user) {
                         continue;
                     }
