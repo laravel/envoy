@@ -59,13 +59,18 @@ class Hipchat
 
         $format = $message != strip_tags($message) ? 'html' : 'text';
 
+        $query = ['auth_token' => $this->token];
+
         $payload = [
-            'auth_token' => $this->token, 'room_id' => $this->room,
+            'room_id' => $this->room,
             'from' => $this->from, 'message' => $message,
             'message_format' => $format, 'notify' => 1, 'color' => $this->color,
         ];
 
-        Request::get('https://api.hipchat.com/v1/rooms/message?'.http_build_query($payload))->send();
+        Request::post('https://api.hipchat.com/v2/room/' . $this->room . '/notification?'.http_build_query($query))
+            ->sendsJson()
+            ->body(json_encode($payload))
+            ->send();
     }
 
     /**
