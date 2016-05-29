@@ -66,7 +66,7 @@ class Hipchat
             'message_format' => $format, 'notify' => true, 'color' => $this->color,
         ];
 
-        Request::post('https://api.hipchat.com/v2/room/' . $this->room . '/notification?'.http_build_query($query))
+        Request::post('https://api.hipchat.com/v2/room/'.$this->room.'/notification?'.http_build_query($query))
             ->sendsJson()
             ->body(json_encode($payload))
             ->send();
