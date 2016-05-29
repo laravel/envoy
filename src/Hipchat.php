@@ -62,7 +62,6 @@ class Hipchat
         $query = ['auth_token' => $this->token];
 
         $payload = [
-            'room_id' => $this->room,
             'from' => $this->from, 'message' => $message,
             'message_format' => $format, 'notify' => true, 'color' => $this->color,
         ];
