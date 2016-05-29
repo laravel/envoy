@@ -64,7 +64,7 @@ class Hipchat
         $payload = [
             'room_id' => $this->room,
             'from' => $this->from, 'message' => $message,
-            'message_format' => $format, 'notify' => 1, 'color' => $this->color,
+            'message_format' => $format, 'notify' => true, 'color' => $this->color,
         ];
 
         Request::post('https://api.hipchat.com/v2/room/' . $this->room . '/notification?'.http_build_query($query))
