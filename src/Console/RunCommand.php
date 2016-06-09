@@ -172,7 +172,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
             if ($type == Process::OUT) {
                 $this->output->write('<comment>['.$host.']</comment>: '.trim($line).PHP_EOL);
             } else {
-                $this->output->write('<comment>['.$host.']</comment>: <error>'.trim($line).'</error>'.PHP_EOL);
+                $this->output->write('<comment>['.$host.']</comment>: <fg=red>'.trim($line).'</>'.PHP_EOL);
             }
         }
     }

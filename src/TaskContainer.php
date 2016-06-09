@@ -103,6 +103,8 @@ class TaskContainer
      */
     public function load($__path, Compiler $__compiler, array $__data = [], $__serversOnly = false)
     {
+        $__dir = realpath(dirname($__path));
+
         // First we will compiled the "Blade" Envoy file into plain PHP that we'll include
         // into the current scope so it can register tasks in this task container that
         // is also in the current scope. We will extract this other data into scope.
@@ -215,15 +217,36 @@ class TaskContainer
     public function import($file, array $data = [])
     {
         $data = Arr::except($data, [
-            '__path', '__compiler', '__data', '__serversOnly',
+            '__path', '__dir', '__compiler', '__data', '__serversOnly',
             '__envoyPath', '__container', 'this',
         ]);
 
-        if (($path = realpath($file)) === false) {
+        if (($path = $this->resolveImportPath($file)) === false) {
             throw new InvalidArgumentException("Unable to locate file: [{$file}].");
         }
 
         $this->load($path, new Compiler, $data);
+    }
+
+    /**
+     * Resolve the import path for the given file.
+     *
+     * @param  string  $file
+     * @return string|bool
+     */
+    protected function resolveImportPath($file)
+    {
+        if (($path = realpath($file)) !== false) {
+            return $path;
+        } elseif (($path = realpath($file.'.blade.php')) !== false) {
+            return $path;
+        } elseif (($path = realpath(getcwd().'/vendor/'.$file.'/Envoy.blade.php')) !== false) {
+            return $path;
+        } elseif (($path = realpath(__DIR__.'/'.$file.'.blade.php')) !== false) {
+            return $path;
+        }
+
+        return false;
     }
 
     /**

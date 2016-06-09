@@ -20,6 +20,7 @@ class Compiler
      */
     protected $compilers = [
         'Imports',
+        'Sets',
         'Comments',
         'Echos',
         'Openings',
@@ -66,6 +67,17 @@ class Compiler
         }
 
         return $value;
+    }
+
+    /**
+     * Compile Envoy sets into valid PHP.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function compileSets($value)
+    {
+        return preg_replace('/\\@set\(\'(.*?)\'\,\s*(.*)\)/', '<?php $$1 = $2; ?>', $value);
     }
 
     /**
