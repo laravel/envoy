@@ -76,9 +76,9 @@ class Compiler
      */
     protected function compileImports($value)
     {
-        $pattern = $this->createMatcher('import');
+        $pattern = $this->createOpenMatcher('import');
 
-        return preg_replace($pattern, '$1<?php $__container->import$2; ?>', $value);
+        return preg_replace($pattern, '$1<?php $__container->import$2, get_defined_vars()); ?>', $value);
     }
 
     /**

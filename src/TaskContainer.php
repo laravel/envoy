@@ -3,6 +3,7 @@
 namespace Laravel\Envoy;
 
 use Closure;
+use Illuminate\Support\Arr;
 use InvalidArgumentException;
 
 class TaskContainer
@@ -13,6 +14,13 @@ class TaskContainer
      * @var array
      */
     protected $servers = [];
+
+    /**
+     * All of the shared data.
+     *
+     * @var array
+     */
+    protected $sharedData = [];
 
     /**
      * All of the registered macros.
@@ -201,15 +209,33 @@ class TaskContainer
      * Import the given file into the container.
      *
      * @param  string  $file
+     * @param  array  $data
      * @return void
      */
-    public function import($file)
+    public function import($file, array $data = [])
     {
+        $data = Arr::except($data, [
+            '__path', '__compiler', '__data', '__serversOnly',
+            '__envoyPath', '__container', 'this',
+        ]);
+
         if (($path = realpath($file)) === false) {
             throw new InvalidArgumentException("Unable to locate file: [{$file}].");
         }
 
-        $this->load($path, new Compiler, []);
+        $this->load($path, new Compiler, $data);
+    }
+
+    /**
+     * Share the given piece of data across all tasks.
+     *
+     * @param  string  $key
+     * @param  mixed  $value
+     * @return void
+     */
+    public function share($key, $value)
+    {
+        $this->sharedData[$key] = $value;
     }
 
     /**
