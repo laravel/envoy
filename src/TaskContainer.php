@@ -3,6 +3,7 @@
 namespace Laravel\Envoy;
 
 use Closure;
+use InvalidArgumentException;
 
 class TaskContainer
 {
@@ -97,7 +98,7 @@ class TaskContainer
         // First we will compiled the "Blade" Envoy file into plain PHP that we'll include
         // into the current scope so it can register tasks in this task container that
         // is also in the current scope. We will extract this other data into scope.
-        $this->writeCompiledEnvoyFile(
+        $__envoyPath = $this->writeCompiledEnvoyFile(
             $__compiler, $__path, $__serversOnly
         );
 
@@ -108,9 +109,9 @@ class TaskContainer
         // Here we will include the compiled Envoy file so it can register tasks into this
         // container instance. Then we will delete the PHP version of the file because
         // it is no longer needed once we have used it to register in the container.
-        include getcwd().'/Envoy.php';
+        include $__envoyPath;
 
-        @unlink(getcwd().'/Envoy.php');
+        @unlink($__envoyPath);
 
         $this->replaceSubTasks();
 
@@ -122,14 +123,16 @@ class TaskContainer
      *
      * @param  \Laravel\Envoy\Compiler  $compiler
      * @param  string  $path
-     * @return void
+     * @return string
      */
     protected function writeCompiledEnvoyFile($compiler, $path, $serversOnly)
     {
         file_put_contents(
-            getcwd().'/Envoy.php',
+            $envoyPath = getcwd().'/Envoy'.md5_file($path).'.php',
             $compiler->compile(file_get_contents($path), $serversOnly)
         );
+
+        return $envoyPath;
     }
 
     /**
@@ -192,6 +195,21 @@ class TaskContainer
     public function getFirstServer()
     {
         return head($this->servers);
+    }
+
+    /**
+     * Import the given file into the container.
+     *
+     * @param  string  $file
+     * @return void
+     */
+    public function import($file)
+    {
+        if (($path = realpath($file)) === false) {
+            throw new InvalidArgumentException("Unable to locate file: [{$file}].");
+        }
+
+        $this->load($path, new Compiler, []);
     }
 
     /**
@@ -346,7 +364,15 @@ class TaskContainer
      */
     public function endTask()
     {
-        $this->tasks[array_pop($this->taskStack)] = trim(ob_get_clean());
+        $name = array_pop($this->taskStack);
+
+        $contents = trim(ob_get_clean());
+
+        if (isset($this->tasks[$name])) {
+            $this->tasks[$name] = str_replace('@parent', $this->tasks[$name], $contents);
+        } else {
+            $this->tasks[$name] = $contents;
+        }
     }
 
     /**

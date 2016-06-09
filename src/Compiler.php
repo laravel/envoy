@@ -19,6 +19,7 @@ class Compiler
      * @var array
      */
     protected $compilers = [
+        'Imports',
         'Comments',
         'Echos',
         'Openings',
@@ -65,6 +66,19 @@ class Compiler
         }
 
         return $value;
+    }
+
+    /**
+     * Compile Envoy imports into valid PHP.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function compileImports($value)
+    {
+        $pattern = $this->createMatcher('import');
+
+        return preg_replace($pattern, '$1<?php $__container->import$2; ?>', $value);
     }
 
     /**
