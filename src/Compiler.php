@@ -276,6 +276,10 @@ class Compiler
     {
         $pattern = $this->createMatcher('macro');
 
+        $value = preg_replace($pattern, '$1<?php $__container->startMacro$2; ?>', $value);
+
+        $pattern = $this->createMatcher('story');
+
         return preg_replace($pattern, '$1<?php $__container->startMacro$2; ?>', $value);
     }
 
@@ -288,6 +292,10 @@ class Compiler
     protected function compileMacroStop($value)
     {
         $pattern = $this->createPlainMatcher('endmacro');
+
+        $value = preg_replace($pattern, '$1<?php $__container->endMacro(); ?>$2', $value);
+
+        $pattern = $this->createPlainMatcher('endstory');
 
         return preg_replace($pattern, '$1<?php $__container->endMacro(); ?>$2', $value);
     }
