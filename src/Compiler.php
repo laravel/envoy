@@ -66,7 +66,7 @@ class Compiler
             $value = $this->{"compile{$compiler}"}($value);
         }
 
-        return $value;
+        return $this->initializeVariables($value);
     }
 
     /**
@@ -398,6 +398,23 @@ class Compiler
         $pattern = $this->createMatcher('slack');
 
         return preg_replace($pattern, '$1 Laravel\Envoy\Slack::make$2->task($task)->send();', $value);
+    }
+
+    /**
+     * Initialize the variables included in the Envoy template.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    private function initializeVariables($value)
+    {
+        preg_match_all('/\$([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)/', $value, $matches);
+
+        foreach (array_unique($matches[0]) as $variable) {
+            $value = "<?php $variable = isset($variable) ? $variable : null; ?>\n".$value;
+        }
+
+        return $value;
     }
 
     /**
