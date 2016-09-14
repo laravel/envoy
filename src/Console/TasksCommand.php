@@ -59,7 +59,7 @@ class TasksCommand extends \Symfony\Component\Console\Command\Command
      */
     protected function listMacros($container)
     {
-        $this->output->writeln('<comment>Available macros:</comment>');
+        $this->output->writeln('<comment>Available stories:</comment>');
 
         foreach (array_keys($container->getMacros()) as $macro) {
             $this->output->writeln("  <info>{$macro}</info>");
