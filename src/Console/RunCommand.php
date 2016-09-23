@@ -21,6 +21,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
      * @var array
      */
     protected $ignoreOptions = [
+        '--continue',
         '--pretend',
         '--help',
         '--quiet',
@@ -43,7 +44,8 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
         $this->setName('run')
                 ->setDescription('Run an Envoy task.')
                 ->addArgument('task', InputArgument::REQUIRED)
-                ->addOption('pretend', null, InputOption::VALUE_NONE, 'Dump Bash script for inspection.');
+                ->addOption('continue', null, InputOption::VALUE_NONE, 'Continue running even if a task fails')
+                ->addOption('pretend', null, InputOption::VALUE_NONE, 'Dump Bash script for inspection');
     }
 
     /**
@@ -62,6 +64,12 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
 
             if (0 !== $thisCode) {
                 $exitCode = $thisCode;
+            }
+
+            if ($thisCode > 0 && ! $this->input->getOption('continue')) {
+                $this->output->writeln('[<fg=red>✗</>] <fg=red>This task did not complete successfully on one of your servers.</>');
+
+                break;
             }
         }
 
