@@ -37,7 +37,7 @@ abstract class RemoteProcessor
             $delimiter = 'EOF-LARAVEL-ENVOY';
 
             $process = new Process(
-                "ssh $target 'bash -se' << \\$delimiter".PHP_EOL
+                "ssh -T $target 'bash -se' << \\$delimiter".PHP_EOL
                     .'set -e'.PHP_EOL
                     .$task->script.PHP_EOL
                     .$delimiter
