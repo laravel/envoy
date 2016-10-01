@@ -55,7 +55,7 @@ class Compiler
      * Compile the given Envoy template contents.
      *
      * @param  string  $value
-     * @param  bool  $silent
+     * @param  bool  $serversOnly
      * @return string
      */
     public function compile($value, $serversOnly = false)
