@@ -42,6 +42,7 @@ class SshCommand extends \Symfony\Component\Console\Command\Command
      * Get the server from the task container.
      *
      * @param  \Laravel\Envoy\TaskContainer  $container
+     * @throws \InvalidArgumentException
      * @return string
      */
     protected function getServer(TaskContainer $container)

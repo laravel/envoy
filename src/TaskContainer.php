@@ -83,8 +83,8 @@ class TaskContainer
      *
      * No data is needed.
      *
-     * @param  string  $__path
-     * @param  \Laravel\Envoy\Compiler  $__compiler
+     * @param  string  $path
+     * @param  \Laravel\Envoy\Compiler  $compiler
      * @return void
      */
     public function loadServers($path, Compiler $compiler)
@@ -133,6 +133,7 @@ class TaskContainer
      *
      * @param  \Laravel\Envoy\Compiler  $compiler
      * @param  string  $path
+     * @param  bool  $serversOnly
      * @return string
      */
     protected function writeCompiledEnvoyFile($compiler, $path, $serversOnly)
@@ -176,6 +177,7 @@ class TaskContainer
      * Get the IP address for a server.
      *
      * @param  string  $server
+     * @throws \Exception
      * @return string|null
      */
     public function getServer($server)
@@ -308,7 +310,8 @@ class TaskContainer
      *
      * @param  string  $task
      * @param  array  $macroOptions
-     * @return string
+     * @throws \Exception
+     * @return \Laravel\Envoy\Task
      */
     public function getTask($task, array $macroOptions = [])
     {

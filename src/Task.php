@@ -45,6 +45,8 @@ class Task
      * @param  array  $hosts
      * @param  string  $user
      * @param  string  $script
+     * @param  bool  $parallel
+     * @param  string|null  $confirm
      * @return void
      */
     public function __construct(array $hosts, $user, $script, $parallel = false, $confirm = null)

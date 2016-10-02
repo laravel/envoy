@@ -51,7 +51,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
     /**
      * Execute the command.
      *
-     * @return void
+     * @return int
      */
     protected function fire()
     {
@@ -98,7 +98,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
      *
      * @param  \Laravel\Envoy\TaskContainer  $container
      * @param  string  $task
-     * @return void
+     * @return null|int|void
      */
     protected function runTask($container, $task)
     {

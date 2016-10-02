@@ -62,7 +62,7 @@ class Slack
      * Set the task for the message.
      *
      * @param  string  $task
-     * @return void
+     * @return $this
      */
     public function task($task)
     {

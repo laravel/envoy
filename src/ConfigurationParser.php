@@ -21,7 +21,7 @@ trait ConfigurationParser
      * Get the SSH configuration file instance.
      *
      * @param  string  $user
-     * @return \Laravel\Envoy\SSHConfigFile
+     * @return \Laravel\Envoy\SSHConfigFile|null
      */
     protected function getSshConfig($user)
     {
@@ -34,7 +34,7 @@ trait ConfigurationParser
      * Get the home directory for the user based on OS.
      *
      * @param  string  $user
-     * @return string
+     * @return string|null
      */
     protected function getHomeDirectory($user)
     {
