@@ -13,6 +13,7 @@ class ParallelSSH extends RemoteProcessor
      * Run the given task over SSH.
      *
      * @param  \Laravel\Envoy\Task  $task
+     * @param  \Closure|null  $callback
      * @return void
      */
     public function run(Task $task, Closure $callback = null)
