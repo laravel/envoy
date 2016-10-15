@@ -53,6 +53,7 @@ trait Command
     public function ask($question)
     {
         $question = '<comment>'.$question.'</comment> ';
+
         return $this->askQuestion($question);
     }
 
@@ -85,7 +86,6 @@ trait Command
         return $this->askQuestion($question, true);
     }
 
-
     /**
      * Ask the user a question. This method is a compatibilty layer between Symfony versions.
      * The 'dialog' helper has been deprecated since Symfony 2.5 and is removed from Symfony 3.0 onwards.
@@ -97,15 +97,13 @@ trait Command
      */
     protected function askQuestion($questionString, $isSecret = false)
     {
-        if( $this->getHelperSet()->has('dialog') ){
-            if( $isSecret ){
+        if ($this->getHelperSet()->has('dialog')) {
+            if ($isSecret) {
                 return $this->getHelperSet()->get('dialog')->ask($this->output, $questionString);
-            }
-            else{
+            } else {
                 return $this->getHelperSet()->get('dialog')->askHiddenResponse($this->output, $questionString, false);
             }
-        }
-        else{
+        } else {
             $question = new \Symfony\Component\Console\Question\Question($questionString);
             $question->setHidden($isSecret);
             $question->setHiddenFallback(false);
@@ -125,11 +123,11 @@ trait Command
      */
     protected function confirmQuestion($questionString, $default = false)
     {
-        if( $this->getHelperSet()->has('dialog') ){
+        if ($this->getHelperSet()->has('dialog')) {
             return $this->getHelperSet()->get('dialog')->askConfirmation($this->output, $questionString, false);
-        }
-        else{
+        } else {
             $question = new \Symfony\Component\Console\Question\ConfirmationQuestion($questionString, $default);
+
             return $this->getHelperSet()->get('question')->ask($this->input, $this->output, $question);
         }
     }
