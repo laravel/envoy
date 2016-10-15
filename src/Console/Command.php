@@ -4,6 +4,8 @@ namespace Laravel\Envoy\Console;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 trait Command
 {
@@ -54,7 +56,9 @@ trait Command
     {
         $question = '<comment>'.$question.'</comment> ';
 
-        return $this->getHelperSet()->get('dialog')->ask($this->output, $question);
+        $question = new Question($question);
+
+        return $this->getHelperSet()->get('question')->ask($this->input, $this->output, $question);
     }
 
     /**
@@ -70,7 +74,9 @@ trait Command
 
         $question = '<comment>'.$question.' [y/N]:</comment> ';
 
-        return  $this->getHelperSet()->get('dialog')->askConfirmation($this->output, $question, false);
+        $question = new ConfirmationQuestion($question, false);
+
+        return $this->getHelperSet()->get('question')->ask($this->input, $this->output, $question);
     }
 
     /**
@@ -83,6 +89,10 @@ trait Command
     {
         $question = '<comment>'.$question.'</comment> ';
 
-        return $this->getHelperSet()->get('dialog')->askHiddenResponse($this->output, $question, false);
+        $question = new Question($question);
+        $question->setHidden(true);
+        $question->setHiddenFallback(false);
+
+        return $this->getHelperSet()->get('question')->ask($this->input, $this->output, $question);
     }
 }
