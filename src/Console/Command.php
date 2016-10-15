@@ -90,7 +90,7 @@ trait Command
         $question = '<comment>'.$question.'</comment> ';
 
         $question = new Question($question);
-        $question->setHidden($isSecret);
+        $question->setHidden(true);
         $question->setHiddenFallback(false);
 
         return $this->getHelperSet()->get('question')->ask($this->input, $this->output, $question);
