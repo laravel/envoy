@@ -4,6 +4,8 @@ namespace Laravel\Envoy\Console;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 trait Command
 {
@@ -54,7 +56,9 @@ trait Command
     {
         $question = '<comment>'.$question.'</comment> ';
 
-        return $this->askQuestion($question);
+        $question = new Question($question);
+
+        return $this->getHelperSet()->get('question')->ask($this->input, $this->output, $question);
     }
 
     /**
@@ -70,7 +74,9 @@ trait Command
 
         $question = '<comment>'.$question.' [y/N]:</comment> ';
 
-        return $this->confirmQuestion($question);
+        $question = new ConfirmationQuestion($question, false);
+
+        return $this->getHelperSet()->get('question')->ask($this->input, $this->output, $question);
     }
 
     /**
@@ -83,52 +89,10 @@ trait Command
     {
         $question = '<comment>'.$question.'</comment> ';
 
-        return $this->askQuestion($question, true);
-    }
+        $question = new Question($question);
+        $question->setHidden($isSecret);
+        $question->setHiddenFallback(false);
 
-    /**
-     * Ask the user a question. This method is a compatibilty layer between Symfony versions.
-     * The 'dialog' helper has been deprecated since Symfony 2.5 and is removed from Symfony 3.0 onwards.
-     *
-     * @param string $questionString
-     * @param bool $isSecret
-     *
-     * @return string
-     */
-    protected function askQuestion($questionString, $isSecret = false)
-    {
-        if ($this->getHelperSet()->has('dialog')) {
-            if ($isSecret) {
-                return $this->getHelperSet()->get('dialog')->ask($this->output, $questionString);
-            } else {
-                return $this->getHelperSet()->get('dialog')->askHiddenResponse($this->output, $questionString, false);
-            }
-        } else {
-            $question = new \Symfony\Component\Console\Question\Question($questionString);
-            $question->setHidden($isSecret);
-            $question->setHiddenFallback(false);
-
-            return $this->getHelperSet()->get('question')->ask($this->input, $this->output, $question);
-        }
-    }
-
-    /**
-     * Ask the user for a confirmation. This method is a compatibilty layer between Symfony versions.
-     * The 'dialog' helper has been deprecated since Symfony 2.5 and is removed from Symfony 3.0 onwards.
-     *
-     * @param string $questionString
-     * @param bool $default
-     *
-     * @return string
-     */
-    protected function confirmQuestion($questionString, $default = false)
-    {
-        if ($this->getHelperSet()->has('dialog')) {
-            return $this->getHelperSet()->get('dialog')->askConfirmation($this->output, $questionString, false);
-        } else {
-            $question = new \Symfony\Component\Console\Question\ConfirmationQuestion($questionString, $default);
-
-            return $this->getHelperSet()->get('question')->ask($this->input, $this->output, $question);
-        }
+        return $this->getHelperSet()->get('question')->ask($this->input, $this->output, $question);
     }
 }
