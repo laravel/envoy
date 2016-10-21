@@ -62,11 +62,13 @@ class Compiler
     {
         $compilers = $serversOnly ? $this->serverCompilers : $this->compilers;
 
+        $value = $this->initializeVariables($value);
+
         foreach ($compilers as $compiler) {
             $value = $this->{"compile{$compiler}"}($value);
         }
 
-        return $this->initializeVariables($value);
+        return $value;
     }
 
     /**
