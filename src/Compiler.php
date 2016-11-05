@@ -413,7 +413,6 @@ class Compiler
         preg_match_all('/\$([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)/', $value, $matches);
 
         foreach (array_unique($matches[0]) as $variable) {
-            // Ignore $task variable. It is passed by other functions.
             if ($variable == '$task') {
                 continue;
             }
