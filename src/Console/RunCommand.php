@@ -174,7 +174,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
 
         foreach ($lines as $line) {
             if (strlen(trim($line)) === 0) {
-                return;
+                continue;
             }
 
             if ($type == Process::OUT) {
