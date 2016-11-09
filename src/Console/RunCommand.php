@@ -73,7 +73,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
             }
         }
 
-        foreach ($container->getShutdownCallbacks() as $callback) {
+        foreach ($container->getFinishedCallbacks() as $callback) {
             call_user_func($callback);
         }
 

@@ -38,8 +38,8 @@ class Compiler
         'TaskStop',
         'After',
         'AfterStop',
-        'Shutdown',
-        'ShutdownStop',
+        'Finished',
+        'FinishedStop',
         'Error',
         'ErrorStop',
         'Hipchat',
@@ -355,27 +355,27 @@ class Compiler
     }
 
     /**
-     * Compile Envoy shutdown statements into valid PHP.
+     * Compile Envoy finished statements into valid PHP.
      *
      * @param  string  $value
      * @return string
      */
-    protected function compileShutdown($value)
+    protected function compileFinished($value)
     {
-        $pattern = $this->createPlainMatcher('shutdown');
+        $pattern = $this->createPlainMatcher('finished');
 
-        return preg_replace($pattern, '$1<?php $_vars = get_defined_vars(); $__container->shutdown(function() use ($_vars) { extract($_vars); $2', $value);
+        return preg_replace($pattern, '$1<?php $_vars = get_defined_vars(); $__container->finished(function() use ($_vars) { extract($_vars); $2', $value);
     }
 
     /**
-     * Compile Envoy shutdown stop statements into valid PHP.
+     * Compile Envoy finished stop statements into valid PHP.
      *
      * @param  string  $value
      * @return string
      */
-    protected function compileShutdownStop($value)
+    protected function compileFinishedStop($value)
     {
-        return preg_replace($this->createPlainMatcher('endshutdown'), '$1}); ?>$2', $value);
+        return preg_replace($this->createPlainMatcher('endfinished'), '$1}); ?>$2', $value);
     }
 
     /**
