@@ -51,6 +51,13 @@ class TaskContainer
     protected $after = [];
 
     /**
+     * All of the "shutdown" callbacks.
+     *
+     * @var array
+     */
+    protected $shutdown = [];
+
+    /**
      * All of the options for each task.
      *
      * @var array
@@ -446,6 +453,27 @@ class TaskContainer
     public function getAfterCallbacks()
     {
         return $this->after;
+    }
+
+    /**
+     * Register an shutdown-task callback.
+     *
+     * @param  \Closure  $callback
+     * @return void
+     */
+    public function shutdown(Closure $callback)
+    {
+        $this->shutdown[] = $callback;
+    }
+
+    /**
+     * Get all of the shutdown -task callbacks.
+     *
+     * @return array
+     */
+    public function getShutdownCallbacks()
+    {
+        return $this->shutdown;
     }
 
     /**
