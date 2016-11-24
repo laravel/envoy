@@ -457,17 +457,6 @@ class Compiler
     }
 
     /**
-     * Get the regular expression for a generic Envoy function.
-     *
-     * @param  string  $function
-     * @return string
-     */
-    public function createOpenMatcher($function)
-    {
-        return '/(?<!\w)(\s*)@'.$function.'(\s*\(.*)\)/';
-    }
-
-    /**
      * Create a plain Envoy matcher.
      *
      * @param  string  $function
