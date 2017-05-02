@@ -14,6 +14,8 @@ class Hipchat
     public $message;
     public $color;
 
+    private $task;
+
     /**
      * Create a new Hipchat instance.
      *
@@ -55,7 +57,7 @@ class Hipchat
      */
     public function send()
     {
-        $message = $this->message ?: ucwords($this->getSystemUser()).' ran the ['.$this->task.'] task.';
+		$message = $this->message ?: ( $this->task ? ucwords($this->getSystemUser()).' ran the ['.$this->task.'] task.' : ucwords($this->getSystemUser()).' ran a task.' );
 
         $format = $message != strip_tags($message) ? 'html' : 'text';
 

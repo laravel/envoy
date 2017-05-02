@@ -13,6 +13,8 @@ class Slack
     public $message;
     public $options;
 
+	private $task;
+
     /**
      * Create a new Slack instance.
      *
@@ -51,7 +53,7 @@ class Slack
      */
     public function send()
     {
-        $message = $this->message ?: ucwords($this->getSystemUser()).' ran the ['.$this->task.'] task.';
+		$message = $this->message ?: ( $this->task ? ucwords($this->getSystemUser()).' ran the ['.$this->task.'] task.' : ucwords($this->getSystemUser()).' ran a task.' );
 
         $payload = array_merge(['text' => $message, 'channel' => $this->channel], $this->options);
 
