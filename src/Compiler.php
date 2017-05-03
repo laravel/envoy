@@ -412,7 +412,7 @@ class Compiler
     {
         $pattern = $this->createMatcher('hipchat');
 
-        return preg_replace($pattern, '$1 Laravel\Envoy\Hipchat::make$2->task($task)->send();', $value);
+        return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Hipchat::make$2->task($task)->send();', $value);
     }
 
     /**
@@ -425,7 +425,7 @@ class Compiler
     {
         $pattern = $this->createMatcher('slack');
 
-        return preg_replace($pattern, '$1 Laravel\Envoy\Slack::make$2->task($task)->send();', $value);
+        return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Slack::make$2->task($task)->send();', $value);
     }
 
     /**
