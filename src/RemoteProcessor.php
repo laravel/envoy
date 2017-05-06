@@ -34,13 +34,12 @@ abstract class RemoteProcessor
         // script out to a file or anything. We will start the SSH process then pass
         // these lines of output back to the parent callback for display purposes.
         else {
-            $delimiter = 'EOF-LARAVEL-ENVOY';
-
             $process = new Process(
-                "ssh $target 'bash -se' << \\$delimiter".PHP_EOL
-                    .'set -e'.PHP_EOL
-                    .$task->script.PHP_EOL
-                    .$delimiter
+                "ssh $target 'bash -se'"
+            );
+            $process->setInput(
+                'set -e'."\n"
+                .str_replace("\r\n", "\n", $task->script)."\n"
             );
         }
 
