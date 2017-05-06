@@ -439,6 +439,9 @@ class Compiler
         preg_match_all('/\$([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)/', $value, $matches);
 
         foreach (array_unique($matches[0]) as $variable) {
+            if ($variable == '$task') {
+                continue;
+            }
             $value = "<?php $variable = isset($variable) ? $variable : null; ?>\n".$value;
         }
 
