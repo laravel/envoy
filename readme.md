@@ -2,4 +2,4 @@
 
 Elegant SSH tasks for PHP.
 
-Official documentation [is located here](http://laravel.com/docs/envoy).
+Official documentation [is located here](https://laravel.com/docs/envoy).
