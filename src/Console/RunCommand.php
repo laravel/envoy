@@ -45,7 +45,8 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
                 ->setDescription('Run an Envoy task.')
                 ->addArgument('task', InputArgument::REQUIRED)
                 ->addOption('continue', null, InputOption::VALUE_NONE, 'Continue running even if a task fails')
-                ->addOption('pretend', null, InputOption::VALUE_NONE, 'Dump Bash script for inspection');
+                ->addOption('pretend', null, InputOption::VALUE_NONE, 'Dump Bash script for inspection')
+                ->addOption('path', null, InputOption::VALUE_REQUIRED, 'Path to Envoy.blade.php');
     }
 
     /**
@@ -196,7 +197,9 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
      */
     protected function loadTaskContainer()
     {
-        if (! file_exists($envoyFile = getcwd().'/Envoy.blade.php')) {
+        $path = $this->input->getOption('path');
+
+        if (! file_exists($envoyFile = getcwd().'/Envoy.blade.php') && ! file_exists($envoyFile = $path)) {
             echo "Envoy.blade.php not found.\n";
 
             exit(1);
