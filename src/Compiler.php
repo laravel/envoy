@@ -44,6 +44,7 @@ class Compiler
         'ErrorStop',
         'Hipchat',
         'Slack',
+        'DingTalk',
     ];
 
     /**
@@ -427,7 +428,18 @@ class Compiler
 
         return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Slack::make$2->task($task)->send();', $value);
     }
+    /**
+     * Compile Envoy DingTalk statements into valid PHP.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function compileDingTalk($value)
+    {
+        $pattern = $this->createMatcher('dingtalk');
 
+        return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\DingTalk::make$2->task($task)->send();', $value);
+    }
     /**
      * Initialize the variables included in the Envoy template.
      *
