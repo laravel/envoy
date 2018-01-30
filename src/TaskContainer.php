@@ -121,7 +121,11 @@ class TaskContainer
 
         $__container = $this;
 
-        ob_start() && extract($__data);
+        ob_start();
+
+        foreach ($__data as $key => $value) {
+            $$key = $value;
+        }
 
         // Here we will include the compiled Envoy file so it can register tasks into this
         // container instance. Then we will delete the PHP version of the file because
