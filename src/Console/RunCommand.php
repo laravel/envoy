@@ -47,7 +47,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
                 ->addOption('continue', null, InputOption::VALUE_NONE, 'Continue running even if a task fails')
                 ->addOption('pretend', null, InputOption::VALUE_NONE, 'Dump Bash script for inspection')
                 ->addOption('path', null, InputOption::VALUE_REQUIRED, 'The path to the Envoy.blade.php file')
-                ->addOption('file', null, InputOption::VALUE_REQUIRED, 'Set a custom filename (default: Envoy.blade.php)', 'Envoy.blade.php');
+                ->addOption('conf', null, InputOption::VALUE_REQUIRED, 'The name of the Envoy file', 'Envoy.blade.php');
     }
 
     /**
@@ -199,10 +199,11 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
     protected function loadTaskContainer()
     {
         $path = $this->input->getOption('path');
-        $filename = $this->input->getOption('file');
 
-        if (! file_exists($envoyFile = $path) && ! file_exists($envoyFile = getcwd().'/'.$filename)) {
-            echo "$filename not found.\n";
+        $file = $this->input->getOption('conf');
+
+        if (! file_exists($envoyFile = $path) && ! file_exists($envoyFile = getcwd().'/'.$file)) {
+            echo "{$file} not found.\n";
 
             exit(1);
         }

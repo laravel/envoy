@@ -1,4 +1,4 @@
-@servers(['web' => ['192.168.1.1']])
+@servers(['web' => ['127.0.0.1']])
 
 @task('foo', ['on' => 'web'])
     ls -la
