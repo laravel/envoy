@@ -25,6 +25,7 @@ abstract class RemoteProcessor
     protected function getProcess($host, Task $task)
     {
         $target = $this->getConfiguredServer($host) ?: $host;
+
         $env = $this->getEnvironment($host);
 
         if (in_array($target, ['local', 'localhost', '127.0.0.1'])) {
@@ -38,16 +39,14 @@ abstract class RemoteProcessor
             $delimiter = 'EOF-LARAVEL-ENVOY';
 
             foreach ($env as $k => $v) {
-                if (false !== $v) {
+                if ($v !== false) {
                     $env[$k] = 'export '.$k.'='.$v.PHP_EOL;
                 }
             }
 
-            $env = implode(PHP_EOL, $env);
-
             $process = new Process(
                 "ssh $target 'bash -se' << \\$delimiter".PHP_EOL
-                    .$env.PHP_EOL
+                    .implode(PHP_EOL, $env).PHP_EOL
                     .'set -e'.PHP_EOL
                     .$task->script.PHP_EOL
                     .$delimiter
@@ -58,16 +57,16 @@ abstract class RemoteProcessor
     }
 
     /**
+     * Get the appropriate environment variables.
+     *
      * @param  string  $host
      * @return array
      */
     protected function getEnvironment($host)
     {
-        $environment = [
+        return [
             'ENVOY_HOST' => $host,
         ];
-
-        return $environment;
     }
 
     /**
