@@ -43,7 +43,7 @@ trait ConfigurationParser
         if (str_contains($system, 'darwin')) {
             return "/Users/{$user}";
         } elseif (str_contains($system, 'windows')) {
-            return "C:\Users\{$user}";
+            return "C:\\Users\\{$user}";
         } elseif (str_contains($system, 'linux')) {
             return "/home/{$user}";
         }
