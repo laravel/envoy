@@ -202,7 +202,10 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
 
         $file = $this->input->getOption('conf');
 
-        if (! file_exists($envoyFile = $path) && ! file_exists($envoyFile = getcwd().'/'.$file)) {
+        if (! file_exists($envoyFile = $path)
+            && ! file_exists($envoyFile = getcwd().'/'.$file)
+            && ! file_exists($envoyFile .= '.blade.php')
+        ) {
             echo "{$file} not found.\n";
 
             exit(1);
