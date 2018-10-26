@@ -86,7 +86,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
      * Get the tasks from the container based on user input.
      *
      * @param  \Laravel\Envoy\TaskContainer  $container
-     * @return void
+     * @return array
      */
     protected function getTasks($container)
     {
