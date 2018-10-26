@@ -11,7 +11,8 @@ abstract class RemoteProcessor
      * Run the given task over SSH.
      *
      * @param  \Laravel\Envoy\Task  $task
-     * @return void
+     * @param  \Closure|null  $callback
+     * @return int
      */
     abstract public function run(Task $task, Closure $callback = null);
 
@@ -20,7 +21,7 @@ abstract class RemoteProcessor
      *
      * @param  string  $host
      * @param  \Laravel\Envoy\Task  $task
-     * @return int
+     * @return array
      */
     protected function getProcess($host, Task $task)
     {
