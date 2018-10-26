@@ -32,11 +32,11 @@ class Task
      */
     public $parallel;
 
-    /*
-    * Asks a user for a confirmation.
-    *
-    * @var string
-    */
+    /**
+     * Asks a user for a confirmation.
+     *
+     * @var string
+     */
     public $confirm;
 
     /**
