@@ -21,7 +21,7 @@ abstract class RemoteProcessor
      *
      * @param  string  $host
      * @param  \Laravel\Envoy\Task  $task
-     * @return int
+     * @return array
      */
     protected function getProcess($host, Task $task)
     {
