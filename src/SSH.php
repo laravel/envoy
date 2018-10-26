@@ -3,7 +3,6 @@
 namespace Laravel\Envoy;
 
 use Closure;
-use Symfony\Component\Process\Process;
 
 class SSH extends RemoteProcessor
 {
