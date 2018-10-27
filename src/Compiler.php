@@ -44,6 +44,7 @@ class Compiler
         'ErrorStop',
         'Hipchat',
         'Slack',
+        'Discord'
     ];
 
     /**
@@ -428,6 +429,19 @@ class Compiler
         return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Slack::make$2->task($task)->send();', $value);
     }
 
+    /**
+     * Compile Envoy Discord statements into valid PHP.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function compileDiscord($value)
+    {
+        $pattern = $this->createMatcher('discord');
+
+        return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Discord::make$2->task($task)->send();', $value);
+    }
+    
     /**
      * Initialize the variables included in the Envoy template.
      *
