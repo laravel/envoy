@@ -41,7 +41,7 @@ abstract class RemoteProcessor
 
             foreach ($env as $k => $v) {
                 if ($v !== false) {
-                    $env[$k] = 'export '.$k.'='.$v.PHP_EOL;
+                    $env[$k] = 'export '.$k.'="'.$v.'"'.PHP_EOL;
                 }
             }
 
