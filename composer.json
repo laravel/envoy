@@ -9,9 +9,6 @@
             "email": "taylorotwell@gmail.com"
         }
     ],
-    "autoload": {
-        "classmap": ["src"]
-    },
     "require": {
         "illuminate/support": "~4.1 || ~5.0",
         "nategood/httpful": "~0.2",
@@ -24,7 +21,14 @@
     "bin": [
         "envoy"
     ],
+    "autoload": {
+        "psr-4": {
+            "Laravel\\Envoy\\": "src/"
+        }
+    },
     "autoload-dev": {
-        "classmap": ["tests"]
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     }
 }
