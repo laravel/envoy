@@ -28,7 +28,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Laravel\\Envoy\\Tests\\": "tests/"
         }
     }
 }

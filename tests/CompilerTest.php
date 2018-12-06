@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Laravel\Envoy\Tests;
 
 use Laravel\Envoy\Compiler;
 use PHPUnit\Framework\TestCase;

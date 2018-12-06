@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Laravel\Envoy\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Laravel\Envoy\SSHConfigFile;
