@@ -1,6 +1,9 @@
 <?php
 
-namespace Laravel\Envoy;
+namespace Tests;
+
+use Laravel\Envoy\Compiler;
+use PHPUnit\Framework\TestCase;
 
 class CompilerTest extends TestCase
 {
