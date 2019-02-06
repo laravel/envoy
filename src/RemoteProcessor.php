@@ -47,11 +47,11 @@ abstract class RemoteProcessor
 
             if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
 
-                $process = new Process("ssh $target" );
+                $process = new Process("ssh $target -T" );
 
                 $process->setInput(implode(PHP_EOL, $env));
                 $process->setInput('set -e');
-                $process->setInput(str_replace( "\r", PHP_EOL, $task->script ));
+                $process->setInput( str_replace( "\r", '', $task->script ));
 
             } else  {
                 $process = new Process(
