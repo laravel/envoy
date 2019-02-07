@@ -49,9 +49,11 @@ abstract class RemoteProcessor
 
                 $process = new Process("ssh $target -T" );
 
-                $process->setInput(implode(PHP_EOL, $env));
-                $process->setInput('set -e');
-                $process->setInput( str_replace( "\r", '', $task->script ));
+                $process->setInput(
+                    implode(PHP_EOL, $env)
+                    .'set -e ' . PHP_EOL
+                    .str_replace( "\r", '', $task->script )
+                );
 
             } else  {
                 $process = new Process(
