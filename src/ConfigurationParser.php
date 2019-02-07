@@ -2,6 +2,8 @@
 
 namespace Laravel\Envoy;
 
+use Illuminate\Support\Str;
+
 trait ConfigurationParser
 {
     /**
@@ -40,11 +42,11 @@ trait ConfigurationParser
     {
         $system = strtolower(php_uname());
 
-        if (str_contains($system, 'darwin')) {
+        if (Str::contains($system, 'darwin')) {
             return "/Users/{$user}";
-        } elseif (str_contains($system, 'windows')) {
+        } elseif (Str::contains($system, 'windows')) {
             return "C:\\Users\\{$user}";
-        } elseif (str_contains($system, 'linux')) {
+        } elseif (Str::contains($system, 'linux')) {
             return "/home/{$user}";
         }
     }
@@ -56,7 +58,7 @@ trait ConfigurationParser
      */
     protected function getSystemUser()
     {
-        if (str_contains(strtolower(php_uname()), 'windows')) {
+        if (Str::contains(strtolower(php_uname()), 'windows')) {
             return getenv('USERNAME');
         }
 

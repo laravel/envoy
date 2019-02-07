@@ -2,6 +2,8 @@
 
 namespace Laravel\Envoy;
 
+use Illuminate\Support\Str;
+
 class SSHConfigFile
 {
     /**
@@ -131,7 +133,7 @@ class SSHConfigFile
      */
     protected function parseHost($host)
     {
-        return str_contains($host, '@') ? explode('@', $host) : [null, $host];
+        return Str::contains($host, '@') ? explode('@', $host) : [null, $host];
     }
 
     /**
