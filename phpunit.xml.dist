@@ -9,7 +9,7 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-        >
+>
     <testsuites>
         <testsuite name="Laravel Envoy Test Suite">
             <directory>tests</directory>
