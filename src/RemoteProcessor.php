@@ -45,13 +45,24 @@ abstract class RemoteProcessor
                 }
             }
 
-            $process = new Process(
-                "ssh $target 'bash -se' << \\$delimiter".PHP_EOL
+            if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+                $process = new Process("ssh $target -T" );
+
+                $process->setInput(
+                    implode(PHP_EOL, $env)
+                    .'set -e ' . PHP_EOL
+                    .str_replace( "\r", '', $task->script )
+                );
+            } else  {
+                $process = new Process(
+                    "ssh $target 'bash -se' << \\$delimiter".PHP_EOL
                     .implode(PHP_EOL, $env).PHP_EOL
                     .'set -e'.PHP_EOL
                     .$task->script.PHP_EOL
                     .$delimiter
-            );
+                );
+            }
+
         }
 
         return [$target, $process->setTimeout(null)];
