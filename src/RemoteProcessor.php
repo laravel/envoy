@@ -46,7 +46,6 @@ abstract class RemoteProcessor
             }
 
             if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-
                 $process = new Process("ssh $target -T" );
 
                 $process->setInput(
@@ -54,7 +53,6 @@ abstract class RemoteProcessor
                     .'set -e ' . PHP_EOL
                     .str_replace( "\r", '', $task->script )
                 );
-
             } else  {
                 $process = new Process(
                     "ssh $target 'bash -se' << \\$delimiter".PHP_EOL
