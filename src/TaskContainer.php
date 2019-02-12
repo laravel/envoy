@@ -288,7 +288,7 @@ class TaskContainer
      */
     public function getMacro($macro)
     {
-        return array_get($this->macros, $macro);
+        return Arr::get($this->macros, $macro);
     }
 
     /**
