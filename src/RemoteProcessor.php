@@ -27,6 +27,12 @@ abstract class RemoteProcessor
     {
         $target = $this->getConfiguredServer($host) ?: $host;
 
+        $port = 22;
+
+        if (strpos($target, ':') !== false) {
+            list($target, $port) = explode(':', $target);
+        }
+
         $env = $this->getEnvironment($host);
 
         if (in_array($target, ['local', 'localhost', '127.0.0.1'])) {
@@ -55,7 +61,7 @@ abstract class RemoteProcessor
                 );
             } else  {
                 $process = new Process(
-                    "ssh $target 'bash -se' << \\$delimiter".PHP_EOL
+                    "ssh $target -p $port 'bash -se' << \\$delimiter".PHP_EOL
                     .implode(PHP_EOL, $env).PHP_EOL
                     .'set -e'.PHP_EOL
                     .$task->script.PHP_EOL
