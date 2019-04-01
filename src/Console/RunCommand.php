@@ -143,7 +143,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
         if ($this->pretending()) {
             echo $task->script.PHP_EOL;
 
-            return 1;
+            return 0;
         } else {
             return $this->passToRemoteProcessor($task);
         }
