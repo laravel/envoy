@@ -43,7 +43,7 @@ class Compiler
         'Error',
         'ErrorStop',
         'Slack',
-        'Discord'
+        'Discord',
     ];
 
     /**

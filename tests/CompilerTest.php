@@ -9,7 +9,7 @@ class CompilerTest extends TestCase
 {
     public function test_it_compiles_finished_statement()
     {
-        $str = <<<EOL
+        $str = <<<'EOL'
 @finished
     echo 'shutdown';
 @endfinished
