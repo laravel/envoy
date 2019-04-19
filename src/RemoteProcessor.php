@@ -46,14 +46,14 @@ abstract class RemoteProcessor
             }
 
             if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-                $process = new Process("ssh $target -T" );
+                $process = new Process("ssh $target -T");
 
                 $process->setInput(
                     implode(PHP_EOL, $env)
-                    .'set -e ' . PHP_EOL
-                    .str_replace( "\r", '', $task->script )
+                    .'set -e '.PHP_EOL
+                    .str_replace("\r", '', $task->script)
                 );
-            } else  {
+            } else {
                 $process = new Process(
                     "ssh $target 'bash -se' << \\$delimiter".PHP_EOL
                     .implode(PHP_EOL, $env).PHP_EOL
@@ -62,7 +62,6 @@ abstract class RemoteProcessor
                     .$delimiter
                 );
             }
-
         }
 
         return [$target, $process->setTimeout(null)];

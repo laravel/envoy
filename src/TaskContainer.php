@@ -161,7 +161,9 @@ class TaskContainer
     protected function replaceSubTasks()
     {
         foreach ($this->tasks as $name => &$script) {
-            $callback = function ($m) { return $m[1].$this->tasks[$m[2]]; };
+            $callback = function ($m) {
+                return $m[1].$this->tasks[$m[2]];
+            };
 
             $script = $this->trimSpaces(
                 preg_replace_callback("/(\s*)@run\('(.*)'\)/", $callback, $script)
