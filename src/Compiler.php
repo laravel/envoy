@@ -44,6 +44,7 @@ class Compiler
         'ErrorStop',
         'Slack',
         'Discord',
+        'Wechat'
     ];
 
     /**
@@ -426,6 +427,19 @@ class Compiler
         $pattern = $this->createMatcher('discord');
 
         return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Discord::make$2->task($task)->send();', $value);
+    }
+
+    /**
+     * Compile Envoy Wechat statements into valid PHP.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function compileWechat($value)
+    {
+        $pattern = $this->createMatcher('wechat');
+
+        return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Wechat::make$2->task($task)->send();', $value);
     }
 
     /**
