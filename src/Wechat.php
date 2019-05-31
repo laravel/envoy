@@ -60,7 +60,7 @@ class Wechat
         $messageType = $this->options['type'] ?? self::TEXT_MESSAGE;
         unset($this->options['type']);
 
-        $payload = ['msgtype' => $messageType, $messageType => array_merge(['content' => $this->message], $this->options)];
+        $payload = ['msgtype' => $messageType, $messageType => array_merge(['content' => $message], $this->options)];
 
         $res = Request::post("{$this->hook}")->sendsJson()->body($payload)->send();
     }
