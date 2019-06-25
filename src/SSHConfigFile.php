@@ -103,7 +103,7 @@ class SSHConfigFile
      */
     public function findConfiguredHost($host)
     {
-        list($user, $host) = $this->parseHost($host);
+        [$user, $host] = $this->parseHost($host);
 
         foreach ($this->groups as $group) {
             if ((isset($group['host']) && $group['host'] == $host) ||
