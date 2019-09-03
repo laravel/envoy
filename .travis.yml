@@ -5,11 +5,16 @@ php:
   - 7.2
   - 7.3
 
+env:
+  matrix:
+    - COMPOSER_FLAGS="--prefer-lowest"
+    - COMPOSER_FLAGS=""
+
 sudo: false
 
 before_install:
   - phpenv config-rm xdebug.ini || true
 
-install: travis_retry composer install --no-interaction --prefer-dist
+install: travis_retry composer install --no-interaction --prefer-dist ${COMPOSER_FLAGS}
 
 script: vendor/bin/phpunit --verbose
