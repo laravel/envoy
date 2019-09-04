@@ -52,7 +52,7 @@ class SSHConfigFile
         foreach (explode(PHP_EOL, $string) as $line) {
             $line = trim($line);
 
-            if ('' == $line || starts_with($line, '#')) {
+            if ('' == $line || Str::startsWith($line, '#')) {
                 continue;
             }
 

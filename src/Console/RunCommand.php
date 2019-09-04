@@ -4,6 +4,7 @@ namespace Laravel\Envoy\Console;
 
 use Laravel\Envoy\SSH;
 use Laravel\Envoy\Task;
+use Illuminate\Support\Str;
 use Laravel\Envoy\Compiler;
 use Laravel\Envoy\ParallelSSH;
 use Laravel\Envoy\TaskContainer;
@@ -158,7 +159,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
     protected function passToRemoteProcessor(Task $task)
     {
         return $this->getRemoteProcessor($task)->run($task, function ($type, $host, $line) {
-            if (starts_with($line, 'Warning: Permanently added ')) {
+            if (Str::startsWith($line, 'Warning: Permanently added ')) {
                 return;
             }
 
@@ -231,7 +232,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
         // the double hyphens in front of their name. We will make these available to the
         // Blade task file so they can be used in echo statements and other structures.
         foreach ($_SERVER['argv'] as $argument) {
-            if (! starts_with($argument, '--') || in_array($argument, $this->ignoreOptions)) {
+            if (! Str::startsWith($argument, '--') || in_array($argument, $this->ignoreOptions)) {
                 continue;
             }
 
