@@ -2,7 +2,7 @@
 
 namespace Laravel\Envoy;
 
-use Httpful\Request;
+use GuzzleHttp\Client;
 
 class Discord
 {
@@ -53,7 +53,9 @@ class Discord
 
         $payload = array_merge(['content' => $message], $this->options);
 
-        Request::post("{$this->hook}")->sendsJson()->body($payload)->send();
+        (new Client())->post($this->hook, [
+            'json' => $payload,
+        ]);
     }
 
     /**

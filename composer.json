@@ -11,8 +11,8 @@
     ],
     "require": {
         "php": "^7.2",
+        "guzzlehttp/guzzle": "^6.0",
         "illuminate/support": "^6.0|^7.0",
-        "nategood/httpful": "^0.2",
         "symfony/console": "^4.3",
         "symfony/process": "^4.3"
     },
