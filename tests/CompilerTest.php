@@ -16,6 +16,7 @@ class CompilerTest extends TestCase
 EOL;
         $compiler = new Compiler();
         $result = $compiler->compile($str);
+
         $this->assertEquals(1, preg_match('/\$__container->finished\(.*?\}\);/s', $result, $matches));
     }
 }

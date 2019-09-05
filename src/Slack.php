@@ -8,11 +8,29 @@ class Slack
 {
     use ConfigurationParser;
 
+    /**
+     * @var string
+     */
     public $hook;
+
+    /**
+     * @var mixed
+     */
     public $channel;
+
+    /**
+     * @var string
+     */
     public $message;
+
+    /**
+     * @var array
+     */
     public $options;
 
+    /**
+     * @var string
+     */
     protected $task;
 
     /**

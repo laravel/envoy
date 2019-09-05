@@ -8,10 +8,24 @@ class Discord
 {
     use ConfigurationParser;
 
+    /**
+     * @var string
+     */
     public $hook;
+
+    /**
+     * @var string
+     */
     public $message;
+
+    /**
+     * @var array
+     */
     public $options;
 
+    /**
+     * @var string
+     */
     protected $task;
 
     /**

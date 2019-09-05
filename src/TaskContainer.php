@@ -3,6 +3,7 @@
 namespace Laravel\Envoy;
 
 use Closure;
+use Exception;
 use Illuminate\Support\Arr;
 use InvalidArgumentException;
 
@@ -192,7 +193,7 @@ class TaskContainer
     public function getServer($server)
     {
         if (! array_key_exists($server, $this->servers)) {
-            throw new \Exception('Server ['.$server.'] is not defined.');
+            throw new Exception('Server ['.$server.'] is not defined.');
         }
 
         return Arr::get($this->servers, $server);
@@ -327,7 +328,7 @@ class TaskContainer
         $script = Arr::get($this->tasks, $task, '');
 
         if ($script == '') {
-            throw new \Exception(sprintf('Task "%s" is not defined.', $task));
+            throw new Exception(sprintf('Task "%s" is not defined.', $task));
         }
 
         $options = array_merge($this->getTaskOptions($task), $macroOptions);
