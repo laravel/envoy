@@ -139,7 +139,7 @@ class SSHConfigFile
     /**
      * Unquote an optionally double quoted string.
      *
-     * @param  string $string
+     * @param  string  $string
      * @return string
      */
     private static function unquote($string)

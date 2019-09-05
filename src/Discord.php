@@ -2,16 +2,30 @@
 
 namespace Laravel\Envoy;
 
-use Httpful\Request;
+use GuzzleHttp\Client;
 
 class Discord
 {
     use ConfigurationParser;
 
+    /**
+     * @var string
+     */
     public $hook;
+
+    /**
+     * @var string
+     */
     public $message;
+
+    /**
+     * @var array
+     */
     public $options;
 
+    /**
+     * @var string
+     */
     protected $task;
 
     /**
@@ -53,7 +67,9 @@ class Discord
 
         $payload = array_merge(['content' => $message], $this->options);
 
-        Request::post("{$this->hook}")->sendsJson()->body($payload)->send();
+        (new Client())->post($this->hook, [
+            'json' => $payload,
+        ]);
     }
 
     /**

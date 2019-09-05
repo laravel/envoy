@@ -2,6 +2,7 @@
 
 namespace Laravel\Envoy\Tests;
 
+use ReflectionObject;
 use PHPUnit\Framework\TestCase;
 use Laravel\Envoy\SSHConfigFile;
 
@@ -250,7 +251,7 @@ EOT;
     {
         $sshConfig = SSHConfigFile::parseString($config);
 
-        $r = new \ReflectionObject($sshConfig);
+        $r = new ReflectionObject($sshConfig);
         $property = $r->getProperty('groups');
         $property->setAccessible(true);
 
