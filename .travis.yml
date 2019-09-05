@@ -1,15 +1,26 @@
 language: php
 
+sudo: false
+
 php:
   - 7.2
   - 7.3
   - 7.4snapshot
 
-sudo: false
+env:
+  matrix:
+    - LARAVEL=^6.0
+    - LARAVEL=^7.0
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - env: LARAVEL=^7.0
 
 before_install:
   - phpenv config-rm xdebug.ini || true
 
-install: travis_retry composer install --no-interaction --prefer-dist
+install:
+  - travis_retry composer require "illuminate/contracts=${LARAVEL}" --prefer-dist --no-interaction --no-suggest
 
 script: vendor/bin/phpunit --verbose
