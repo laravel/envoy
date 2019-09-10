@@ -2,8 +2,8 @@
 
 namespace Laravel\Envoy\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Laravel\Envoy\SSHConfigFile;
+use PHPUnit\Framework\TestCase;
 
 class SSHConfigFileTest extends TestCase
 {
