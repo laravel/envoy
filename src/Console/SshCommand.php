@@ -2,8 +2,8 @@
 
 namespace Laravel\Envoy\Console;
 
-use Laravel\Envoy\Compiler;
 use InvalidArgumentException;
+use Laravel\Envoy\Compiler;
 use Laravel\Envoy\ConfigurationParser;
 use Laravel\Envoy\TaskContainer;
 use Symfony\Component\Console\Input\InputArgument;
