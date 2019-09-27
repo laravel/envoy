@@ -8,11 +8,12 @@ use Laravel\Envoy\ParallelSSH;
 use Laravel\Envoy\SSH;
 use Laravel\Envoy\Task;
 use Laravel\Envoy\TaskContainer;
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Process\Process;
 
-class RunCommand extends \Symfony\Component\Console\Command\Command
+class RunCommand extends SymfonyCommand
 {
     use Command;
 
