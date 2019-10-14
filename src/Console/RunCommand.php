@@ -224,7 +224,7 @@ class RunCommand extends SymfonyCommand
     }
 
     /**
-     * Return the hostname wrapped in a color tag (cycles through 4 colors for each new host)
+     * Return the hostname wrapped in a color tag (cycles through 4 colors for each new host).
      *
      * @param string $host
      * @return string
@@ -233,7 +233,7 @@ class RunCommand extends SymfonyCommand
     {
         $colors = ['yellow', 'cyan', 'magenta', 'blue'];
 
-        if (!in_array($host, $this->hosts)) {
+        if (! in_array($host, $this->hosts)) {
             $this->hosts[] = $host;
         }
 
