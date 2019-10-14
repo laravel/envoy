@@ -34,6 +34,8 @@ class RunCommand extends SymfonyCommand
         '--verbose',
     ];
 
+    protected $hosts = [];
+
     /**
      * Configure the command options.
      *
@@ -179,6 +181,7 @@ class RunCommand extends SymfonyCommand
     protected function displayOutput($type, $host, $line)
     {
         $lines = explode("\n", $line);
+        $coloredHost = $this->getColoredHost($host);
 
         foreach ($lines as $line) {
             if (strlen(trim($line)) === 0) {
@@ -186,9 +189,9 @@ class RunCommand extends SymfonyCommand
             }
 
             if ($type == Process::OUT) {
-                $this->output->write('<comment>['.$host.']</comment>: '.trim($line).PHP_EOL);
+                $this->output->write($coloredHost.': '.trim($line).PHP_EOL);
             } else {
-                $this->output->write('<comment>['.$host.']</comment>: <fg=red>'.trim($line).'</>'.PHP_EOL);
+                $this->output->write($coloredHost.':  '.'<fg=red>'.trim($line).'</>'.PHP_EOL);
             }
         }
     }
@@ -218,6 +221,25 @@ class RunCommand extends SymfonyCommand
         );
 
         return $container;
+    }
+
+    /**
+     * Return the hostname wrapped in a color tag (cycles through 4 colors for each new host)
+     *
+     * @param string $host
+     * @return string
+     */
+    protected function getColoredHost($host)
+    {
+        $colors = ['yellow', 'cyan', 'magenta', 'blue'];
+
+        if (!in_array($host, $this->hosts)) {
+            $this->hosts[] = $host;
+        }
+
+        $color = $colors[array_search($host, $this->hosts) % count($colors)];
+
+        return "<fg=$color>[$host]</>";
     }
 
     /**
