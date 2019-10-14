@@ -34,7 +34,12 @@ class RunCommand extends SymfonyCommand
         '--verbose',
     ];
 
-    protected $hosts = [];
+    /**
+     * The hosts that have already been assigned a color for output.
+     *
+     * @var array
+     */
+    protected $hostsWithColor = [];
 
     /**
      * Configure the command options.
@@ -181,7 +186,8 @@ class RunCommand extends SymfonyCommand
     protected function displayOutput($type, $host, $line)
     {
         $lines = explode("\n", $line);
-        $coloredHost = $this->getColoredHost($host);
+
+        $hostColor = $this->getHostColor($host);
 
         foreach ($lines as $line) {
             if (strlen(trim($line)) === 0) {
@@ -189,9 +195,9 @@ class RunCommand extends SymfonyCommand
             }
 
             if ($type == Process::OUT) {
-                $this->output->write($coloredHost.': '.trim($line).PHP_EOL);
+                $this->output->write($hostColor.': '.trim($line).PHP_EOL);
             } else {
-                $this->output->write($coloredHost.':  '.'<fg=red>'.trim($line).'</>'.PHP_EOL);
+                $this->output->write($hostColor.':  '.'<fg=red>'.trim($line).'</>'.PHP_EOL);
             }
         }
     }
@@ -224,22 +230,22 @@ class RunCommand extends SymfonyCommand
     }
 
     /**
-     * Return the hostname wrapped in a color tag (cycles through 4 colors for each new host).
+     * Return the hostname wrapped in a color tag.
      *
-     * @param string $host
+     * @param  string  $host
      * @return string
      */
-    protected function getColoredHost($host)
+    protected function getHostColor($host)
     {
         $colors = ['yellow', 'cyan', 'magenta', 'blue'];
 
-        if (! in_array($host, $this->hosts)) {
-            $this->hosts[] = $host;
+        if (! in_array($host, $this->hostsWithColor)) {
+            $this->hostsWithColor[] = $host;
         }
 
-        $color = $colors[array_search($host, $this->hosts) % count($colors)];
+        $color = $colors[array_search($host, $this->hostsWithColor) % count($colors)];
 
-        return "<fg=$color>[$host]</>";
+        return "<fg={$color}>[{$host}]</>";
     }
 
     /**
