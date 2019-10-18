@@ -44,7 +44,7 @@ class Compiler
         'ErrorStop',
         'Slack',
         'Discord',
-        'MSTeams'
+        'MSTeams',
     ];
 
     /**
