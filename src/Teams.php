@@ -39,7 +39,6 @@ class Teams
      */
     public static function make($hook, $message = null, $options = [])
     {
-        var_dump($options);exit;
         return new static($hook, $message, $options);
     }
 
