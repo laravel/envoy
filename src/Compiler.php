@@ -44,6 +44,7 @@ class Compiler
         'ErrorStop',
         'Slack',
         'Discord',
+        'MSTeams'
     ];
 
     /**
@@ -426,6 +427,19 @@ class Compiler
         $pattern = $this->createMatcher('discord');
 
         return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Discord::make$2->task($task)->send();', $value);
+    }
+
+    /**
+     * Compile Envoy Microsoft Teams statements into valid PHP.
+     *
+     * @param string $value
+     * @return string
+     */
+    protected function compileMSTeams($value)
+    {
+        $pattern = $this->createMatcher('msteams');
+
+        return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Teams::make$2->task($task)->send();', $value);
     }
 
     /**
