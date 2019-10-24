@@ -2,17 +2,35 @@
 
 namespace Laravel\Envoy;
 
-use Httpful\Request;
+use GuzzleHttp\Client;
 
 class Slack
 {
     use ConfigurationParser;
 
+    /**
+     * @var string
+     */
     public $hook;
+
+    /**
+     * @var mixed
+     */
     public $channel;
+
+    /**
+     * @var string
+     */
     public $message;
+
+    /**
+     * @var array
+     */
     public $options;
 
+    /**
+     * @var string
+     */
     protected $task;
 
     /**
@@ -57,7 +75,9 @@ class Slack
 
         $payload = array_merge(['text' => $message, 'channel' => $this->channel], $this->options);
 
-        Request::post("{$this->hook}")->sendsJson()->body($payload)->send();
+        (new Client())->post($this->hook, [
+            'json' => $payload,
+        ]);
     }
 
     /**

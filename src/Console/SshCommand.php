@@ -2,13 +2,15 @@
 
 namespace Laravel\Envoy\Console;
 
+use InvalidArgumentException;
 use Laravel\Envoy\Compiler;
-use Laravel\Envoy\TaskContainer;
 use Laravel\Envoy\ConfigurationParser;
-use Symfony\Component\Console\Input\InputOption;
+use Laravel\Envoy\TaskContainer;
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
-class SshCommand extends \Symfony\Component\Console\Command\Command
+class SshCommand extends SymfonyCommand
 {
     use Command, ConfigurationParser;
 
@@ -52,7 +54,7 @@ class SshCommand extends \Symfony\Component\Console\Command\Command
         } elseif ($container->hasOneServer()) {
             return $container->getFirstServer();
         } else {
-            throw new \InvalidArgumentException('Please provide a server name.');
+            throw new InvalidArgumentException('Please provide a server name.');
         }
     }
 

@@ -19,7 +19,8 @@ class SSH extends RemoteProcessor
     {
         $processes = [];
 
-        $callback = $callback ?: function () {};
+        $callback = $callback ?: function () {
+        };
 
         // Here we will gather all the process instances by host. We will build them in
         // an array so we can easily loop through them then start them up. We'll key

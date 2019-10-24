@@ -6,17 +6,21 @@
     "authors": [
         {
             "name": "Taylor Otwell",
-            "email": "taylorotwell@gmail.com"
+            "email": "taylor@laravel.com"
         }
     ],
     "require": {
-        "illuminate/support": "~4.1 || ~5.0",
-        "nategood/httpful": "~0.2",
-        "symfony/console": "~3.0 || ~4.0",
-        "symfony/process": "~3.0 || ~4.0"
+        "php": "^7.2",
+        "guzzlehttp/guzzle": "^6.0",
+        "illuminate/support": "^6.0|^7.0",
+        "symfony/console": "^4.3",
+        "symfony/process": "^4.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.8"
+        "phpunit/phpunit": "^8.0"
+    },
+    "suggest": {
+        "ext-posix": "Required to determine the System user on Unix systems."
     },
     "bin": [
         "bin/envoy"
@@ -30,5 +34,15 @@
         "psr-4": {
             "Laravel\\Envoy\\Tests\\": "tests/"
         }
-    }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

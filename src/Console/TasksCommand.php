@@ -4,8 +4,9 @@ namespace Laravel\Envoy\Console;
 
 use Laravel\Envoy\Compiler;
 use Laravel\Envoy\TaskContainer;
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
-class TasksCommand extends \Symfony\Component\Console\Command\Command
+class TasksCommand extends SymfonyCommand
 {
     use Command;
 

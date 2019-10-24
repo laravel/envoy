@@ -42,9 +42,8 @@ class Compiler
         'FinishedStop',
         'Error',
         'ErrorStop',
-        'Hipchat',
         'Slack',
-        'Discord'
+        'Discord',
     ];
 
     /**
@@ -404,19 +403,6 @@ class Compiler
     }
 
     /**
-     * Compile Envoy HipChat statements into valid PHP.
-     *
-     * @param  string  $value
-     * @return string
-     */
-    protected function compileHipchat($value)
-    {
-        $pattern = $this->createMatcher('hipchat');
-
-        return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Hipchat::make$2->task($task)->send();', $value);
-    }
-
-    /**
      * Compile Envoy Slack statements into valid PHP.
      *
      * @param  string  $value
@@ -441,7 +427,7 @@ class Compiler
 
         return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Discord::make$2->task($task)->send();', $value);
     }
-    
+
     /**
      * Initialize the variables included in the Envoy template.
      *

@@ -2,6 +2,8 @@
 
 namespace Laravel\Envoy;
 
+use Illuminate\Support\Str;
+
 class SSHConfigFile
 {
     /**
@@ -50,7 +52,7 @@ class SSHConfigFile
         foreach (explode(PHP_EOL, $string) as $line) {
             $line = trim($line);
 
-            if ('' == $line || starts_with($line, '#')) {
+            if ('' == $line || Str::startsWith($line, '#')) {
                 continue;
             }
 
@@ -101,7 +103,7 @@ class SSHConfigFile
      */
     public function findConfiguredHost($host)
     {
-        list($user, $host) = $this->parseHost($host);
+        [$user, $host] = $this->parseHost($host);
 
         foreach ($this->groups as $group) {
             if ((isset($group['host']) && $group['host'] == $host) ||
@@ -131,13 +133,13 @@ class SSHConfigFile
      */
     protected function parseHost($host)
     {
-        return str_contains($host, '@') ? explode('@', $host) : [null, $host];
+        return Str::contains($host, '@') ? explode('@', $host) : [null, $host];
     }
 
     /**
      * Unquote an optionally double quoted string.
      *
-     * @param  string $string
+     * @param  string  $string
      * @return string
      */
     private static function unquote($string)
