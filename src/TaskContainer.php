@@ -389,7 +389,7 @@ class TaskContainer
      */
     public function endMacro()
     {
-        $macro = explode(PHP_EOL, $this->trimSpaces(trim(ob_get_clean())));
+        $macro = preg_split('/\n|\r\n?/', $this->trimSpaces(trim(ob_get_clean())));
 
         $this->macros[array_pop($this->macroStack)] = $macro;
     }
