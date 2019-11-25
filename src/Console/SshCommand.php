@@ -31,13 +31,15 @@ class SshCommand extends SymfonyCommand
     /**
      * Execute the command.
      *
-     * @return void
+     * @return int
      */
     protected function fire()
     {
         $host = $this->getServer($container = $this->loadTaskContainer());
 
         passthru('ssh '.($this->getConfiguredServer($host) ?: $host));
+
+        return 0;
     }
 
     /**
