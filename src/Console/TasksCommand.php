@@ -24,7 +24,7 @@ class TasksCommand extends SymfonyCommand
     /**
      * Execute the command.
      *
-     * @return void
+     * @return int
      */
     protected function fire()
     {
@@ -35,6 +35,8 @@ class TasksCommand extends SymfonyCommand
         $this->output->writeln('');
 
         $this->listMacros($container);
+
+        return 0;
     }
 
     /**
