@@ -25,14 +25,14 @@ class InitCommand extends SymfonyCommand
     /**
      * Execute the command.
      *
-     * @return void
+     * @return int
      */
     protected function fire()
     {
         if (file_exists(getcwd().'/Envoy.blade.php')) {
             $this->output->writeln('<error>Envoy file already exists!</error>');
 
-            return;
+            return 1;
         }
 
         file_put_contents(getcwd().'/Envoy.blade.php', "@servers(['web' => '".$this->input->getArgument('host')."'])
@@ -44,5 +44,7 @@ class InitCommand extends SymfonyCommand
 ");
 
         $this->output->writeln('<info>Envoy file created!</info>');
+
+        return 0;
     }
 }
