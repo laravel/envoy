@@ -30,8 +30,7 @@ abstract class RemoteProcessor
         $env = $this->getEnvironment($host);
 
         if (in_array($target, ['local', 'localhost', '127.0.0.1'])) {
-            $script = explode(' ', $task->script);
-            $process = new Process($script, null, $env);
+            $process = new Process(explode(' ', $task->script), null, $env);
         }
 
         // Here we'll run the SSH task on the server inline. We do not need to write the
