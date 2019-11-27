@@ -64,7 +64,7 @@ abstract class RemoteProcessor
                     .implode(PHP_EOL, $env).PHP_EOL
                     .'set -e'.PHP_EOL
                     .$task->script.PHP_EOL
-                    .$delimiter
+                    .$delimiter,
                 ]);
             }
         }
