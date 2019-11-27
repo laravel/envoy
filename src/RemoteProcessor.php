@@ -30,7 +30,8 @@ abstract class RemoteProcessor
         $env = $this->getEnvironment($host);
 
         if (in_array($target, ['local', 'localhost', '127.0.0.1'])) {
-            $process = new Process($task->script, null, $env);
+            $script = explode(' ', $task->script);
+            $process = new Process($script, null, $env);
         }
 
         // Here we'll run the SSH task on the server inline. We do not need to write the
@@ -46,7 +47,7 @@ abstract class RemoteProcessor
             }
 
             if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-                $process = new Process("ssh $target -T");
+                $process = new Process(['ssh', $target, '-T']);
 
                 $process->setInput(
                     implode(PHP_EOL, $env)
@@ -54,13 +55,17 @@ abstract class RemoteProcessor
                     .str_replace("\r", '', $task->script)
                 );
             } else {
-                $process = new Process(
-                    "ssh $target 'bash -se' << \\$delimiter".PHP_EOL
+                $process = new Process([
+                    'ssh',
+                    $target,
+                    'bash',
+                    '-se',
+                    "<< \\$delimiter".PHP_EOL
                     .implode(PHP_EOL, $env).PHP_EOL
                     .'set -e'.PHP_EOL
                     .$task->script.PHP_EOL
                     .$delimiter
-                );
+                ]);
             }
         }
 
