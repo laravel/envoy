@@ -3,6 +3,12 @@
 ## [Unreleased](https://github.com/laravel/envoy/compare/v1.6.2...1.x)
 
 
+## [v1.6.3 (2019-11-28)](https://github.com/laravel/envoy/compare/v1.6.2...v1.6.3)
+
+### Fixed
+- Convert command to array format ([#174](https://github.com/laravel/envoy/pull/174))
+
+
 ## [v1.6.2 (2019-11-26)](https://github.com/laravel/envoy/compare/v1.6.1...v1.6.2)
 
 ### Changed
