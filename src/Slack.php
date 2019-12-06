@@ -8,11 +8,39 @@ class Slack
 {
     use ConfigurationParser;
 
+    /**
+     * The webhook URL.
+     *
+     * @var string
+     */
     public $hook;
+
+    /**
+     * The Slack channel.
+     *
+     * @var mixed
+     */
     public $channel;
+
+    /**
+     * The message.
+     *
+     * @var string
+     */
     public $message;
+
+    /**
+     * The options.
+     *
+     * @var array
+     */
     public $options;
 
+    /**
+     * The task name.
+     *
+     * @var string
+     */
     protected $task;
 
     /**
@@ -36,7 +64,7 @@ class Slack
      * Create a new Slack message instance.
      *
      * @param  string  $hook
-     * @param  mixed   $channel
+     * @param  mixed  $channel
      * @param  string  $message
      * @param  array  $options
      * @return \Laravel\Envoy\Slack
