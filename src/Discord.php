@@ -9,21 +9,29 @@ class Discord
     use ConfigurationParser;
 
     /**
+     * The webhook URL.
+     *
      * @var string
      */
     public $hook;
 
     /**
+     * The message.
+     *
      * @var string
      */
     public $message;
 
     /**
+     * The options.
+     *
      * @var array
      */
     public $options;
 
     /**
+     * The task name.
+     *
      * @var string
      */
     protected $task;

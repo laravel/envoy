@@ -187,8 +187,9 @@ class TaskContainer
      * Get the IP address for a server.
      *
      * @param  string  $server
-     * @throws \Exception
      * @return string|null
+     *
+     * @throws \Exception
      */
     public function getServer($server)
     {
@@ -320,8 +321,9 @@ class TaskContainer
      *
      * @param  string  $task
      * @param  array  $macroOptions
-     * @throws \Exception
      * @return \Laravel\Envoy\Task
+     *
+     * @throws \Exception
      */
     public function getTask($task, array $macroOptions = [])
     {
