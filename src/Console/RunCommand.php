@@ -236,7 +236,7 @@ class RunCommand extends \Symfony\Component\Console\Command\Command
                 continue;
             }
 
-            $option = explode('=', substr($argument, 2));
+            $option = explode('=', substr($argument, 2), 2);
 
             if (count($option) == 1) {
                 $option[1] = true;
