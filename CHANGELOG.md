@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v1.6.4...master)
+## [Unreleased](https://github.com/laravel/envoy/compare/v1.6.5...master)
+
+
+## [v1.6.5 (2020-02-18)](https://github.com/laravel/envoy/compare/v1.6.4...v1.6.5)
+
+### Fixed
+- Fixed an issue with argument parsing ([#182](https://github.com/laravel/envoy/pull/182))
 
 
 ## [v1.6.4 (2019-11-28)](https://github.com/laravel/envoy/compare/v1.6.3...v1.6.4)
