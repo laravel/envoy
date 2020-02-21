@@ -1,6 +1,6 @@
 # Laravel Envoy
 
-<a href="https://travis-ci.org/laravel/envoy"><img src="https://travis-ci.org/laravel/envoy.svg" alt="Build Status"></a>
+<a href="https://github.com/laravel/envoy/actions"><img src="https://github.com/laravel/envoy/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/envoy"><img src="https://poser.pugx.org/laravel/envoy/d/total.svg" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/laravel/envoy"><img src="https://poser.pugx.org/laravel/envoy/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/envoy"><img src="https://poser.pugx.org/laravel/envoy/license.svg" alt="License"></a>
