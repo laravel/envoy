@@ -2,6 +2,15 @@
 
 ## [Unreleased](https://github.com/laravel/envoy/compare/v1.6.5...master)
 
+### Changed
+- Drop support for PHP 7.1 ([ccbc9e0](https://github.com/laravel/envoy/commit/ccbc9e0387dcc9eb9e24538cab4de634abab1f57))
+- Drop support for Laravel 4.x and 5.x ([b80e909](https://github.com/laravel/envoy/commit/b80e909e2848255c7d55a53d0ee9d176212ae5de))
+- Allow task arguments to override story ones ([#157](https://github.com/laravel/envoy/pull/157))
+- Cycle through different colors for each host ([#164](https://github.com/laravel/envoy/pull/164), [7582ba3](https://github.com/laravel/envoy/commit/7582ba342f252303a0197b2808d226d6aed4423d))
+
+### Fixed
+- Fix line splitting when reading story code ([#168](https://github.com/laravel/envoy/pull/168))
+
 
 ## [v1.6.5 (2020-02-18)](https://github.com/laravel/envoy/compare/v1.6.4...v1.6.5)
 
