@@ -333,7 +333,7 @@ class TaskContainer
             throw new Exception(sprintf('Task "%s" is not defined.', $task));
         }
 
-        $options = array_merge($macroOptions, $this->getTaskOptions($task));
+        $options = array_merge($this->getTaskOptions($task), $macroOptions);
 
         $parallel = Arr::get($options, 'parallel', false);
 
