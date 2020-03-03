@@ -1,6 +1,9 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v1.6.5...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.0.0...2.x)
+
+
+## [v2.0.0 (2020-03-03)](https://github.com/laravel/envoy/compare/v1.6.5...v2.0.0)
 
 ### Changed
 - Drop support for PHP 7.1 ([ccbc9e0](https://github.com/laravel/envoy/commit/ccbc9e0387dcc9eb9e24538cab4de634abab1f57))
