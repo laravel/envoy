@@ -44,6 +44,7 @@ class Compiler
         'ErrorStop',
         'Slack',
         'Discord',
+        'Telegram',
     ];
 
     /**
@@ -426,6 +427,19 @@ class Compiler
         $pattern = $this->createMatcher('discord');
 
         return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Discord::make$2->task($task)->send();', $value);
+    }
+
+    /**
+     * Compile Envoy Telegram statements into valid PHP.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function compileTelegram($value)
+    {
+        $pattern = $this->createMatcher('telegram');
+
+        return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Telegram::make$2->task($task)->send();', $value);
     }
 
     /**
