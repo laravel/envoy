@@ -46,10 +46,10 @@ class Telegram
     /**
      * Create a new Telegram instance.
      *
-     * @param  string $token
-     * @param  mixed $chat
-     * @param  string $message
-     * @param  array $options
+     * @param  string  $token
+     * @param  mixed  $chat
+     * @param  string  $message
+     * @param  array  $options
      * @return void
      */
     public function __construct($token, $chat, $message = null, $options = [])
@@ -63,10 +63,10 @@ class Telegram
     /**
      * Create a new Telegram message instance.
      *
-     * @param  string $token
-     * @param  string $chat
-     * @param  string $message
-     * @param  array $options
+     * @param  string  $token
+     * @param  string  $chat
+     * @param  string  $message
+     * @param  array  $options
      * @return \Laravel\Envoy\Telegram
      */
     public static function make($token, $chat, $message = null, $options = [])
@@ -87,7 +87,7 @@ class Telegram
     }
 
     /**
-     * Get the endpoint for the Send request
+     * Get the endpoint for the Send request.
      *
      * @return mixed
      */
@@ -97,13 +97,13 @@ class Telegram
     }
 
     /**
-     * Build the payload to send to the endpoint
+     * Build the payload to send to the endpoint.
      *
      * @return array
      */
     private function buildPayload()
     {
-        $message = $this->message ?: ($this->task ? ucwords($this->getSystemUser()) . ' ran the [' . $this->task . '] task.' : ucwords($this->getSystemUser()) . ' ran a task.');
+        $message = $this->message ?: ($this->task ? ucwords($this->getSystemUser()).' ran the ['.$this->task.'] task.' : ucwords($this->getSystemUser()).' ran a task.');
 
         return array_merge(['text' => $message, 'chat_id' => $this->chat], $this->options);
     }
@@ -111,7 +111,7 @@ class Telegram
     /**
      * Set the task for the message.
      *
-     * @param  string $task
+     * @param  string  $task
      * @return $this
      */
     public function task($task)
