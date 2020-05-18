@@ -9,35 +9,35 @@ class Telegram
     use ConfigurationParser;
 
     /**
-     * The Bot API Token.
+     * The Telegram bot API token.
      *
      * @var string
      */
     public $token;
 
     /**
-     * The Telegram chat_id.
+     * The Telegram "chat_id".
      *
      * @var mixed
      */
     public $chat;
 
     /**
-     * The message.
+     * The message that should be sent.
      *
      * @var string
      */
     public $message;
 
     /**
-     * The options.
+     * The message options.
      *
      * @var array
      */
     public $options;
 
     /**
-     * The task name.
+     * The name of the task.
      *
      * @var string
      */
