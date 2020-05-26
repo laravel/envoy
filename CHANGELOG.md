@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.0.1...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.1.0...2.x)
+
+
+## [v2.1.0 (2020-05-26)](https://github.com/laravel/envoy/compare/v2.0.1...v2.1.0)
+
+### Added
+- Add Telegram notifications support ([#192](https://github.com/laravel/envoy/pull/192))
 
 
 ## [v2.0.1 (2020-03-03)](https://github.com/laravel/envoy/compare/v2.0.0...v2.0.1)
