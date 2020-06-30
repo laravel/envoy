@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.1.0...master)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.2.0...master)
+
+
+## [v2.2.0 (2020-06-30)](https://github.com/laravel/envoy/compare/v2.1.0...v2.2.0)
+
+### Added
+- Guzzle 7 support ([6fd5e60](https://github.com/laravel/envoy/commit/6fd5e6013d22d99c7e0bced820ae85819564bc06))
 
 
 ## [v2.1.0 (2020-05-26)](https://github.com/laravel/envoy/compare/v2.0.1...v2.1.0)
