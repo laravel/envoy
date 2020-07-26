@@ -271,7 +271,7 @@ class RunCommand extends SymfonyCommand
                 $option[1] = true;
             }
 
-            $options[$option[0]] = $option[1];
+            $options[array_shift($option)] = implode('=', $option);
         }
 
         return $options;
