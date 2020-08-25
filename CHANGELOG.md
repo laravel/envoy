@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.3.0...master)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.3.1...master)
+
+
+## [v2.3.1 (2020-08-25)](https://github.com/laravel/envoy/compare/v2.3.0...v2.3.1)
+
+### Fixed
+- Fix version ([d2cbc18](https://github.com/laravel/envoy/commit/d2cbc18f14c543b35db7805a346529ab9def1802))
 
 
 ## [v2.3.0 (2020-08-25)](https://github.com/laravel/envoy/compare/v2.2.0...v2.3.0)
