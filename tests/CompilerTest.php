@@ -17,6 +17,6 @@ EOL;
         $compiler = new Compiler();
         $result = $compiler->compile($str);
 
-        $this->assertEquals(1, preg_match('/\$__container->finished\(.*?\}\);/s', $result, $matches));
+        $this->assertSame(1, preg_match('/\$__container->finished\(.*?\}\);/s', $result, $matches));
     }
 }
