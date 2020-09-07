@@ -190,7 +190,7 @@ EOT;
         $sshConfig = SSHConfigFile::parseString($config);
         $host = $sshConfig->findConfiguredHost('bar');
 
-        $this->assertEquals('bar', $host);
+        $this->assertSame('bar', $host);
     }
 
     public function test_it_finds_a_matching_host_by_hostname()
@@ -204,7 +204,7 @@ EOT;
         $sshConfig = SSHConfigFile::parseString($config);
         $host = $sshConfig->findConfiguredHost('baz.com');
 
-        $this->assertEquals('bar', $host);
+        $this->assertSame('bar', $host);
     }
 
     public function test_it_returns_null_if_there_are_no_matching_hosts()
@@ -231,7 +231,7 @@ EOT;
         $sshConfig = SSHConfigFile::parseString($config);
         $host = $sshConfig->findConfiguredHost('john@bar');
 
-        $this->assertEquals('bar', $host);
+        $this->assertSame('bar', $host);
     }
 
     public function test_it_returns_null_for_a_matching_host_if_user_specified_and_is_different_from_one_in_config()
