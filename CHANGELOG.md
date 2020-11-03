@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.3.1...master)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.4.0...master)
+
+
+## [v2.4.0 (2020-11-03)](https://github.com/laravel/envoy/compare/v2.3.0...v2.4.0)
+
+### Added
+- PHP 8 Support ([#204](https://github.com/laravel/envoy/pull/204))
 
 
 ## [v2.3.1 (2020-08-25)](https://github.com/laravel/envoy/compare/v2.3.0...v2.3.1)
