@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.4.0...master)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.5.0...master)
+
+
+## [v2.5.0 (2021-01-05)](https://github.com/laravel/envoy/compare/v2.4.0...v2.5.0)
+
+### Added
+- Allow hyphenated options ([#212](https://github.com/laravel/envoy/pull/212))
 
 
 ## [v2.4.0 (2020-11-03)](https://github.com/laravel/envoy/compare/v2.3.0...v2.4.0)
