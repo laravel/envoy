@@ -365,9 +365,17 @@ class TaskContainer
             $options['on'] = [];
         }
 
-        return Arr::flatten(array_map(function ($name) {
-            return $this->getServer($name);
-        }, (array) $options['on']));
+        $serverNames = array_map(function ($name) {
+            if (! array_key_exists($name, $this->servers)) {
+                throw new Exception('Server ['.$name.'] is not defined.');
+            }
+
+            return $name;
+        }, (array)$options['on']);
+
+        return array_filter($this->servers, function ($name) use ($serverNames) {
+            return in_array($name, $serverNames);
+        }, ARRAY_FILTER_USE_KEY);
     }
 
     /**

@@ -5,11 +5,11 @@ namespace Laravel\Envoy;
 class Task
 {
     /**
-     * All of the hosts to run the task on.
+     * All of the servers to run the task on.
      *
      * @var array
      */
-    public $hosts = [];
+    public $servers = [];
 
     /**
      * The username the task should be run as.
@@ -42,17 +42,17 @@ class Task
     /**
      * Create a new Task instance.
      *
-     * @param  array  $hosts
+     * @param  array  $servers
      * @param  string  $user
      * @param  string  $script
      * @param  bool  $parallel
      * @param  string|null  $confirm
      * @return void
      */
-    public function __construct(array $hosts, $user, $script, $parallel = false, $confirm = null)
+    public function __construct(array $servers, $user, $script, $parallel = false, $confirm = null)
     {
         $this->user = $user;
-        $this->hosts = $hosts;
+        $this->servers = $servers;
         $this->script = $script;
         $this->parallel = $parallel;
         $this->confirm = $confirm;
