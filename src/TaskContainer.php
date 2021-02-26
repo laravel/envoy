@@ -38,6 +38,13 @@ class TaskContainer
     protected $tasks = [];
 
     /**
+     * All of the "success" callbacks.
+     *
+     * @var array
+     */
+    protected $success = [];
+
+    /**
      * All of the "error" callbacks.
      *
      * @var array
@@ -479,6 +486,27 @@ class TaskContainer
     public function getFinishedCallbacks()
     {
         return $this->finished;
+    }
+
+    /**
+     * Register an success-task callback.
+     *
+     * @param  \Closure  $callback
+     * @return void
+     */
+    public function success(Closure $callback)
+    {
+        $this->success[] = $callback;
+    }
+
+    /**
+     * Get all of the success-task callbacks.
+     *
+     * @return array
+     */
+    public function getSuccessCallbacks()
+    {
+        return $this->success;
     }
 
     /**
