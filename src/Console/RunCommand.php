@@ -85,7 +85,7 @@ class RunCommand extends SymfonyCommand
         }
 
         foreach ($container->getFinishedCallbacks() as $callback) {
-            call_user_func($callback);
+            call_user_func($callback, $exitCode);
         }
 
         return $exitCode;
