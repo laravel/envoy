@@ -36,7 +36,7 @@ class TaskContainer
      * @var array
      */
     protected $tasks = [];
-    
+
     /**
      * All of the "success" callbacks.
      *
@@ -487,7 +487,7 @@ class TaskContainer
     {
         return $this->finished;
     }
-    
+
     /**
      * Register an success-task callback.
      *
