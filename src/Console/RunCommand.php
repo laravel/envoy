@@ -83,7 +83,7 @@ class RunCommand extends SymfonyCommand
                 break;
             }
         }
-        
+
         if (! $thisCode) {
             foreach ($container->getSuccessCallbacks() as $callback) {
                 call_user_func($callback);
