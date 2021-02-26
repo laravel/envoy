@@ -40,6 +40,8 @@ class Compiler
         'AfterStop',
         'Finished',
         'FinishedStop',
+        'Success',
+        'SuccessStop',
         'Error',
         'ErrorStop',
         'Slack',
@@ -377,6 +379,30 @@ class Compiler
     protected function compileFinishedStop($value)
     {
         return preg_replace($this->createPlainMatcher('endfinished'), '$1}); ?>$2', $value);
+    }
+    
+    /**
+     * Compile Envoy success statements into valid PHP.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function compileSuccess($value)
+    {
+        $pattern = $this->createPlainMatcher('success');
+
+        return preg_replace($pattern, '$1<?php $_vars = get_defined_vars(); $__container->success(function() use ($_vars) { extract($_vars); $2', $value);
+    }
+
+    /**
+     * Compile Envoy success stop statements into valid PHP.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function compileSuccessStop($value)
+    {
+        return preg_replace($this->createPlainMatcher('endsuccess'), '$1}); ?>$2', $value);
     }
 
     /**
