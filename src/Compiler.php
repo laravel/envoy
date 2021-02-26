@@ -380,7 +380,7 @@ class Compiler
     {
         return preg_replace($this->createPlainMatcher('endfinished'), '$1}); ?>$2', $value);
     }
-    
+
     /**
      * Compile Envoy success statements into valid PHP.
      *
