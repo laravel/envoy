@@ -1,6 +1,15 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.5.0...master)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.6.0...master)
+
+
+## [v2.6.0 (2021-03-02)](https://github.com/laravel/envoy/compare/v2.5.0...v2.6.0)
+
+### Added
+- Add success callbacks ([#219](https://github.com/laravel/envoy/pull/219))
+
+### Changed
+- Pass exit code to finished callbacks ([#220](https://github.com/laravel/envoy/pull/220))
 
 
 ## [v2.5.0 (2021-01-05)](https://github.com/laravel/envoy/compare/v2.4.0...v2.5.0)
