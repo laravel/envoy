@@ -28,7 +28,7 @@ class MicrosoftTeams
      * @var string
      */
     public $theme;
-    
+
     /**
      * The extra options for Teams Custom Card.
      *
@@ -100,10 +100,10 @@ class MicrosoftTeams
 
         return array_merge(
             [
-                "@context" => "https://schema.org/extensions",
-                "@type" => "MessageCard",
-                "themeColor" => $this->getTheme(),
-                'text' => $message
+                '@context' => 'https://schema.org/extensions',
+                '@type' => 'MessageCard',
+                'themeColor' => $this->getTheme(),
+                'text' => $message,
             ],
             $this->options
         );
