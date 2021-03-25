@@ -47,6 +47,7 @@ class Compiler
         'Slack',
         'Discord',
         'Telegram',
+        'Teams',
     ];
 
     /**
@@ -466,6 +467,19 @@ class Compiler
         $pattern = $this->createMatcher('telegram');
 
         return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Telegram::make$2->task($task)->send();', $value);
+    }
+
+    /**
+     * Compile Envoy Teams statements into valid PHP.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function compileTeams($value)
+    {
+        $pattern = $this->createMatcher('teams');
+
+        return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Teams::make$2->task($task)->send();', $value);
     }
 
     /**
