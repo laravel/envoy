@@ -4,7 +4,7 @@ namespace Laravel\Envoy;
 
 use GuzzleHttp\Client;
 
-class Teams
+class MicrosoftTeams
 {
     use ConfigurationParser;
 
@@ -54,9 +54,9 @@ class Teams
      */
     public function __construct($hook, $message = null, $theme = 'success', $options = [])
     {
-        $this->hook    = $hook;
+        $this->hook = $hook;
         $this->message = $message;
-        $this->theme   = $theme;
+        $this->theme = $theme;
         $this->options = $options;
     }
 
@@ -67,7 +67,7 @@ class Teams
      * @param  string  $message
      * @param  string  $theme
      * @param  array  $options
-     * @return \Laravel\Envoy\Teams
+     * @return \Laravel\Envoy\MicrosoftTeams
      */
     public static function make($hook, $message = null, $theme = 'success', $options = [])
     {
@@ -100,10 +100,10 @@ class Teams
 
         return array_merge(
             [
-                "@context"   => "https://schema.org/extensions",
-                "@type"      => "MessageCard",
+                "@context" => "https://schema.org/extensions",
+                "@type" => "MessageCard",
                 "themeColor" => $this->getTheme(),
-                'text'       => $message
+                'text' => $message
             ],
             $this->options
         );
@@ -118,8 +118,8 @@ class Teams
     {
         $themes = [
             'success' => '#198754',
-            'info'    => '#0dcaf0',
-            'error'   => '#dc3545',
+            'info' => '#0dcaf0',
+            'error' => '#dc3545',
             'warning' => '#fd7e14',
         ];
 

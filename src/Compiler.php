@@ -47,7 +47,7 @@ class Compiler
         'Slack',
         'Discord',
         'Telegram',
-        'Teams',
+        'MicrosoftTeams',
     ];
 
     /**
@@ -475,11 +475,11 @@ class Compiler
      * @param  string  $value
      * @return string
      */
-    protected function compileTeams($value)
+    protected function compileMicrosoftTeams($value)
     {
-        $pattern = $this->createMatcher('teams');
+        $pattern = $this->createMatcher('microsoftTeams');
 
-        return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\Teams::make$2->task($task)->send();', $value);
+        return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\MicrosoftTeams::make$2->task($task)->send();', $value);
     }
 
     /**
