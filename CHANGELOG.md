@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.6.0...master)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.7.0...master)
+
+
+## [v2.7.0 (2021-03-30)](https://github.com/laravel/envoy/compare/v2.6.0...v2.7.0)
+
+### Added
+- Microsoft Teams notifications ([#224](https://github.com/laravel/envoy/pull/224))
 
 
 ## [v2.6.0 (2021-03-02)](https://github.com/laravel/envoy/compare/v2.5.0...v2.6.0)
