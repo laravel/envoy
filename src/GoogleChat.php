@@ -71,7 +71,7 @@ class GoogleChat
      */
     public function send()
     {
-        $message = $this->message ?: ($this->task ? ucwords($this->getSystemUser()) . ' ran the [' . $this->task . '] task.' : ucwords($this->getSystemUser()) . ' ran a task.');
+        $message = $this->message ?: ($this->task ? ucwords($this->getSystemUser()).' ran the ['.$this->task.'] task.' : ucwords($this->getSystemUser()).' ran a task.');
 
         $payload = array_merge(
             is_string($message) ? ['text' => $message] : $message,
