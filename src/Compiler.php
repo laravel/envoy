@@ -48,6 +48,7 @@ class Compiler
         'Discord',
         'Telegram',
         'MicrosoftTeams',
+        'GoogleChat',
     ];
 
     /**
@@ -136,11 +137,11 @@ class Compiler
         $pattern = sprintf('/(@)?%s\s*(.+?)\s*%s(\r?\n)?/s', '{{', '}}');
 
         $callback = function ($matches) {
-            $whitespace = empty($matches[3]) ? '' : $matches[3].$matches[3];
+            $whitespace = empty($matches[3]) ? '' : $matches[3] . $matches[3];
 
             $wrapped = sprintf('%s', $this->compileEchoDefaults($matches[2]));
 
-            return $matches[1] ? substr($matches[0], 1) : '<?php echo '.$wrapped.'; ?>'.$whitespace;
+            return $matches[1] ? substr($matches[0], 1) : '<?php echo ' . $wrapped . '; ?>' . $whitespace;
         };
 
         return preg_replace_callback($pattern, $callback, $value);
@@ -483,6 +484,19 @@ class Compiler
     }
 
     /**
+     * Compile Envoy GoogleChat statements into valid PHP.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function compileGoogleChat($value)
+    {
+        $pattern = $this->createMatcher('googlechat');
+
+        return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\GoogleChat::make$2->task($task)->send();', $value);
+    }
+
+    /**
      * Initialize the variables included in the Envoy template.
      *
      * @param  string  $value
@@ -493,7 +507,7 @@ class Compiler
         preg_match_all('/\$([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)/', $value, $matches);
 
         foreach (array_unique($matches[0]) as $variable) {
-            $value = "<?php $variable = isset($variable) ? $variable : null; ?>\n".$value;
+            $value = "<?php $variable = isset($variable) ? $variable : null; ?>\n" . $value;
         }
 
         return $value;
@@ -507,7 +521,7 @@ class Compiler
      */
     public function createMatcher($function)
     {
-        return '/(?<!\w)(\s*)@'.$function.'(\s*\(.*\))/';
+        return '/(?<!\w)(\s*)@' . $function . '(\s*\(.*\))/';
     }
 
     /**
@@ -518,7 +532,7 @@ class Compiler
      */
     public function createOpenMatcher($function)
     {
-        return '/(?<!\w)(\s*)@'.$function.'(\s*\(.*)\)/';
+        return '/(?<!\w)(\s*)@' . $function . '(\s*\(.*)\)/';
     }
 
     /**
@@ -529,6 +543,6 @@ class Compiler
      */
     public function createPlainMatcher($function)
     {
-        return '/(?<!\w)(\s*)@'.$function.'(\s*)/';
+        return '/(?<!\w)(\s*)@' . $function . '(\s*)/';
     }
 }
