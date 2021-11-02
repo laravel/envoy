@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.7.0...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.7.1...2.x)
+
+
+## [v2.7.1 (2021-11-02)](https://github.com/laravel/envoy/compare/v2.7.0...v2.7.1)
+
+### Changed
+- Get value of snake case variables ([#235](https://github.com/laravel/envoy/pull/235))
 
 
 ## [v2.7.0 (2021-03-30)](https://github.com/laravel/envoy/compare/v2.6.0...v2.7.0)
