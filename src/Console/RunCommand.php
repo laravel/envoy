@@ -277,7 +277,10 @@ class RunCommand extends SymfonyCommand
                 $option[1] = true;
             }
 
-            $options[Str::camel($option[0])] = $option[1];
+            $optionKey = $option[0];
+
+            $options[Str::camel($optionKey)] = $option[1];
+            $options[Str::snake($optionKey)] = $option[1];
         }
 
         return $options;
