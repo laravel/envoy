@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.7.1...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.7.2...2.x)
+
+
+## [v2.7.2 (2021-11-09)](https://github.com/laravel/envoy/compare/v2.7.1...v2.7.2)
+
+### Fixed
+- Fix trim on windows for listed story tasks ([#236](https://github.com/laravel/envoy/pull/236))
 
 
 ## [v2.7.1 (2021-11-02)](https://github.com/laravel/envoy/compare/v2.7.0...v2.7.1)
