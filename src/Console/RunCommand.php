@@ -215,7 +215,7 @@ class RunCommand extends SymfonyCommand
      */
     protected function loadTaskContainer()
     {
-        $path = $this->input->getOption('path');
+        $path = $this->input->getOption('path', '');
 
         $file = $this->input->getOption('conf');
 
