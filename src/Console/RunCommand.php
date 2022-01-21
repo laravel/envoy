@@ -215,11 +215,12 @@ class RunCommand extends SymfonyCommand
      */
     protected function loadTaskContainer()
     {
-        $path = $this->input->getOption('path');
+        $path = $this->input->getOption('path', '');
 
         $file = $this->input->getOption('conf');
+        $envoyFile = $path;
 
-        if (! file_exists($envoyFile = $path)
+        if (! file_exists($envoyFile ?? '')
             && ! file_exists($envoyFile = getcwd().'/'.$file)
             && ! file_exists($envoyFile .= '.blade.php')
         ) {

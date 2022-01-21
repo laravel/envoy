@@ -1,6 +1,21 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.7.2...master)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.8.1...master)
+
+
+## [v2.8.1 (2022-01-21)](https://github.com/laravel/envoy/compare/v2.8.0...v2.8.1)
+
+### Fixed
+- Fix passing `null` to `file_exists` ([50597d8](https://github.com/laravel/envoy/commit/50597d81a6be4601c62bd35417e70bc982d6d32a))
+
+
+## [v2.8.0 (2022-01-12)](https://github.com/laravel/envoy/compare/v2.7.2...v2.8.0)
+
+### Changed
+- Laravel 9 Support ([#239](https://github.com/laravel/envoy/pull/239))
+
+### Fixed
+- Fix PHP 8.1 warnings ([#238](https://github.com/laravel/envoy/pull/238))
 
 
 ## [v2.7.2 (2021-11-09)](https://github.com/laravel/envoy/compare/v2.7.1...v2.7.2)
