@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.8.0...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.8.1...2.x)
+
+
+## [v2.8.1 (2022-01-21)](https://github.com/laravel/envoy/compare/v2.8.0...v2.8.1)
+
+### Fixed
+- Fix passing `null` to `file_exists` ([50597d8](https://github.com/laravel/envoy/commit/50597d81a6be4601c62bd35417e70bc982d6d32a))
 
 
 ## [v2.8.0 (2022-01-12)](https://github.com/laravel/envoy/compare/v2.7.2...v2.8.0)
