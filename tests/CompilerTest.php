@@ -33,4 +33,21 @@ EOL;
             $result
         );
     }
+
+    public function test_compile_servers_statement_with_line_breaks()
+    {
+        $str = <<<'EOL'
+@servers([
+    'local' => '127.0.0.1',
+    'remote' => '1.1.1.1',
+])
+EOL;
+        $compiler = new Compiler();
+        $result = $compiler->compile($str);
+
+        $this->assertStringContainsString(
+            "\$__container->servers([\n    'local' => '127.0.0.1',\n    'remote' => '1.1.1.1',\n]);",
+            $result
+        );
+    }
 }
