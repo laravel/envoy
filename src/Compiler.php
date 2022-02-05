@@ -36,6 +36,8 @@ class Compiler
         'MacroStop',
         'TaskStart',
         'TaskStop',
+        'Before',
+        'BeforeStop',
         'After',
         'AfterStop',
         'Finished',
@@ -332,6 +334,30 @@ class Compiler
         $pattern = $this->createPlainMatcher('endtask');
 
         return preg_replace($pattern, '$1<?php $__container->endTask(); ?>$2', $value);
+    }
+
+    /**
+     * Compile Envoy before statements into valid PHP.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function compileBefore($value)
+    {
+        $pattern = $this->createPlainMatcher('before');
+
+        return preg_replace($pattern, '$1<?php $_vars = get_defined_vars(); $__container->before(function($task) use ($_vars) { extract($_vars, EXTR_SKIP)  ; $2', $value);
+    }
+
+    /**
+     * Compile Envoy before stop statements into valid PHP.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function compileBeforeStop($value)
+    {
+        return preg_replace($this->createPlainMatcher('endbefore'), '$1}); ?>$2', $value);
     }
 
     /**

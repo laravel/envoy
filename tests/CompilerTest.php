@@ -50,4 +50,17 @@ EOL;
             $result
         );
     }
+
+    public function test_compile_before_statement()
+    {
+        $str = <<<'EOL'
+@before
+    echo "Running {{ $task }} task.";
+@endbefore
+EOL;
+        $compiler = new Compiler();
+        $result = $compiler->compile($str);
+
+        $this->assertSame(1, preg_match('/\$__container->before\(.*?\}\);/s', $result, $matches));
+    }
 }

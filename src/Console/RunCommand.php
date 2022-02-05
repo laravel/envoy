@@ -131,6 +131,10 @@ class RunCommand extends SymfonyCommand
             return;
         }
 
+        foreach ($container->getBeforeCallbacks() as $callback) {
+            call_user_func($callback, $task);
+        }
+
         if (($exitCode = $this->runTaskOverSSH($container->getTask($task, $macroOptions))) > 0) {
             foreach ($container->getErrorCallbacks() as $callback) {
                 call_user_func($callback, $task);

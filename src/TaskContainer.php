@@ -52,6 +52,13 @@ class TaskContainer
     protected $error = [];
 
     /**
+     * All of the "before" callbacks.
+     *
+     * @var array
+     */
+    protected $before = [];
+
+    /**
      * All of the "after" callbacks.
      *
      * @var array
@@ -444,6 +451,27 @@ class TaskContainer
         } else {
             $this->tasks[$name] = $contents;
         }
+    }
+
+    /**
+     * Register a before-task callback.
+     *
+     * @param  \Closure  $callback
+     * @return void
+     */
+    public function before(Closure $callback)
+    {
+        $this->before[] = $callback;
+    }
+
+    /**
+     * Get all of the before-task callbacks.
+     *
+     * @return array
+     */
+    public function getBeforeCallbacks()
+    {
+        return $this->before;
     }
 
     /**
