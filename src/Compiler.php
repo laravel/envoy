@@ -273,7 +273,7 @@ class Compiler
     {
         $pattern = $this->createMatcher('servers');
 
-        return preg_replace($pattern.'s', '$1<?php $__container->servers$2; ?>', $value);
+        return preg_replace($pattern, '$1<?php $__container->servers$2; ?>', $value);
     }
 
     /**
