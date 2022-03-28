@@ -353,7 +353,7 @@ class TaskContainer
 
         $confirm = Arr::get($options, 'confirm', null);
 
-        return new Task($this->getServers($options), $options['as'], $options['shell'], $script, $parallel, $confirm);
+        return new Task($this->getServers($options), $options['as'], $script, $parallel, $confirm, $options['shell']);
     }
 
     /**

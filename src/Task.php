@@ -57,7 +57,7 @@ class Task
      * @param  string|null  $confirm
      * @return void
      */
-    public function __construct(array $hosts, $user, $shell, $script, $parallel = false, $confirm = null)
+    public function __construct(array $hosts, $user, $script, $parallel = false, $confirm = null, $shell = null)
     {
         $this->user = $user;
         $this->shell = $shell;
