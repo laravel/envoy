@@ -33,10 +33,9 @@ abstract class RemoteProcessor
 
         $shell = $task->shell ?: 'bash';
 
-        if (!empty($task->user)) {
-            $shell = 'sudo -u '. escapeshellarg($task->user) . ' '. $shell;
+        if (! empty($task->user)) {
+            $shell = 'sudo -u '.escapeshellarg($task->user).' '.$shell;
         }
-
 
         if (in_array($target, ['local', 'localhost', '127.0.0.1'])) {
             $process = Process::fromShellCommandline("{$shell} -se << \\$delimiter".PHP_EOL
@@ -48,7 +47,6 @@ abstract class RemoteProcessor
         // script out to a file or anything. We will start the SSH process then pass
         // these lines of output back to the parent callback for display purposes.
         else {
-
             foreach ($env as $k => $v) {
                 if ($v !== false) {
                     $env[$k] = 'export '.$k.'="'.$v.'"'.PHP_EOL;

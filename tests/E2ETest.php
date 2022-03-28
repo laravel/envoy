@@ -7,7 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 class E2ETest extends TestCase
 {
-    public function fixtures(): array {
+    public function fixtures(): array
+    {
         $data = [];
         foreach (scandir(__DIR__.'/fixtures') as $file) {
             $fullPath = __DIR__.'/fixtures/'.$file;
@@ -21,14 +22,16 @@ class E2ETest extends TestCase
                 }
             }
         }
+
         return $data;
     }
 
     /**
      * @dataProvider fixtures
      */
-    public function testFixtures(string $file, string $task, closure $func) {
-        exec(__DIR__ . "/../bin/envoy run --path tests/fixtures/{$file} {$task}", $output, $code);
+    public function testFixtures(string $file, string $task, closure $func)
+    {
+        exec(__DIR__."/../bin/envoy run --path tests/fixtures/{$file} {$task}", $output, $code);
         $func->call($this, $output, $code);
     }
 }
