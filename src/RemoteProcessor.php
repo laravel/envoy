@@ -39,7 +39,7 @@ abstract class RemoteProcessor
 
 
         if (in_array($target, ['local', 'localhost', '127.0.0.1'])) {
-            $process = Process::fromShellCommandline($shell." -se << \\$delimiter".PHP_EOL
+            $process = Process::fromShellCommandline("{$shell} -se << \\$delimiter".PHP_EOL
                 .$task->script.PHP_EOL
                 .$delimiter, null, $env);
         }
