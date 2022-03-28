@@ -29,15 +29,25 @@ abstract class RemoteProcessor
 
         $env = $this->getEnvironment($host);
 
+        $delimiter = 'EOF-LARAVEL-ENVOY';
+
+        $shell = $task->shell ?: 'bash';
+
+        if (!empty($task->user)) {
+            $shell = 'sudo -u '. escapeshellarg($task->user) . ' '. $shell;
+        }
+
+
         if (in_array($target, ['local', 'localhost', '127.0.0.1'])) {
-            $process = Process::fromShellCommandline($task->script, null, $env);
+            $process = Process::fromShellCommandline($shell." -se << \\$delimiter".PHP_EOL
+                .$task->script.PHP_EOL
+                .$delimiter, null, $env);
         }
 
         // Here we'll run the SSH task on the server inline. We do not need to write the
         // script out to a file or anything. We will start the SSH process then pass
         // these lines of output back to the parent callback for display purposes.
         else {
-            $delimiter = 'EOF-LARAVEL-ENVOY';
 
             foreach ($env as $k => $v) {
                 if ($v !== false) {
@@ -55,7 +65,7 @@ abstract class RemoteProcessor
                 );
             } else {
                 $process = Process::fromShellCommandline(
-                    "ssh $target 'bash -se' << \\$delimiter".PHP_EOL
+                    "ssh $target '{$shell} -se' << \\$delimiter".PHP_EOL
                     .implode(PHP_EOL, $env).PHP_EOL
                     .'set -e'.PHP_EOL
                     .$task->script.PHP_EOL

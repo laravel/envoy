@@ -19,6 +19,13 @@ class Task
     public $user;
 
     /**
+     * The shell the task should be run with.
+     *
+     * @var string
+     */
+    public $shell;
+
+    /**
      * The script commands.
      *
      * @var string
@@ -44,14 +51,16 @@ class Task
      *
      * @param  array  $hosts
      * @param  string  $user
+     * @param  string  $shell
      * @param  string  $script
      * @param  bool  $parallel
      * @param  string|null  $confirm
      * @return void
      */
-    public function __construct(array $hosts, $user, $script, $parallel = false, $confirm = null)
+    public function __construct(array $hosts, $user, $shell, $script, $parallel = false, $confirm = null)
     {
         $this->user = $user;
+        $this->shell = $shell;
         $this->hosts = $hosts;
         $this->script = $script;
         $this->parallel = $parallel;

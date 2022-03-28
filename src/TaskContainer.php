@@ -175,7 +175,7 @@ class TaskContainer
      */
     protected function replaceSubTasks()
     {
-        foreach ($this->tasks as $name => &$script) {
+        foreach ($this->tasks as &$script) {
             $callback = function ($m) {
                 return $m[1].$this->tasks[$m[2]];
             };
@@ -353,7 +353,7 @@ class TaskContainer
 
         $confirm = Arr::get($options, 'confirm', null);
 
-        return new Task($this->getServers($options), $options['as'], $script, $parallel, $confirm);
+        return new Task($this->getServers($options), $options['as'], $options['shell'], $script, $parallel, $confirm);
     }
 
     /**
@@ -432,7 +432,7 @@ class TaskContainer
      */
     protected function mergeDefaultOptions(array $options)
     {
-        return array_merge(['as' => null, 'on' => array_keys($this->servers)], $options);
+        return array_merge(['as' => null, 'shell' => null, 'on' => array_keys($this->servers)], $options);
     }
 
     /**
