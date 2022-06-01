@@ -120,7 +120,7 @@ class SSHConfigFile
                     }
                 }
 
-                return $group['host'];
+                return preg_replace('/\s+.*$/', '', $group['host']);
             }
         }
     }

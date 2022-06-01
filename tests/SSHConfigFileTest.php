@@ -247,6 +247,20 @@ EOT;
         $this->assertNull($host);
     }
 
+    public function test_it_returns_valid_host_for_multiple_aliased_hosts()
+    {
+        $config = <<<'EOT'
+Host foo bar baz
+Hostname baz.com
+User john
+EOT;
+        $sshConfig = SSHConfigFile::parseString($config);
+        $host = $sshConfig->findConfiguredHost('baz.com');
+
+        // Really, any one of the host's aliases would work
+        $this->assertContains($host, ['foo', 'bar', 'baz']);
+    }
+
     private function parse($config)
     {
         $sshConfig = SSHConfigFile::parseString($config);
