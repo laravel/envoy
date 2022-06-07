@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.8.2...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.8.3...2.x)
+
+## [v2.8.3](https://github.com/laravel/envoy/compare/v2.8.2...v2.8.3) - 2022-06-07
+
+### Fixed
+
+- Fix hostname returned when multiple host aliases are defined by @h3xx in https://github.com/laravel/envoy/pull/250
 
 ## [v2.8.2](https://github.com/laravel/envoy/compare/v2.8.1...v2.8.2) - 2022-02-08
 
