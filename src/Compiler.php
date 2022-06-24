@@ -50,6 +50,8 @@ class Compiler
         'Discord',
         'Telegram',
         'MicrosoftTeams',
+        'LocalTaskStart',
+        'LocalTaskEnd',
     ];
 
     /**
@@ -334,6 +336,32 @@ class Compiler
         $pattern = $this->createPlainMatcher('endtask');
 
         return preg_replace($pattern, '$1<?php $__container->endTask(); ?>$2', $value);
+    }
+
+    /**
+     * Compile Envoy localtask start statements into valid PHP.
+     *
+     * @param $value
+     * @return string
+     */
+    protected function compileLocalTaskStart($value)
+    {
+        $pattern = $this->createMatcher('localtask');
+
+        return preg_replace($pattern, '$1<?php $__container->startLocalTask$2; ?>', $value);
+    }
+
+    /**
+     * Compile Envoy localtask stop statements into valid PHP.
+     *
+     * @param $value
+     * @return string
+     */
+    protected function compileLocalTaskEnd($value)
+    {
+        $pattern = $this->createPlainMatcher('endlocaltask');
+
+        return preg_replace($pattern, '$1<?php $__container->endLocalTask(); ?>$2', $value);
     }
 
     /**

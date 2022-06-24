@@ -207,6 +207,10 @@ class TaskContainer
      */
     public function getServer($server)
     {
+        if (\in_array($server, ['127.0.0.1', 'localhost'])) {
+            return $server;
+        }
+
         if (! array_key_exists($server, $this->servers)) {
             throw new Exception('Server ['.$server.'] is not defined.');
         }
@@ -422,6 +426,32 @@ class TaskContainer
         ob_start() && $this->taskStack[] = $task;
 
         $this->taskOptions[$task] = $this->mergeDefaultOptions($options);
+    }
+
+    /**
+     * Begin defining a localTask.
+     *
+     * @param  string  $task
+     * @param  array  $options
+     * @return void
+     */
+    public function startLocalTask($task, array $options = [])
+    {
+        ob_start() && $this->taskStack[] = $task;
+
+        $this->taskOptions[$task] = $this->mergeDefaultOptions(\array_merge($options, [
+            'on' => '127.0.0.1'
+        ]));
+    }
+
+    /**
+     * Stop defining a localTask.
+     *
+     * @return void
+     */
+    public function endLocalTask()
+    {
+        $this->endTask();
     }
 
     /**
