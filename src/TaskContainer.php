@@ -440,7 +440,7 @@ class TaskContainer
         ob_start() && $this->taskStack[] = $task;
 
         $this->taskOptions[$task] = $this->mergeDefaultOptions(\array_merge($options, [
-            'on' => '127.0.0.1'
+            'on' => '127.0.0.1',
         ]));
     }
 
