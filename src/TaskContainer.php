@@ -111,7 +111,7 @@ class TaskContainer
      */
     public function loadServers($path, Compiler $compiler)
     {
-        $this->load($path, $compiler, [], true);
+        return $this->load($path, $compiler, [], true);
     }
 
     /**
