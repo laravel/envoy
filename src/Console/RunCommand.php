@@ -234,7 +234,7 @@ class RunCommand extends SymfonyCommand
         }
 
         with($container = new TaskContainer)->load(
-            $envoyFile, new Compiler, $this->getOptions()
+            $envoyFile, new Compiler, $this->argument('task'), $this->getOptions()
         );
 
         return $container;

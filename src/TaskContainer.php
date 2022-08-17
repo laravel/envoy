@@ -111,7 +111,7 @@ class TaskContainer
      */
     public function loadServers($path, Compiler $compiler)
     {
-        return $this->load($path, $compiler, [], true);
+        $this->load($path, $compiler, '', [], true);
     }
 
     /**
@@ -119,11 +119,12 @@ class TaskContainer
      *
      * @param  string  $__path
      * @param  \Laravel\Envoy\Compiler  $__compiler
+     * @param  string  $taskName
      * @param  array  $__data
      * @param  bool  $__serversOnly
      * @return void
      */
-    public function load($__path, Compiler $__compiler, array $__data = [], $__serversOnly = false)
+    public function load($__path, Compiler $__compiler, string $taskName = '', array $__data = [], $__serversOnly = false)
     {
         $__dir = realpath(dirname($__path));
 
@@ -135,6 +136,7 @@ class TaskContainer
         );
 
         $__container = $this;
+        $__taskName = $taskName;
 
         ob_start() && extract($__data);
 
@@ -252,7 +254,7 @@ class TaskContainer
             throw new InvalidArgumentException("Unable to locate file: [{$file}].");
         }
 
-        $this->load($path, new Compiler, $data);
+        $this->load($path, new Compiler, '', $data);
     }
 
     /**
