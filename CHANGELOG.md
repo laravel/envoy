@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.8.3...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.8.4...2.x)
+
+## [v2.8.4](https://github.com/laravel/envoy/compare/v2.8.3...v2.8.4) - 2022-08-23
+
+### Changed
+
+- Add $__taskName so available in @setup by @arwinvdv in https://github.com/laravel/envoy/pull/254
 
 ## [v2.8.3](https://github.com/laravel/envoy/compare/v2.8.2...v2.8.3) - 2022-06-07
 
