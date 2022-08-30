@@ -6,7 +6,7 @@
 
 ### Changed
 
-- Add $__taskName so available in @setup by @arwinvdv in https://github.com/laravel/envoy/pull/254
+- Add $__task so available in @setup by @arwinvdv in https://github.com/laravel/envoy/pull/254
 
 ## [v2.8.3](https://github.com/laravel/envoy/compare/v2.8.2...v2.8.3) - 2022-06-07
 
