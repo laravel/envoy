@@ -188,27 +188,23 @@ class RunCommand extends SymfonyCommand
     /**
      * Display the given output line.
      *
-     * @param  int  $type
+     * @param  string  $type
      * @param  string  $host
      * @param  string  $line
      * @return void
      */
     protected function displayOutput($type, $host, $line)
     {
-        $lines = explode("\n", $line);
+        $lines = array_filter(array_map('trim', explode("\n", $line)));
 
         $hostColor = $this->getHostColor($host);
 
         foreach ($lines as $line) {
-            if (strlen(trim($line)) === 0) {
-                continue;
+            if ($type === Process::ERR) {
+                $line = '<fg=red>'.$line.'</>';
             }
 
-            if ($type == Process::OUT) {
-                $this->output->write($hostColor.': '.trim($line).PHP_EOL);
-            } else {
-                $this->output->write($hostColor.':  '.'<fg=red>'.trim($line).'</>'.PHP_EOL);
-            }
+            $this->output->write($hostColor.': '.$line.PHP_EOL);
         }
     }
 
