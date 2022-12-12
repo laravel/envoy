@@ -10,6 +10,20 @@ use Symfony\Component\Console\Question\Question;
 trait Command
 {
     /**
+     * The console command input.
+     *
+     * @var array
+     */
+    protected $input;
+
+    /**
+     * The console command output.
+     *
+     * @var array
+     */
+    protected $output;
+
+    /**
      * Execute the command.
      *
      * @param  \Symfony\Component\Console\Input\InputInterface  $input
