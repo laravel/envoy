@@ -1,6 +1,13 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.8.4...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.8.5...2.x)
+
+## [v2.8.5](https://github.com/laravel/envoy/compare/v2.8.4...v2.8.5) - 2022-12-13
+
+### Fixed
+
+- Fix STDERR Output by @amayer5125 in https://github.com/laravel/envoy/pull/257
+- Add input and output properties to Command by @driesvints in https://github.com/laravel/envoy/pull/259
 
 ## [v2.8.4](https://github.com/laravel/envoy/compare/v2.8.3...v2.8.4) - 2022-08-23
 
