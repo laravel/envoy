@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.8.5...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.8.6...2.x)
+
+## [v2.8.6](https://github.com/laravel/envoy/compare/v2.8.5...v2.8.6) - 2023-01-10
+
+### Added
+
+- Laravel v10 Support by @driesvints in https://github.com/laravel/envoy/pull/261
 
 ## [v2.8.5](https://github.com/laravel/envoy/compare/v2.8.4...v2.8.5) - 2022-12-13
 
