@@ -5,6 +5,9 @@ namespace Laravel\Envoy;
 use Closure;
 use Symfony\Component\Process\Process;
 
+/**
+ * @method string|null getConfiguredServer()
+ */
 abstract class RemoteProcessor
 {
     /**
