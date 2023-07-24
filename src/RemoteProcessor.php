@@ -58,7 +58,7 @@ abstract class RemoteProcessor
                 );
             } else {
                 $process = Process::fromShellCommandline(
-                    "ssh $target 'bash -se' << \\$delimiter".PHP_EOL
+                    "sshpass -e ssh $target 'bash -se' << \\$delimiter".PHP_EOL
                     .implode(PHP_EOL, $env).PHP_EOL
                     .'set -e'.PHP_EOL
                     .$task->script.PHP_EOL
