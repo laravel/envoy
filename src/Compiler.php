@@ -271,7 +271,7 @@ class Compiler
      */
     protected function compileServers($value)
     {
-        $value = preg_replace_callback('/@servers\(\[(.*?)\]\)/s', function($matches) {
+        $value = preg_replace_callback('/@servers\(\[(.*?)\]\)/s', function ($matches) {
             return "@servers([" . preg_replace('/\s+/', '', $matches[1]) . "])";
         }, $value);
 
