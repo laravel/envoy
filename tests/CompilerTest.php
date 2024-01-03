@@ -60,6 +60,17 @@ EOL;
         $this->assertSame($result, "<?php \$__container->servers(['foo'=>['bar','baz','bah']]); ?>");
 
         $str = <<<'EOL'
+@servers([
+    'foo' => ['bar'],
+    'bar' => ['baz']
+])
+EOL;
+        $compiler = new Compiler();
+        $result = $compiler->compile($str);
+
+        $this->assertSame($result, "<?php \$__container->servers(['foo'=>['bar'],'bar'=>['baz']]); ?>");
+
+        $str = <<<'EOL'
 @servers(['foo' => 'bar'])
 EOL;
         $compiler = new Compiler();
