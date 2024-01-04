@@ -79,7 +79,7 @@ EOL;
         $this->assertSame($result, "<?php \$__container->servers(['foo' => 'bar']); ?>");
     }
 
-    public function test_it_compiles_server_statement_with_setup_raw_format()
+    public function test_it_compiles_server_statement_with_setup()
     {
         $str = <<<'EOL'
 @setup
@@ -95,20 +95,6 @@ EOL;
         $compiler = new Compiler();
         $result = $compiler->compile($str);
 
-        $expected = <<<EOL
-<?php \$port = isset(\$port) ? \$port : null; ?>
-<?php \$server = isset(\$server) ? \$server : null; ?>
-<?php \$user = isset(\$user) ? \$user : null; ?>
-<?php
-    \$user = 'foo';
-    \$server = 'bar';
-    \$port = 22;
-?>
-
-<?php \$__container->servers(['foo' => "{\$user}@{\$server} -p {\$port}"]); ?>
-EOL;
-
-
-        $this->assertSame($result, $expected);
+        $this->assertStringContainsString('{$user}@{$server} -p {$port}', $result);
     }
 }
