@@ -43,7 +43,7 @@ EOL;
         $compiler = new Compiler();
         $result = $compiler->compile($str);
 
-        $this->assertSame($result, "<?php \$__container->servers(['foo'=>'bar']); ?>");
+        $this->assertSame($result, "<?php \$__container->servers(['foo' => 'bar']); ?>");
 
         $str = <<<'EOL'
 @servers([
@@ -57,7 +57,7 @@ EOL;
         $compiler = new Compiler();
         $result = $compiler->compile($str);
 
-        $this->assertSame($result, "<?php \$__container->servers(['foo'=>['bar','baz','bah']]); ?>");
+        $this->assertSame($result, "<?php \$__container->servers(['foo' => [ 'bar', 'baz', 'bah' ]]); ?>");
 
         $str = <<<'EOL'
 @servers([
@@ -68,7 +68,7 @@ EOL;
         $compiler = new Compiler();
         $result = $compiler->compile($str);
 
-        $this->assertSame($result, "<?php \$__container->servers(['foo'=>['bar'],'bar'=>['baz']]); ?>");
+        $this->assertSame($result, "<?php \$__container->servers(['foo' => ['bar'], 'bar' => ['baz']]); ?>");
 
         $str = <<<'EOL'
 @servers(['foo' => 'bar'])
@@ -76,6 +76,25 @@ EOL;
         $compiler = new Compiler();
         $result = $compiler->compile($str);
 
-        $this->assertSame($result, "<?php \$__container->servers(['foo'=>'bar']); ?>");
+        $this->assertSame($result, "<?php \$__container->servers(['foo' => 'bar']); ?>");
+    }
+
+    public function test_it_compiles_server_statement_with_setup()
+    {
+        $str = <<<'EOL'
+@setup
+    $user = 'foo';
+    $server = 'bar';
+    $port = 22;
+@endsetup
+
+@servers([
+    'foo' => "{$user}@{$server} -p {$port}"
+])
+EOL;
+        $compiler = new Compiler();
+        $result = $compiler->compile($str);
+
+        $this->assertStringContainsString('{$user}@{$server} -p {$port}', $result);
     }
 }
