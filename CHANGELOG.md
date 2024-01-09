@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.8.6...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.8.7...2.x)
+
+## [v2.8.7](https://github.com/laravel/envoy/compare/v2.8.6...v2.8.7) - 2024-01-09
+
+* [2.x] Compile `[@servers](https://github.com/servers)` When Array is in Multiple Lines by [@devajmeireles](https://github.com/devajmeireles) in https://github.com/laravel/envoy/pull/270
+* [2.x] Bugfix: Allowing `[@setup](https://github.com/setup)` Variables into `[@servers](https://github.com/servers)` by [@devajmeireles](https://github.com/devajmeireles) in https://github.com/laravel/envoy/pull/272
 
 ## [v2.8.6](https://github.com/laravel/envoy/compare/v2.8.5...v2.8.6) - 2023-01-10
 
