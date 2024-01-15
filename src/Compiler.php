@@ -271,6 +271,10 @@ class Compiler
      */
     protected function compileServers($value)
     {
+        $value = preg_replace_callback('/@servers\(\[(.*?)\]\)/s', function ($matches) {
+            return '@servers(['.trim(preg_replace('/\s+/', ' ', $matches[1])).'])';
+        }, $value);
+
         $pattern = $this->createMatcher('servers');
 
         return preg_replace($pattern, '$1<?php $__container->servers$2; ?>', $value);
