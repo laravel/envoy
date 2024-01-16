@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.8.7...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.9.0...2.x)
+
+## [v2.9.0](https://github.com/laravel/envoy/compare/v2.8.7...v2.9.0) - 2024-01-16
+
+* [2.x] Merges develop by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/envoy/pull/274
 
 ## [v2.8.7](https://github.com/laravel/envoy/compare/v2.8.6...v2.8.7) - 2024-01-09
 
