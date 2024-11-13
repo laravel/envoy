@@ -16,53 +16,44 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [7.2, 7.3, 7.4, '8.0', 8.1, 8.2, 8.3]
-        laravel: [6, 7, 8, 9, 10, 11]
+        php: [8.1, 8.2, 8.3, 8.4]
+        laravel: [10, 11]
+        include:
+          - php: 8.2
+            laravel: 9
+          - php: 8.1
+            laravel: 9
+          - php: '8.0'
+            laravel: 9
+          - php: 8.1
+            laravel: 8
+          - php: '8.0'
+            laravel: 8
+          - php: 7.4
+            laravel: 8
+          - php: 7.3
+            laravel: 8
+          - php: '8.0'
+            laravel: 7
+          - php: 7.4
+            laravel: 7
+          - php: 7.3
+            laravel: 7
+          - php: 7.2
+            laravel: 7
+          - php: '8.0'
+            laravel: 6
+          - php: 7.4
+            laravel: 6
+          - php: 7.3
+            laravel: 6
+          - php: 7.2
+            laravel: 6
         exclude:
-          - php: 7.2
-            laravel: 8
-          - php: 7.2
-            laravel: 9
-          - php: 7.2
-            laravel: 10
-          - php: 7.2
-            laravel: 11
-          - php: 7.3
-            laravel: 9
-          - php: 7.3
-            laravel: 10
-          - php: 7.3
-            laravel: 11
-          - php: 7.4
-            laravel: 9
-          - php: 7.4
-            laravel: 10
-          - php: 7.4
-            laravel: 11
-          - php: '8.0'
-            laravel: 10
-          - php: '8.0'
-            laravel: 11
-          - php: 8.1
-            laravel: 6
-          - php: 8.1
-            laravel: 7
           - php: 8.1
             laravel: 11
-          - php: 8.2
-            laravel: 6
-          - php: 8.2
-            laravel: 7
-          - php: 8.2
-            laravel: 8
-          - php: 8.3
-            laravel: 6
-          - php: 8.3
-            laravel: 7
-          - php: 8.3
-            laravel: 8
-          - php: 8.3
-            laravel: 9
+          - php: 8.4
+            laravel: 10
 
     name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
 
@@ -81,8 +72,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-           composer require "illuminate/contracts=^${{ matrix.laravel }}" --no-update
-           composer update --prefer-dist --no-interaction --no-progress
+           composer require  --no-update
+           composer update --prefer-dist --no-interaction --no-progress --with="illuminate/contracts=^${{ matrix.laravel }}"
 
       - name: Execute tests
         run: vendor/bin/phpunit
