@@ -17,7 +17,7 @@ abstract class RemoteProcessor
      * @param  \Closure|null  $callback
      * @return int
      */
-    abstract public function run(Task $task, Closure $callback = null);
+    abstract public function run(Task $task, ?Closure $callback = null);
 
     /**
      * Run the given script on the given host.

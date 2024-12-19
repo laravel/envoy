@@ -16,7 +16,7 @@ class ParallelSSH extends RemoteProcessor
      * @param  \Closure|null  $callback
      * @return int
      */
-    public function run(Task $task, Closure $callback = null)
+    public function run(Task $task, ?Closure $callback = null)
     {
         $processes = [];
 
