@@ -50,6 +50,7 @@ class Compiler
         'Discord',
         'Telegram',
         'MicrosoftTeams',
+        'GoogleChat',
     ];
 
     /**
@@ -510,6 +511,19 @@ class Compiler
         $pattern = $this->createMatcher('microsoftTeams');
 
         return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\MicrosoftTeams::make$2->task($task)->send();', $value);
+    }
+
+    /**
+     * Compile Envoy GoogleChat statements into valid PHP.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function compileGoogleChat($value)
+    {
+        $pattern = $this->createMatcher('googleChat');
+
+        return preg_replace($pattern, '$1 if (! isset($task)) $task = null; Laravel\Envoy\GoogleChat::make$2->task($task)->send();', $value);
     }
 
     /**
