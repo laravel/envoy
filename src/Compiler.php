@@ -374,7 +374,11 @@ class Compiler
     {
         $pattern = $this->createPlainMatcher('after');
 
-        return preg_replace($pattern, '$1<?php $_vars = get_defined_vars(); $__container->after(function($task) use ($_vars) { extract($_vars, EXTR_SKIP)  ; $2', $value);
+        return preg_replace(
+            $pattern,
+            '$1<?php $_vars = get_defined_vars(); $__container->after(function($task, $logs) use ($_vars) { extract($_vars, EXTR_SKIP); $2',
+            $value
+        );
     }
 
     /**
@@ -446,7 +450,11 @@ class Compiler
     {
         $pattern = $this->createPlainMatcher('error');
 
-        return preg_replace($pattern, '$1<?php $_vars = get_defined_vars(); $__container->error(function($task) use ($_vars) { extract($_vars, EXTR_SKIP); $2', $value);
+        return preg_replace(
+            $pattern,
+            '$1<?php $_vars = get_defined_vars(); $__container->after(function($task, $logs) use ($_vars) { extract($_vars, EXTR_SKIP); $2',
+            $value
+        );
     }
 
     /**

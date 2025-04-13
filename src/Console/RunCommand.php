@@ -34,6 +34,8 @@ class RunCommand extends SymfonyCommand
         '--verbose',
     ];
 
+    protected $taskOutputLogs = [];
+
     /**
      * The hosts that have already been assigned a color for output.
      *
@@ -137,14 +139,14 @@ class RunCommand extends SymfonyCommand
 
         if (($exitCode = $this->runTaskOverSSH($container->getTask($task, $macroOptions))) > 0) {
             foreach ($container->getErrorCallbacks() as $callback) {
-                call_user_func($callback, $task);
+                call_user_func($callback, [$task, $this->taskOutputLogs]);
             }
 
             return $exitCode;
         }
 
         foreach ($container->getAfterCallbacks() as $callback) {
-            call_user_func($callback, $task);
+            call_user_func($callback, [$task, $this->taskOutputLogs]);
         }
     }
 
@@ -181,6 +183,7 @@ class RunCommand extends SymfonyCommand
                 return;
             }
 
+            $this->taskOutputLogs[$host] = ($this->taskOutputLogs[$host] ?? '') . $line;
             $this->displayOutput($type, $host, $line);
         });
     }
