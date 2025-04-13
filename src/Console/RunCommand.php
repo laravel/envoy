@@ -183,7 +183,7 @@ class RunCommand extends SymfonyCommand
                 return;
             }
 
-            $this->taskOutputLogs[$host] = ($this->taskOutputLogs[$host] ?? '') . $line;
+            $this->taskOutputLogs[$host] = ($this->taskOutputLogs[$host] ?? '').$line;
             $this->displayOutput($type, $host, $line);
         });
     }
