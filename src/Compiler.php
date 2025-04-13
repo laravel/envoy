@@ -452,7 +452,7 @@ class Compiler
 
         return preg_replace(
             $pattern,
-            '$1<?php $_vars = get_defined_vars(); $__container->after(function($task, $logs) use ($_vars) { extract($_vars, EXTR_SKIP); $2',
+            '$1<?php $_vars = get_defined_vars(); $__container->error(function($task, $logs) use ($_vars) { extract($_vars, EXTR_SKIP); $2',
             $value
         );
     }
