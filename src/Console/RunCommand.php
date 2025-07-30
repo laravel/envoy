@@ -109,13 +109,12 @@ class RunCommand extends SymfonyCommand
     }
 
     /**
-     * Build a list of tasks starting from a task or macro name. When $task points to a macro
-     * we will pull the tasks from it, else we simply add the task to the list.
+     * Build a list of tasks starting from a task or macro name.
      *
-     * @param  array  $tasks  The current list of tasks
+     * @param  array  $tasks
      * @param  \Laravel\Envoy\TaskContainer  $container
-     * @param  string  $task  The name of the task
-     * @return array The updated list of tasks
+     * @param  string  $task
+     * @return array
      */
     protected function buildTaskList($container, $task, $tasks = []): array
     {
