@@ -123,7 +123,7 @@ class RunCommand extends SymfonyCommand
             foreach ($macro as $task) {
                 $tasks = $this->buildTaskList($container, $task, $tasks);
             }
-            
+
             return $tasks;
         }
 
