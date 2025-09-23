@@ -20,7 +20,7 @@ EOL;
         $this->assertSame(1, preg_match('/\$__container->finished\(.*?\}\);/s', $result, $matches));
     }
 
-    public function test_compile_before_statement()
+    public function test_compile_before_statement(): void
     {
         $str = <<<'EOL'
 @before
@@ -29,8 +29,23 @@ EOL;
 EOL;
         $compiler = new Compiler();
         $result = $compiler->compile($str);
-
+ 
         $this->assertSame(1, preg_match('/\$__container->before\(.*?\}\);/s', $result, $matches));
+        $this->assertStringContainsString('function($task, $macro)', $result);
+    }
+
+   public function test_compile_after_statement(): void 
+    {
+        $str = <<<'EOL'
+@after
+    echo "Running {{ $task }} task.";
+@endafter
+EOL;
+        $compiler = new Compiler();
+        $result = $compiler->compile($str);
+ 
+        $this->assertSame(1, preg_match('/\$__container->after\(.*?\}\);/s', $result, $matches));
+        $this->assertStringContainsString('function($task, $macro)', $result);
     }
 
     public function test_it_compiles_server_statement()

@@ -119,8 +119,16 @@ class RunCommand extends SymfonyCommand
     protected function buildTaskList($container, $task, $tasks = []): array
     {
         if ($macro = $container->getMacro($task)) {
+            foreach ($container->getBeforeCallbacks() as $callback) {
+                call_user_func($callback, null, $task);
+            }
+
             foreach ($macro as $task) {
                 $tasks = $this->buildTaskList($container, $task, $tasks);
+            }
+
+            foreach ($container->getAfterCallbacks() as $callback) {
+                call_user_func($callback, null, $task);
             }
 
             return $tasks;
