@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.10.2...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.11.0...2.x)
+
+## [v2.11.0](https://github.com/laravel/envoy/compare/v2.10.2...v2.11.0) - 2026-03-17
+
+* Allow calling stories from other stories by [@vpratfr](https://github.com/vpratfr) in https://github.com/laravel/envoy/pull/287
+* Laravel 13.x Compatibility by [@laravel-shift](https://github.com/laravel-shift) in https://github.com/laravel/envoy/pull/289
 
 ## [v2.10.2](https://github.com/laravel/envoy/compare/v2.10.1...v2.10.2) - 2025-01-28
 
