@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.11.0...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.12.0...2.x)
+
+## [v2.12.0](https://github.com/laravel/envoy/compare/v2.11.0...v2.12.0) - 2026-03-24
+
+* Update Symfony deps versions to support v8 by [@HichemTab-tech](https://github.com/HichemTab-tech) in https://github.com/laravel/envoy/pull/290
+* [2.x] Fix workflow YAML syntax and remove no-op composer require by [@JoshSalway](https://github.com/JoshSalway) in https://github.com/laravel/envoy/pull/291
 
 ## [v2.11.0](https://github.com/laravel/envoy/compare/v2.10.2...v2.11.0) - 2026-03-17
 
