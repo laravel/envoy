@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-      - *.x
+      - '*.x'
   pull_request:
   schedule:
     - cron: '0 0 * * *'
@@ -80,7 +80,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require  --no-update
           composer update --prefer-dist --no-interaction --no-progress --with="illuminate/contracts=^${{ matrix.laravel }}"
 
       - name: Execute tests (display deprecations)
