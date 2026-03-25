@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.12.0...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.12.1...2.x)
+
+## [v2.12.1](https://github.com/laravel/envoy/compare/v2.12.0...v2.12.1) - 2026-03-25
+
+* Fix compatibility with `symfony/console` v8 by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/envoy/pull/293
 
 ## [v2.12.0](https://github.com/laravel/envoy/compare/v2.11.0...v2.12.0) - 2026-03-24
 
