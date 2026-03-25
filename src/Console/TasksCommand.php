@@ -15,7 +15,7 @@ class TasksCommand extends SymfonyCommand
      *
      * @return void
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('tasks')
                 ->setDescription('Lists all Envoy tasks and macros.');

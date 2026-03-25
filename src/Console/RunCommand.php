@@ -46,7 +46,7 @@ class RunCommand extends SymfonyCommand
      *
      * @return void
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->ignoreValidationErrors();
 
