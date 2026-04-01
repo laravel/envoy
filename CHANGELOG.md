@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.12.1...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.12.2...2.x)
+
+## [v2.12.2](https://github.com/laravel/envoy/compare/v2.12.1...v2.12.2) - 2026-04-01
+
+* Add void return type hints to console commands by [@dominosaurs](https://github.com/dominosaurs) in https://github.com/laravel/envoy/pull/295
 
 ## [v2.12.1](https://github.com/laravel/envoy/compare/v2.12.0...v2.12.1) - 2026-03-25
 
