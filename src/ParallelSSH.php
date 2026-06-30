@@ -39,6 +39,11 @@ class ParallelSSH extends RemoteProcessor
 
         while ($this->areRunning($processes)) {
             $this->gatherOutput($processes, $callback);
+
+            // The status and output checks above do not block, so we will sleep
+            // for a moment to avoid pinning a CPU core while we wait for these
+            // processes to finish running out on their respective machines.
+            usleep(1000);
         }
 
         // Finally, we'll gather the output one last time to make sure no more output is
