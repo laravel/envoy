@@ -48,8 +48,6 @@ class RunCommand extends SymfonyCommand
      */
     protected function configure(): void
     {
-        $this->ignoreValidationErrors();
-
         $this->setName('run')
                 ->setDescription('Run an Envoy task.')
                 ->addArgument('task', InputArgument::REQUIRED)
@@ -57,6 +55,22 @@ class RunCommand extends SymfonyCommand
                 ->addOption('pretend', null, InputOption::VALUE_NONE, 'Dump Bash script for inspection')
                 ->addOption('path', null, InputOption::VALUE_REQUIRED, 'The path to the Envoy.blade.php file')
                 ->addOption('conf', null, InputOption::VALUE_REQUIRED, 'The name of the Envoy file', 'Envoy.blade.php');
+
+        foreach ($_SERVER['argv'] as $argument) {
+            if (! Str::startsWith($argument, '--')) {
+                continue;
+            }
+
+            $option = explode('=', substr($argument, 2), 2);
+
+            if (! $this->getDefinition()->hasOption($option[0])) {
+                $this->addOption(
+                    $option[0],
+                    null,
+                    count($option) === 1 ? InputOption::VALUE_NONE : InputOption::VALUE_REQUIRED
+                );
+            }
+        }
     }
 
     /**
