@@ -141,9 +141,11 @@ class TaskContainer
         // Here we will include the compiled Envoy file so it can register tasks into this
         // container instance. Then we will delete the PHP version of the file because
         // it is no longer needed once we have used it to register in the container.
-        include $__envoyPath;
-
-        @unlink($__envoyPath);
+        try {
+            include $__envoyPath;
+        } finally {
+            @unlink($__envoyPath);
+        }
 
         $this->replaceSubTasks();
 
