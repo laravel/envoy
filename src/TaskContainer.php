@@ -161,7 +161,7 @@ class TaskContainer
     protected function writeCompiledEnvoyFile($compiler, $path, $serversOnly)
     {
         file_put_contents(
-            $envoyPath = getcwd().'/Envoy'.md5_file($path).'.php',
+            $envoyPath = getcwd().'/Envoy'.md5_file($path).'-'.getmypid().'.php',
             $compiler->compile(file_get_contents($path), $serversOnly)
         );
 
