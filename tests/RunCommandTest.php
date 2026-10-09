@@ -4,6 +4,7 @@ namespace Laravel\Envoy\Tests;
 
 use Laravel\Envoy\Console\RunCommand;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -81,6 +82,34 @@ class RunCommandTest extends TestCase
             'pretend value' => [['example-task', '--mode=check', '--pretend=yes'], 'The "--pretend" option does not accept a value'],
             'continue value' => [['example-task', '--mode=check', '--continue=yes'], 'The "--continue" option does not accept a value'],
             'excess argument' => [['example-task', '--mode=check', 'unexpected'], 'Too many arguments'],
+        ];
+    }
+
+    /**
+     * @dataProvider applicationOptions
+     */
+    public function test_application_options_are_not_added_as_dynamic_options(string $option): void
+    {
+        $_SERVER['argv'] = ['envoy', 'run', 'example-task', '--mode=check', $option];
+
+        $command = new TestRunCommand(function ($input) {
+            $this->assertSame('check', $input->getOption('mode'));
+        });
+
+        $command->setApplication(new Application);
+
+        $command->run(new ArgvInput($_SERVER['argv']), new BufferedOutput);
+    }
+
+    public static function applicationOptions(): array
+    {
+        return [
+            'help' => ['--help'],
+            'quiet' => ['--quiet'],
+            'verbose' => ['--verbose'],
+            'ansi' => ['--ansi'],
+            'no-ansi' => ['--no-ansi'],
+            'no-interaction' => ['--no-interaction'],
         ];
     }
 
