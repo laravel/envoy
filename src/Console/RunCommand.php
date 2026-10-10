@@ -28,9 +28,9 @@ class RunCommand extends SymfonyCommand
         '--help',
         '--quiet',
         '--version',
-        '--asci',
-        '--no-asci',
-        '--no-interactions',
+        '--ansi',
+        '--no-ansi',
+        '--no-interaction',
         '--verbose',
     ];
 
@@ -57,7 +57,7 @@ class RunCommand extends SymfonyCommand
                 ->addOption('conf', null, InputOption::VALUE_REQUIRED, 'The name of the Envoy file', 'Envoy.blade.php');
 
         foreach ($_SERVER['argv'] as $argument) {
-            if (! Str::startsWith($argument, '--')) {
+            if (! Str::startsWith($argument, '--') || in_array($argument, $this->ignoreOptions)) {
                 continue;
             }
 
