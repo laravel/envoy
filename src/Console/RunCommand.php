@@ -140,7 +140,7 @@ class RunCommand extends SymfonyCommand
             return $tasks;
         }
 
-        return [...$tasks, $task];
+        return array_merge($tasks, [$task]);
     }
 
     /**
