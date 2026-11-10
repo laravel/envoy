@@ -52,9 +52,9 @@ class RunCommand extends SymfonyCommand
                 ->setDescription('Run an Envoy task.')
                 ->addArgument('task', InputArgument::REQUIRED)
                 ->addOption('continue', null, InputOption::VALUE_NONE, 'Continue running even if a task fails')
-                ->addOption('pretend', null, InputOption::VALUE_NONE, 'Dump Bash script for inspection')
-                ->addOption('path', null, InputOption::VALUE_REQUIRED, 'The path to the Envoy.blade.php file')
-                ->addOption('conf', null, InputOption::VALUE_REQUIRED, 'The name of the Envoy file', 'Envoy.blade.php');
+                ->addOption('pretend', null, InputOption::VALUE_NONE, 'Dump Bash script for inspection');
+
+        $this->addEnvoyFileOptions();
 
         foreach ($_SERVER['argv'] as $argument) {
             if (! Str::startsWith($argument, '--') || in_array($argument, $this->ignoreOptions)) {
@@ -244,22 +244,8 @@ class RunCommand extends SymfonyCommand
      */
     protected function loadTaskContainer()
     {
-        $path = $this->input->getOption('path', '');
-
-        $file = $this->input->getOption('conf');
-        $envoyFile = $path;
-
-        if (! file_exists($envoyFile ?? '')
-            && ! file_exists($envoyFile = getcwd().'/'.$file)
-            && ! file_exists($envoyFile .= '.blade.php')
-        ) {
-            echo "{$file} not found.\n";
-
-            exit(1);
-        }
-
         with($container = new TaskContainer)->load(
-            $envoyFile,
+            $this->resolveEnvoyFile(),
             new Compiler,
             array_merge($this->getOptions(), ['__task' => $this->argument('task')])
         );

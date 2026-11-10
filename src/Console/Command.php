@@ -3,6 +3,7 @@
 namespace Laravel\Envoy\Console;
 
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
@@ -36,6 +37,39 @@ trait Command
         $this->output = $output;
 
         return (int) $this->fire();
+    }
+
+    /**
+     * Add the options used to locate the Envoy file.
+     *
+     * @return void
+     */
+    protected function addEnvoyFileOptions()
+    {
+        $this->addOption('path', null, InputOption::VALUE_REQUIRED, 'The path to the Envoy.blade.php file')
+                ->addOption('conf', null, InputOption::VALUE_REQUIRED, 'The name of the Envoy file', 'Envoy.blade.php');
+    }
+
+    /**
+     * Resolve the path to the Envoy file from the command options.
+     */
+    protected function resolveEnvoyFile(): string
+    {
+        $path = $this->input->getOption('path');
+
+        $file = $this->input->getOption('conf');
+        $envoyFile = $path;
+
+        if (! file_exists($envoyFile ?? '')
+            && ! file_exists($envoyFile = getcwd().'/'.$file)
+            && ! file_exists($envoyFile .= '.blade.php')
+        ) {
+            echo "{$file} not found.\n";
+
+            exit(1);
+        }
+
+        return $envoyFile;
     }
 
     /**

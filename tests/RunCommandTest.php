@@ -11,6 +11,8 @@ use Symfony\Component\Console\Output\BufferedOutput;
 
 class RunCommandTest extends TestCase
 {
+    use InteractsWithEnvoyFiles;
+
     /**
      * @dataProvider optionOrders
      */
@@ -113,6 +115,107 @@ class RunCommandTest extends TestCase
         ];
     }
 
+    public function test_default_envoy_file_is_loaded(): void
+    {
+        $this->setUpEnvoyDirectory();
+
+        try {
+            $this->writeEnvoyFile('Envoy.blade.php', 'default');
+
+            $command = $this->runResolvingCommand(['default-task']);
+
+            $this->assertSame($this->envoyDirectory.'/Envoy.blade.php', $command->resolvedFile);
+            $this->assertArrayHasKey('default-task', $command->container->getTasks());
+        } finally {
+            $this->tearDownEnvoyDirectory();
+        }
+    }
+
+    /**
+     * @dataProvider envoyFileOptions
+     */
+    public function test_envoy_file_options_are_resolved(array $arguments, string $expectedFile, string $expectedTask): void
+    {
+        $this->setUpEnvoyDirectory();
+
+        try {
+            $this->writeEnvoyFile('Envoy.blade.php', 'default');
+            $this->writeEnvoyFile('Other.blade.php', 'other');
+            $this->writeEnvoyFile('recipes/Deploy.blade.php', 'recipe');
+
+            $command = $this->runResolvingCommand(array_merge([$expectedTask], $arguments));
+
+            $this->assertSame(
+                str_replace('{dir}', $this->envoyDirectory, $expectedFile),
+                $command->resolvedFile
+            );
+            $this->assertArrayHasKey($expectedTask, $command->container->getTasks());
+        } finally {
+            $this->tearDownEnvoyDirectory();
+        }
+    }
+
+    public static function envoyFileOptions(): array
+    {
+        return [
+            'conf with extension' => [['--conf=Other.blade.php'], '{dir}/Other.blade.php', 'other-task'],
+            'conf without extension' => [['--conf=Other'], '{dir}/Other.blade.php', 'other-task'],
+            'relative path' => [['--path=recipes/Deploy.blade.php'], 'recipes/Deploy.blade.php', 'recipe-task'],
+            'path takes precedence over conf' => [['--path=recipes/Deploy.blade.php', '--conf=Other.blade.php'], 'recipes/Deploy.blade.php', 'recipe-task'],
+            'missing path falls back to conf' => [['--path=missing.blade.php', '--conf=Other.blade.php'], '{dir}/Other.blade.php', 'other-task'],
+        ];
+    }
+
+    public function test_dynamic_options_are_passed_to_the_envoy_file(): void
+    {
+        $this->setUpEnvoyDirectory();
+
+        try {
+            file_put_contents($this->envoyDirectory.'/Envoy.blade.php', implode("\n", [
+                "@servers(['web' => 'localhost'])",
+                '@setup',
+                "    file_put_contents(__DIR__.'/options.txt', \$branch.','.\$__task);",
+                '@endsetup',
+                "@task('deploy', ['on' => 'web'])",
+                '    echo hello',
+                '@endtask',
+                '',
+            ]));
+
+            $command = $this->runResolvingCommand(['deploy', '--branch=main']);
+
+            $this->assertSame('main,deploy', file_get_contents($this->envoyDirectory.'/options.txt'));
+            $this->assertArrayHasKey('deploy', $command->container->getTasks());
+        } finally {
+            $this->tearDownEnvoyDirectory();
+        }
+    }
+
+    public function test_missing_envoy_file_exits_with_an_error(): void
+    {
+        $this->setUpEnvoyDirectory();
+
+        try {
+            $process = $this->runEnvoyBinary(['run', 'deploy', '--conf=Missing.blade.php']);
+
+            $this->assertSame(1, $process->getExitCode());
+            $this->assertSame("Missing.blade.php not found.\n", $process->getOutput());
+        } finally {
+            $this->tearDownEnvoyDirectory();
+        }
+    }
+
+    private function runResolvingCommand(array $arguments): ResolvingRunCommand
+    {
+        $_SERVER['argv'] = array_merge(['envoy', 'run'], $arguments);
+
+        $command = new ResolvingRunCommand;
+
+        $command->run(new ArgvInput(array_merge(['envoy'], $arguments)), new BufferedOutput);
+
+        return $command;
+    }
+
     private function runCommand(array $arguments, callable $callback): void
     {
         $_SERVER['argv'] = array_merge(['envoy', 'run'], $arguments);
@@ -138,6 +241,22 @@ class TestRunCommand extends RunCommand
     protected function fire()
     {
         ($this->callback)($this->input);
+
+        return 0;
+    }
+}
+
+class ResolvingRunCommand extends RunCommand
+{
+    public $resolvedFile;
+
+    public $container;
+
+    protected function fire()
+    {
+        $this->resolvedFile = $this->resolveEnvoyFile();
+
+        $this->container = $this->loadTaskContainer();
 
         return 0;
     }
