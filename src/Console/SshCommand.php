@@ -26,6 +26,8 @@ class SshCommand extends SymfonyCommand
             ->setDescription('Connect to an Envoy server.')
             ->addArgument('name', InputArgument::OPTIONAL, 'The name of the server.')
             ->addOption('user', null, InputOption::VALUE_OPTIONAL, 'The name of the user.');
+
+        $this->addEnvoyFileOptions();
     }
 
     /**
@@ -69,7 +71,7 @@ class SshCommand extends SymfonyCommand
     protected function loadTaskContainer()
     {
         with($container = new TaskContainer)->loadServers(
-            getcwd().'/Envoy.blade.php', new Compiler, []
+            $this->resolveEnvoyFile(), new Compiler, []
         );
 
         return $container;
