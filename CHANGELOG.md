@@ -1,6 +1,24 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/envoy/compare/v2.12.2...2.x)
+## [Unreleased](https://github.com/laravel/envoy/compare/v2.13.0...2.x)
+
+## [v2.13.0](https://github.com/laravel/envoy/compare/v2.12.2...v2.13.0) - 2026-11-10
+
+* GitHub Actions hardening by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/envoy/pull/299
+* Bump actions/checkout from 4.3.1 to 6.0.3 in the github-actions group by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/envoy/pull/300
+* Add Dependabot cooldown of 5 days by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/envoy/pull/301
+* Enable Dependabot auto-merge by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/envoy/pull/302
+* Fix reusable workflow pin to match granted permissions by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/envoy/pull/303
+* Bump shivammathur/setup-php from 2.37.1 to 2.37.2 in the github-actions group by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/envoy/pull/304
+* Bump actions/checkout from 6.0.3 to 7.0.0 in the github-actions group by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/envoy/pull/305
+* Fix high CPU usage when running tasks in parallel by [@mattiasgeniar](https://github.com/mattiasgeniar) in https://github.com/laravel/envoy/pull/306
+* Bump actions/checkout from 7.0.0 to 7.0.1 in the github-actions group by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/envoy/pull/307
+* Fix parsing native options after dynamic options by [@fetova](https://github.com/fetova) in https://github.com/laravel/envoy/pull/309
+* Add support for guzzle 8.x by [@zarulizham](https://github.com/zarulizham) in https://github.com/laravel/envoy/pull/312
+* [2.x] Fix `envoy run` failing with console options like `--verbose` by [@imsvidskiy](https://github.com/imsvidskiy) in https://github.com/laravel/envoy/pull/313
+* Remove security policy in favor of the org-wide default by [@pushpak1300](https://github.com/pushpak1300) in https://github.com/laravel/envoy/pull/314
+* Bump shivammathur/setup-php from 2.37.2 to 2.40.0 in the github-actions group by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/envoy/pull/315
+* Dependency floor bump by [@joetannenbaum](https://github.com/joetannenbaum) in https://github.com/laravel/envoy/pull/316
 
 ## [v2.12.2](https://github.com/laravel/envoy/compare/v2.12.1...v2.12.2) - 2026-04-01
 
