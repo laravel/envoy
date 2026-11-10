@@ -19,6 +19,8 @@ class TasksCommand extends SymfonyCommand
     {
         $this->setName('tasks')
                 ->setDescription('Lists all Envoy tasks and macros.');
+
+        $this->addEnvoyFileOptions();
     }
 
     /**
@@ -76,13 +78,7 @@ class TasksCommand extends SymfonyCommand
      */
     protected function loadTaskContainer()
     {
-        if (! file_exists($envoyFile = getcwd().'/Envoy.blade.php')) {
-            echo "Envoy.blade.php not found.\n";
-
-            exit(1);
-        }
-
-        with($container = new TaskContainer)->load($envoyFile, new Compiler);
+        with($container = new TaskContainer)->load($this->resolveEnvoyFile(), new Compiler, []);
 
         return $container;
     }
